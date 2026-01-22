@@ -1,0 +1,10 @@
+pandas
+numpy
+scikit-learn
+google-genai
+web3
+eth-utils
+pydantic
+pytest
+jupyter
+python-dotenv
