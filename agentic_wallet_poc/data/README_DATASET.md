@@ -91,6 +91,7 @@ The generator automatically includes:
   ```
 
 - **`edge_cases.json`**: 31 hand-crafted adversarial examples
+- **`edge.json`**: Annotated edge cases (validation results)
 - **`token_registry.json`**: Real ERC-20/ERC-721 contract addresses
 
 ## Complete Workflow
@@ -111,9 +112,11 @@ python data/dataset_annotator.py --non-interactive
 - **Training**: 90-300 examples (30-100 each)
 - **Production**: 900+ examples (300+ each)
 
-## Edge Cases Included
+## Edge Cases
 
-31 adversarial examples covering:
+### Hand-Crafted Edge Cases
+
+The `edge_cases.json` file contains 31 adversarial examples covering:
 - Amount extremes (very small/large, base units)
 - Missing information (amount, recipient, token ID)
 - Ambiguity (generic tokens, only address)
@@ -121,4 +124,18 @@ python data/dataset_annotator.py --non-interactive
 - Format variations (reversed order, corrections)
 - Advanced features (chain/gas specs, DeFi params)
 
-See `edge_cases.json` for complete list.
+### Validating Edge Cases
+
+Test how the annotator handles edge cases:
+
+```bash
+# Annotate edge cases to see which ones can be processed
+python data/dataset_annotator.py --input data/edge_cases.json --output data/edge.json --non-interactive
+```
+
+This generates `edge.json` showing:
+- Which edge cases can be successfully annotated
+- Which ones fail validation (missing required info)
+- How the system handles challenging inputs
+
+**Note:** Some edge cases (like "missing_amount" or "missing_recipient") are intentionally incomplete and may fail annotation - this is expected and useful for testing error handling.

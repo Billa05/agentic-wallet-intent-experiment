@@ -1,0 +1,118 @@
+[
+  {
+    "intent": "Can you send 0.5 ETH to alice.eth, please?",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "I wish to transfer 1.2345 ETH to the address 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Yo fam, gotta move like half an ETH to homie.eth ASAP for those concert tickets!",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "tranfer 0.001 eth to 0xAbcdef1234567890abcdef1234567890abcdef12.",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Execute a disbursement of 1.234567890123456789 Ether to 0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef.",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Hey, send another 500000000000000000 wei to bob.eth for the groceries, thanks!",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Could you please forward 0.05 ETH to vitalik.eth immediately?",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "I need to give 10 ETH to 0x9876543210fedcba9876543210fedcba98765432, ensure you confirm first.",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Pay .1 eth to charlie.eth for the coffee fund.",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Hey, can you send around 0.75 ETH to friend.eth?",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Kindly execute a transfer of 100.5 USDC to payment.eth.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "hey can u send like 50 usdt to 0xAbCDEf1234567890aBcdef1234567890ABCDEF12, for the fuds?",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "URGENT: Tx 0.000123456789012345 WETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e ASAP.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "Could you please transfer some DAI to alice.eth? Maybe like 50-ish?",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "Initiate ERC-20 token transfer for 1000000 USDT to 0x8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e8e for settlement.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "Please disburse 2.5 WETH to bob.eth for the concert tickets we talked about.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "oops, transfer .01 WETH to 0xBaDdcAfe00000000000000000000000000000000, I misclicked.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "I want to send 500 DAI to vitalik.eth for that thing.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "Send another 0.5 USDC to mywallet.crypto again, for the monthly sub.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "send my bored ape #7432 to alice.eth",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "Please transfer the CryptoPunk token ID 1234 to 0x123abcDEF0123456789012345678901234567890.",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "yo fam, move that mutant ape #18999 to homie.eth ASAP, don't mess up.",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "tx Doodles #5678 to bob.eth?",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "Execute ERC-721 transfer of Bored Ape Yacht Club token 9876 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "could you forward my Azuki nft number 4567 to sarah.eth for her birthday?",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "Can you transfer my CryptoPunk #7804 to david.eth again, like last month?",
+    "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "Please send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "Please send 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "Kindly initiate the transfer of Bored Ape Yacht Club token number 7432 to address 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "transaction_type": "TRANSFER_ERC721"
+  }
+]

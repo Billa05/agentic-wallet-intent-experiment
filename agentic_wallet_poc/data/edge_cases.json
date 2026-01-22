@@ -1,0 +1,157 @@
+[
+  {
+    "intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "very_small_amount"
+  },
+  {
+    "intent": "transfer 999999999999999999999999 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "very_large_amount"
+  },
+  {
+    "intent": "send ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "missing_amount"
+  },
+  {
+    "intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "missing_currency_unit"
+  },
+  {
+    "intent": "send 0.5 ETH",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "missing_recipient"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and also send 1 ETH to 0xAbCDeF1234567890aBcDeF1234567890aBcDeF12",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "multiple_transactions"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e please confirm before executing",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "confirmation_request"
+  },
+  {
+    "intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e 0.5 ETH",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "reversed_order"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e on polygon",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "wrong_chain_mention"
+  },
+  {
+    "intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "amount_in_base_units"
+  },
+  {
+    "intent": "send 0.000001 USDC to bob.eth",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "very_small_token_amount"
+  },
+  {
+    "intent": "transfer USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "missing_token_amount"
+  },
+  {
+    "intent": "send 100 tokens to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "ambiguous_token"
+  },
+  {
+    "intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "explicit_contract_address"
+  },
+  {
+    "intent": "send my Bored Ape to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC721",
+    "edge_case_type": "missing_token_id"
+  },
+  {
+    "intent": "transfer NFT #1234 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC721",
+    "edge_case_type": "missing_collection_name"
+  },
+  {
+    "intent": "send Bored Ape #999999999999999999999999 to alice.eth",
+    "transaction_type": "TRANSFER_ERC721",
+    "edge_case_type": "very_large_token_id"
+  },
+  {
+    "intent": "transfer my #0 Bored Ape to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC721",
+    "edge_case_type": "zero_token_id"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "correction_in_intent"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e ASAP urgent emergency",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "emotional_language"
+  },
+  {
+    "intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "only_address"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and send 100 USDC to 0xAbCDeF1234567890aBcDeF1234567890aBcDeF12",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "mixed_transaction_types"
+  },
+  {
+    "intent": "transfer 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e on mainnet",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "chain_specification"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e with gas price 50 gwei",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "gas_specification"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but only if balance > 1 ETH",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "conditional_logic"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e and 0.3 ETH to 0xAbCDeF1234567890aBcDeF1234567890aBcDeF12",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "multiple_recipients"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using EIP-1559",
+    "transaction_type": "SEND_ETH",
+    "edge_case_type": "transaction_type_specification"
+  },
+  {
+    "intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e with slippage 0.5%",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "defi_parameter"
+  },
+  {
+    "intent": "send my Bored Ape #1234 and Mutant Ape #5678 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC721",
+    "edge_case_type": "multiple_nfts"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC20",
+    "edge_case_type": "wrong_transaction_type_label"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC721",
+    "edge_case_type": "wrong_transaction_type_label_2"
+  }
+]
