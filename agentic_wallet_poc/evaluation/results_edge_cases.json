@@ -1,0 +1,565 @@
+{
+  "total_examples": 31,
+  "successful_predictions": 0,
+  "failed_predictions": 31,
+  "action_accuracy": 0.0,
+  "address_accuracy": 0.0,
+  "amount_accuracy": 0.0,
+  "contract_accuracy": 0.0,
+  "exact_match_accuracy": 0.0,
+  "per_action_accuracy": {
+    "transfer_native": {
+      "count": 0,
+      "exact_match": 0.0
+    },
+    "transfer_erc20": {
+      "count": 0,
+      "exact_match": 0.0
+    },
+    "transfer_erc721": {
+      "count": 0,
+      "exact_match": 0.0
+    }
+  },
+  "detailed_results": [
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "",
+      "predicted_action": null,
+      "true_action": "unknown",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    }
+  ],
+  "error_analysis": {
+    "total_errors": 31,
+    "error_by_type": {
+      "prediction_failed": 31,
+      "wrong_action": 0,
+      "wrong_address": 0,
+      "wrong_amount": 0,
+      "wrong_contract": 0
+    },
+    "failed_intents": [
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      },
+      {
+        "intent": "",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "unknown"
+      }
+    ]
+  }
+}

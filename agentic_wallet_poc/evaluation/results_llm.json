@@ -1,0 +1,191 @@
+{
+  "total_examples": 9,
+  "successful_predictions": 0,
+  "failed_predictions": 9,
+  "action_accuracy": 0.0,
+  "address_accuracy": 0.0,
+  "amount_accuracy": 0.0,
+  "contract_accuracy": 0.0,
+  "exact_match_accuracy": 0.0,
+  "per_action_accuracy": {
+    "transfer_native": {
+      "count": 3,
+      "exact_match": 0.0
+    },
+    "transfer_erc20": {
+      "count": 3,
+      "exact_match": 0.0
+    },
+    "transfer_erc721": {
+      "count": 3,
+      "exact_match": 0.0
+    }
+  },
+  "detailed_results": [
+    {
+      "intent": "Send 0.1 DAI to littlebro.eth, thanks a lot!",
+      "predicted_action": null,
+      "true_action": "transfer_erc20",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "Yo fam, get this CryptoPunk #123 to homie.eth right now!",
+      "predicted_action": null,
+      "true_action": "transfer_erc721",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "Could you kindly transfer my Azuki #2345 to charity.eth?",
+      "predicted_action": null,
+      "true_action": "transfer_erc721",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "move 0.005 WETH to friend.eth, just testing.",
+      "predicted_action": null,
+      "true_action": "transfer_erc20",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "I want to pay 10 ETH to 0x9fA2F8E730B24D9A0C3C9C2d2d8d8d8d8d8d8d8d.",
+      "predicted_action": null,
+      "true_action": "transfer_native",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "Forward my Azuki #5678 to payment.eth for the art commission.",
+      "predicted_action": null,
+      "true_action": "transfer_erc721",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "Transfer another 50 ETH to 0xBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBe.",
+      "predicted_action": null,
+      "true_action": "transfer_native",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "Please remit 1.234567890123456789 ETH to 0x1E0eEeDdDDeEEeEEEEEeEeEEeEEEeeEeeEeEeEeEe.",
+      "predicted_action": null,
+      "true_action": "transfer_native",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    },
+    {
+      "intent": "URGENT: send another 200 USDT to 0xBb7B8B10b2b80aC9c836691436151B06F39E1B73 immediately.",
+      "predicted_action": null,
+      "true_action": "transfer_erc20",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed"
+    }
+  ],
+  "error_analysis": {
+    "total_errors": 9,
+    "error_by_type": {
+      "prediction_failed": 9,
+      "wrong_action": 0,
+      "wrong_address": 0,
+      "wrong_amount": 0,
+      "wrong_contract": 0
+    },
+    "failed_intents": [
+      {
+        "intent": "Send 0.1 DAI to littlebro.eth, thanks a lot!",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_erc20"
+      },
+      {
+        "intent": "Yo fam, get this CryptoPunk #123 to homie.eth right now!",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_erc721"
+      },
+      {
+        "intent": "Could you kindly transfer my Azuki #2345 to charity.eth?",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_erc721"
+      },
+      {
+        "intent": "move 0.005 WETH to friend.eth, just testing.",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_erc20"
+      },
+      {
+        "intent": "I want to pay 10 ETH to 0x9fA2F8E730B24D9A0C3C9C2d2d8d8d8d8d8d8d8d.",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_native"
+      },
+      {
+        "intent": "Forward my Azuki #5678 to payment.eth for the art commission.",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_erc721"
+      },
+      {
+        "intent": "Transfer another 50 ETH to 0xBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBe.",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_native"
+      },
+      {
+        "intent": "Please remit 1.234567890123456789 ETH to 0x1E0eEeDdDDeEEeEEEEEeEeEEeEEEeeEeeEeEeEeEe.",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_native"
+      },
+      {
+        "intent": "URGENT: send another 200 USDT to 0xBb7B8B10b2b80aC9c836691436151B06F39E1B73 immediately.",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_erc20"
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "total_examples": 9,
+  "successful_predictions": 9,
+  "failed_predictions": 0,
+  "action_accuracy": 1.0,
+  "address_accuracy": 0.4444444444444444,
+  "amount_accuracy": 0.5555555555555556,
+  "contract_accuracy": 1.0,
+  "exact_match_accuracy": 0.3333333333333333,
+  "per_action_accuracy": {
+    "transfer_native": {
+      "count": 3,
+      "exact_match": 0.6666666666666666
+    },
+    "transfer_erc20": {
+      "count": 3,
+      "exact_match": 0.3333333333333333
+    },
+    "transfer_erc721": {
+      "count": 3,
+      "exact_match": 0.0
+    }
+  },
+  "detailed_results": [
+    {
+      "intent": "Send 0.1 DAI to littlebro.eth, thanks a lot!",
+      "predicted_action": "transfer_erc20",
+      "true_action": "transfer_erc20",
+      "correct_action": true,
+      "correct_address": false,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "intent": "Yo fam, get this CryptoPunk #123 to homie.eth right now!",
+      "predicted_action": "transfer_erc721",
+      "true_action": "transfer_erc721",
+      "correct_action": true,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "intent": "Could you kindly transfer my Azuki #2345 to charity.eth?",
+      "predicted_action": "transfer_erc721",
+      "true_action": "transfer_erc721",
+      "correct_action": true,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "intent": "move 0.005 WETH to friend.eth, just testing.",
+      "predicted_action": "transfer_erc20",
+      "true_action": "transfer_erc20",
+      "correct_action": true,
+      "correct_address": false,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "intent": "I want to pay 10 ETH to 0x9fA2F8E730B24D9A0C3C9C2d2d8d8d8d8d8d8d8d.",
+      "predicted_action": "transfer_native",
+      "true_action": "transfer_native",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "intent": "Forward my Azuki #5678 to payment.eth for the art commission.",
+      "predicted_action": "transfer_erc721",
+      "true_action": "transfer_erc721",
+      "correct_action": true,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "intent": "Transfer another 50 ETH to 0xBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBeBe.",
+      "predicted_action": "transfer_native",
+      "true_action": "transfer_native",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null
+    },
+    {
+      "intent": "Please remit 1.234567890123456789 ETH to 0x1E0eEeDdDDeEEeEEEEEeEeEEeEEEeeEeeEeEeEeEe.",
+      "predicted_action": "transfer_native",
+      "true_action": "transfer_native",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": false,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null
+    },
+    {
+      "intent": "URGENT: send another 200 USDT to 0xBb7B8B10b2b80aC9c836691436151B06F39E1B73 immediately.",
+      "predicted_action": "transfer_erc20",
+      "true_action": "transfer_erc20",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null
+    }
+  ],
+  "error_analysis": {
+    "total_errors": 6,
+    "error_by_type": {
+      "prediction_failed": 0,
+      "wrong_action": 0,
+      "wrong_address": 5,
+      "wrong_amount": 1,
+      "wrong_contract": 0
+    },
+    "failed_intents": [
+      {
+        "intent": "Send 0.1 DAI to littlebro.eth, thanks a lot!",
+        "error_type": "wrong_address",
+        "predicted_action": "transfer_erc20",
+        "true_action": "transfer_erc20"
+      },
+      {
+        "intent": "Yo fam, get this CryptoPunk #123 to homie.eth right now!",
+        "error_type": "wrong_address",
+        "predicted_action": "transfer_erc721",
+        "true_action": "transfer_erc721"
+      },
+      {
+        "intent": "Could you kindly transfer my Azuki #2345 to charity.eth?",
+        "error_type": "wrong_address",
+        "predicted_action": "transfer_erc721",
+        "true_action": "transfer_erc721"
+      },
+      {
+        "intent": "move 0.005 WETH to friend.eth, just testing.",
+        "error_type": "wrong_address",
+        "predicted_action": "transfer_erc20",
+        "true_action": "transfer_erc20"
+      },
+      {
+        "intent": "Forward my Azuki #5678 to payment.eth for the art commission.",
+        "error_type": "wrong_address",
+        "predicted_action": "transfer_erc721",
+        "true_action": "transfer_erc721"
+      },
+      {
+        "intent": "Please remit 1.234567890123456789 ETH to 0x1E0eEeDdDDeEEeEEEEEeEeEEeEEEeeEeeEeEeEeEe.",
+        "error_type": "wrong_amount",
+        "predicted_action": "transfer_native",
+        "true_action": "transfer_native"
+      }
+    ]
+  }
+}

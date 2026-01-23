@@ -625,11 +625,14 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Generate 30 balanced examples (10 of each type)
-  python data/dataset_generator.py --count 30
+  # Default: Generate 60 balanced examples (20 of each type)
+  python data/dataset_generator.py
   
-  # Generate 60 balanced examples and append to existing
-  python data/dataset_generator.py --count 60 --append
+  # Generate 30 balanced examples (10 of each type)
+  python data/dataset_generator.py --total 30
+  
+  # Generate 90 balanced examples and append to existing
+  python data/dataset_generator.py --total 90 --append
   
   # Generate custom counts for each type (advanced)
   python data/dataset_generator.py --eth-count 20 --erc20-count 15 --erc721-count 10
@@ -644,6 +647,15 @@ Examples:
         help='Total number of examples to generate (divided equally among 3 types). '
              'For balanced ML training, use this instead of individual counts. '
              'Example: --count 30 generates 10 SEND_ETH, 10 TRANSFER_ERC20, 10 TRANSFER_ERC721'
+    )
+    
+    # Alias for --count: total examples
+    parser.add_argument(
+        '--total',
+        type=int,
+        default=None,
+        help='Total number of examples to generate (alias for --count). '
+             'Divided equally among 3 types. Default: 60 (20 per type)'
     )
     
     # Advanced arguments: individual counts (mutually exclusive with --count)
@@ -679,25 +691,28 @@ Examples:
     
     args = parser.parse_args()
     
-    # Determine counts: prioritize --count for balanced dataset
-    if args.count is not None:
+    # Handle --total and --count (--total takes precedence if both specified)
+    total_count = args.total if args.total is not None else args.count
+    
+    # Determine counts: prioritize --total/--count for balanced dataset
+    if total_count is not None:
         # Balanced generation: divide count equally among 3 types
-        if args.count % 3 != 0:
-            print(f"Warning: --count {args.count} is not divisible by 3. "
-                  f"Will generate {args.count // 3} of each type (total: {(args.count // 3) * 3})")
-        count_per_type = args.count // 3
+        if total_count % 3 != 0:
+            print(f"Warning: --total/--count {total_count} is not divisible by 3. "
+                  f"Will generate {total_count // 3} of each type (total: {(total_count // 3) * 3})")
+        count_per_type = total_count // 3
         eth_count = count_per_type
         erc20_count = count_per_type
         erc721_count = count_per_type
         
         # Check if individual counts were also specified (conflict)
         if args.eth_count is not None or args.erc20_count is not None or args.erc721_count is not None:
-            print("Warning: --count specified with individual counts. Using --count for balanced generation.")
+            print("Warning: --total/--count specified with individual counts. Using --total/--count for balanced generation.")
     else:
-        # Use individual counts or defaults
-        eth_count = args.eth_count if args.eth_count is not None else 10
-        erc20_count = args.erc20_count if args.erc20_count is not None else 5
-        erc721_count = args.erc721_count if args.erc721_count is not None else 5
+        # Use individual counts or defaults (20 each = 60 total)
+        eth_count = args.eth_count if args.eth_count is not None else 20
+        erc20_count = args.erc20_count if args.erc20_count is not None else 20
+        erc721_count = args.erc721_count if args.erc721_count is not None else 20
     
     print("Agentic Wallet Intent Translation System - Dataset Generator")
     print("="*60)
@@ -712,8 +727,10 @@ Examples:
     print(f"  - TRANSFER_ERC20: {erc20_count} examples")
     print(f"  - TRANSFER_ERC721: {erc721_count} examples")
     print(f"  - Total: {eth_count + erc20_count + erc721_count} examples")
-    if args.count is not None:
-        print(f"  (Balanced dataset from --count {args.count})")
+    if total_count is not None:
+        print(f"  (Balanced dataset from --total/--count {total_count})")
+    elif args.eth_count is None and args.erc20_count is None and args.erc721_count is None:
+        print(f"  (Default: 60 examples, 20 per type)")
     print("="*60)
     
     try:
