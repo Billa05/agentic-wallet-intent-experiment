@@ -8,8 +8,8 @@ def main():
     project_root = Path(__file__).parent.parent
     
     # Load existing intents
-    raw_intents_path = project_root / "data" / "raw_intents.json"
-    edge_cases_path = project_root / "data" / "edge_cases.json"
+    raw_intents_path = project_root / "data" / "datasets" / "raw_intents.json"
+    edge_cases_path = project_root / "data" / "datasets" / "edge_cases.json"
     
     with open(raw_intents_path, 'r', encoding='utf-8') as f:
         existing_intents = json.load(f)

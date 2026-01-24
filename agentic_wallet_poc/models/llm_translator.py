@@ -9,11 +9,11 @@ import json
 import sys
 from pathlib import Path
 from typing import Optional, Dict, Any
-from decimal import Decimal, ROUND_DOWN
 
 from google import genai
 from dotenv import load_dotenv
 import os
+# Removed eth_utils - testing raw LLM output without post-processing
 
 # Add parent directory to path for imports
 project_root = Path(__file__).parent.parent
@@ -26,6 +26,7 @@ from utils.schemas import (
     AnnotatedIntent,
     UserContext
 )
+from models.prompts import create_system_prompt, create_user_prompt
 
 # Load environment variables
 load_dotenv()
@@ -43,16 +44,18 @@ class LLMTranslator:
     Converts natural language to ExecutablePayload using structured output.
     """
     
-    def __init__(self, token_registry_path: str = "data/token_registry.json", model_name: str = "gemini-2.0-flash-exp"):
+    def __init__(self, token_registry_path: str = "data/registries/token_registry.json", ens_registry_path: str = "data/registries/ens_registry.json", model_name: str = "gemini-2.5-flash"):
         """
         Initialize the LLM translator.
         
         Args:
             token_registry_path: Path to token registry JSON file
+            ens_registry_path: Path to ENS registry JSON file
             model_name: Gemini model name to use
         """
         self.model_name = model_name
         self.token_registry = self._load_token_registry(token_registry_path)
+        self.ens_registry = self._load_ens_registry(ens_registry_path)
         
         if not GEMINI_CLIENT:
             raise ValueError("GEMINI_API_KEY not found in environment variables")
@@ -70,66 +73,20 @@ class LLMTranslator:
         with open(registry_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     
-    def _create_system_prompt(self) -> str:
-        """Create system prompt with schema and token registry information."""
-        # Build token registry info
-        tokens_info = []
-        for symbol, info in self.token_registry.get("erc20_tokens", {}).items():
-            tokens_info.append(f"- {symbol}: {info['address']} (decimals: {info['decimals']})")
+    def _load_ens_registry(self, registry_path: str) -> Dict[str, str]:
+        """Load ENS registry from JSON file."""
+        if not Path(registry_path).is_absolute():
+            registry_path = project_root / registry_path
         
-        collections_info = []
-        for name, info in self.token_registry.get("erc721_collections", {}).items():
-            collections_info.append(f"- {name}: {info['address']}")
+        registry_path = Path(registry_path)
         
-        return f"""You are a blockchain transaction translator. Convert natural language intents into executable blockchain transactions.
-
-CRITICAL REQUIREMENTS:
-1. All amounts must be in Wei/base units (integers as strings)
-2. ETH: Multiply by 10^18 (e.g., 0.5 ETH = "500000000000000000")
-3. ERC-20 tokens: Multiply by 10^decimals (USDC/USDT = 6, DAI/WETH = 18)
-4. All addresses must be checksummed (EIP-55 format)
-5. Chain ID is always 1 (Ethereum Mainnet)
-
-TOKEN REGISTRY:
-ERC-20 Tokens:
-{chr(10).join(tokens_info) if tokens_info else "- None"}
-
-ERC-721 Collections:
-{chr(10).join(collections_info) if collections_info else "- None"}
-
-OUTPUT SCHEMA:
-{{
-  "action": "transfer_native" | "transfer_erc20" | "transfer_erc721",
-  "target_contract": null | "0x...",  // null for native ETH, address for tokens/NFTs
-  "function_name": null | "transfer" | "transferFrom",
-  "arguments": {{
-    "to": "0x...",  // checksummed recipient address
-    "value": "1234567890",  // Wei/base units as STRING
-    "human_readable_amount": "0.5 ETH"  // for UI display
-  }}
-}}
-
-For ERC-721, also include:
-  "arguments": {{
-    "to": "0x...",
-    "tokenId": 1234,
-    "human_readable_amount": "Token #1234"
-  }}
-
-IMPORTANT:
-- If intent is ambiguous or missing required info, return null
-- For ENS names (e.g., "alice.eth"), generate a deterministic address using SHA256 hash
-- Always validate addresses are 0x + 40 hex characters
-- Amounts must be exact - no rounding errors"""
+        if not registry_path.exists():
+            return {}
+        
+        with open(registry_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get("ens_names", {})
     
-    def _create_user_prompt(self, intent: str, chain_id: int = 1) -> str:
-        """Create user prompt with the intent to translate."""
-        return f"""Translate this user intent into a blockchain transaction:
-
-Intent: "{intent}"
-Chain ID: {chain_id} (Ethereum Mainnet)
-
-Return ONLY valid JSON matching the schema above. If the intent cannot be translated, return null."""
     
     def translate(self, user_intent: str, chain_id: int = 1) -> Optional[AnnotatedIntent]:
         """
@@ -144,8 +101,8 @@ Return ONLY valid JSON matching the schema above. If the intent cannot be transl
         """
         try:
             # Create prompts
-            system_prompt = self._create_system_prompt()
-            user_prompt = self._create_user_prompt(user_intent, chain_id)
+            system_prompt = create_system_prompt(self.token_registry, self.ens_registry)
+            user_prompt = create_user_prompt(user_intent, chain_id)
             
             # Combine prompts
             full_prompt = f"{system_prompt}\n\n{user_prompt}"
@@ -157,22 +114,34 @@ Return ONLY valid JSON matching the schema above. If the intent cannot be transl
                     contents=full_prompt
                 )
             except Exception as e:
-                # Silently fail - errors will be caught in evaluation
+                # Log API errors for debugging
+                import sys
+                print(f"DEBUG: Gemini API error for intent '{user_intent[:50]}...': {e}", file=sys.stderr)
                 return None
             
             # Extract JSON from response (matching dataset_generator format)
             response_text = None
             if hasattr(response, 'text'):
-                response_text = response.text
-            elif hasattr(response, 'candidates') and response.candidates:
-                if hasattr(response.candidates[0], 'content'):
-                    if hasattr(response.candidates[0].content, 'parts'):
-                        if response.candidates[0].content.parts:
-                            response_text = response.candidates[0].content.parts[0].text
-                    elif hasattr(response.candidates[0].content, 'text'):
-                        response_text = response.candidates[0].content.text
+                response_text = response.text.strip()
+            elif hasattr(response, 'candidates') and len(response.candidates) > 0:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'content'):
+                    if hasattr(candidate.content, 'parts') and len(candidate.content.parts) > 0:
+                        response_text = candidate.content.parts[0].text.strip()
+                    elif hasattr(candidate.content, 'text'):
+                        response_text = candidate.content.text.strip()
             
             if not response_text:
+                # Fallback: try to extract from string representation
+                response_str = str(response)
+                import re
+                json_match = re.search(r'\{[^{}]*"action"[^{}]*\}', response_str, re.DOTALL)
+                if json_match:
+                    response_text = json_match.group(0).strip()
+            
+            if not response_text:
+                import sys
+                print(f"DEBUG: No response text extracted for intent '{user_intent[:50]}...'", file=sys.stderr)
                 return None
             
             # Parse JSON response
@@ -194,8 +163,11 @@ Return ONLY valid JSON matching the schema above. If the intent cannot be transl
             # Parse JSON
             try:
                 payload_dict = json.loads(response_text)
-            except json.JSONDecodeError:
-                # Silently fail - errors will be caught in evaluation
+            except json.JSONDecodeError as e:
+                # Log JSON parsing errors for debugging
+                import sys
+                print(f"DEBUG: JSON parse error for intent '{user_intent[:50]}...': {e}", file=sys.stderr)
+                print(f"DEBUG: Response text: {response_text[:200]}...", file=sys.stderr)
                 return None
             
             # Validate and create ExecutablePayload
@@ -205,11 +177,18 @@ Return ONLY valid JSON matching the schema above. If the intent cannot be transl
             # Ensure chain_id is set
             payload_dict["chain_id"] = chain_id
             
+            # No post-processing - accept LLM output as-is for pure capability testing
+            # The LLM should output correct addresses from the registry based on the prompt
+            # We only validate that the JSON structure is correct, not the content
+            
             # Create ExecutablePayload
             try:
                 payload = ExecutablePayload(**payload_dict)
-            except Exception:
-                # Silently fail - errors will be caught in evaluation
+            except Exception as e:
+                # Log validation errors for debugging
+                import sys
+                print(f"DEBUG: ExecutablePayload validation error for intent '{user_intent[:50]}...': {e}", file=sys.stderr)
+                print(f"DEBUG: Payload dict: {json.dumps(payload_dict, indent=2)[:500]}...", file=sys.stderr)
                 return None
             
             # Create user context

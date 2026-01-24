@@ -32,14 +32,63 @@ from utils.schemas import (
 )
 from decimal import Decimal
 
-# Placeholder address mappings (for ENS-like names)
-PLACEHOLDER_ADDRESSES: Dict[str, str] = {}
-
 # Token registry (loaded from file)
 TOKEN_REGISTRY: Dict[str, Any] = {}
 
+# ENS registry (loaded from file)
+ENS_REGISTRY: Dict[str, str] = {}
 
-def load_token_registry(registry_path: str = "data/token_registry.json") -> Dict[str, Any]:
+
+def load_ens_registry(registry_path: str = "data/registries/ens_registry.json") -> Dict[str, str]:
+    """
+    Load ENS registry from JSON file.
+    
+    Args:
+        registry_path: Path to ENS registry JSON file
+        
+    Returns:
+        Dictionary with ENS name -> address mappings
+    """
+    global ENS_REGISTRY
+    
+    # Handle relative paths
+    if not os.path.isabs(registry_path):
+        registry_path = str(project_root / registry_path)
+    
+    if os.path.exists(registry_path):
+        with open(registry_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            ENS_REGISTRY = data.get("ens_names", {})
+        print(f"✓ Loaded ENS registry from {registry_path} ({len(ENS_REGISTRY)} names)")
+    else:
+        print(f"⚠ Warning: ENS registry not found at {registry_path}")
+        ENS_REGISTRY = {}
+    
+    return ENS_REGISTRY
+
+
+def lookup_ens_name(ens_name: str) -> Optional[str]:
+    """
+    Look up ENS name in registry.
+    
+    Args:
+        ens_name: ENS name (e.g., "alice.eth")
+        
+    Returns:
+        Checksummed address or None if not found
+    """
+    if not ENS_REGISTRY:
+        load_ens_registry()
+    
+    # Normalize ENS name (lowercase, ensure .eth suffix)
+    ens_name_lower = ens_name.lower().strip()
+    if not ens_name_lower.endswith('.eth'):
+        ens_name_lower = ens_name_lower + '.eth'
+    
+    return ENS_REGISTRY.get(ens_name_lower)
+
+
+def load_token_registry(registry_path: str = "data/registries/token_registry.json") -> Dict[str, Any]:
     """
     Load token registry from JSON file.
     
@@ -113,55 +162,32 @@ def lookup_erc721_collection(collection_name: str) -> Optional[Dict[str, Any]]:
     return None
 
 
-def generate_random_address(seed: str = None) -> str:
-    """
-    Generate a random but valid Ethereum address.
-    
-    Args:
-        seed: Optional seed string for deterministic generation
-        
-    Returns:
-        Checksummed Ethereum address
-    """
-    if seed:
-        # Use seed to generate deterministic address
-        w3 = Web3()
-        # Create a simple hash-based address from seed
-        hash_bytes = w3.keccak(text=seed)
-        address = "0x" + hash_bytes.hex()[:40]
-    else:
-        # Generate random address
-        w3 = Web3()
-        account = w3.eth.account.create()
-        address = account.address
-    
-    return to_checksum_address(address)
-
-
 def normalize_address(address_str: str) -> Optional[str]:
     """
     Normalize an Ethereum address to checksum format.
-    Handles both full addresses and placeholder names.
+    Only accepts valid 0x addresses or ENS names in the registry.
     
     Args:
-        address_str: Address string (0x..., ENS name, or placeholder)
+        address_str: Address string (0x... or ENS name in registry)
         
     Returns:
-        Checksummed address or None if invalid
+        Checksummed address or None if invalid/not in registry
     """
     if not address_str:
         return None
     
     address_str = address_str.strip()
     
-    # Check if it's a placeholder/ENS name
-    if address_str.endswith('.eth') or not address_str.startswith('0x'):
-        # Generate or retrieve placeholder address
-        if address_str not in PLACEHOLDER_ADDRESSES:
-            PLACEHOLDER_ADDRESSES[address_str] = generate_random_address(address_str)
-        return PLACEHOLDER_ADDRESSES[address_str]
+    # Check if it's an ENS name
+    if address_str.endswith('.eth') or (not address_str.startswith('0x') and '.' in address_str):
+        # Only use ENS names that are in the registry
+        ens_address = lookup_ens_name(address_str)
+        if ens_address:
+            return to_checksum_address(ens_address)
+        # If ENS name not in registry, return None (don't generate random address)
+        return None
     
-    # Validate and checksum real address
+    # Validate and checksum real 0x address
     if is_address(address_str):
         try:
             return to_checksum_address(address_str)
@@ -174,12 +200,13 @@ def normalize_address(address_str: str) -> Optional[str]:
 def extract_eth_addresses(text: str) -> List[str]:
     """
     Extract Ethereum addresses from text.
+    Only extracts valid 0x addresses or ENS names that are in the registry.
     
     Args:
         text: Text to search for addresses
         
     Returns:
-        List of address strings found
+        List of address strings found (0x addresses or ENS names in registry)
     """
     addresses = []
     
@@ -188,22 +215,19 @@ def extract_eth_addresses(text: str) -> List[str]:
     hex_addresses = re.findall(hex_pattern, text)
     addresses.extend(hex_addresses)
     
-    # Extract ENS-like names
+    # Extract ENS names (must have .eth suffix)
     ens_pattern = r'\b[a-z0-9]+\.eth\b'
     ens_names = re.findall(ens_pattern, text, re.IGNORECASE)
-    addresses.extend(ens_names)
     
-    # Extract placeholder names (common names after "to")
-    placeholder_pattern = r'\bto\s+([a-z]+)\b'
-    placeholders = re.findall(placeholder_pattern, text.lower())
-    for p in placeholders:
-        if p not in ['the', 'my', 'your', 'their', 'this', 'that']:
-            addresses.append(p + '.eth')  # Treat as ENS-like
+    # Only include ENS names that are in the registry
+    for ens_name in ens_names:
+        if lookup_ens_name(ens_name):
+            addresses.append(ens_name)
     
     return list(set(addresses))  # Remove duplicates
 
 
-def extract_amount(text: str, token_type: str = "ETH") -> Optional[str]:
+def extract_amount(text: str, token_type: str = "ETH") -> Tuple[Optional[str], bool]:
     """
     Extract amount from text.
     
@@ -212,11 +236,27 @@ def extract_amount(text: str, token_type: str = "ETH") -> Optional[str]:
         token_type: Type of token (ETH, ERC20, etc.)
         
     Returns:
-        Amount as string or None
+        Tuple of (amount as string, is_wei_format)
+        is_wei_format: True if amount is already in Wei/base units, False if in human-readable format
     """
-    # Pattern for decimal numbers
+    text_lower = text.lower()
+    
+    # Check if amount is already in Wei format
+    wei_pattern = r'(\d+)\s*wei'
+    wei_match = re.search(wei_pattern, text_lower)
+    if wei_match:
+        wei_value = wei_match.group(1)
+        # Validate it's a reasonable Wei value (not too small, not astronomical)
+        try:
+            wei_int = int(wei_value)
+            if 1 <= wei_int <= 10**30:  # Reasonable range
+                return (wei_value, True)  # Already in Wei
+        except ValueError:
+            pass
+    
+    # Pattern for decimal numbers (human-readable amounts)
     amount_patterns = [
-        r'(\d+\.?\d*)\s*(?:eth|ether|wei)',  # ETH amounts
+        r'(\d+\.?\d*)\s*(?:eth|ether)',  # ETH amounts (not wei)
         r'(\d+\.?\d*)\s*(?:usdc|usdt|dai|weth|token|tokens)',  # Token amounts
         r'amount[=:]\s*(\d+\.?\d*)',  # amount= or amount:
         r'(\d+\.?\d*)',  # Any decimal number (fallback)
@@ -232,11 +272,11 @@ def extract_amount(text: str, token_type: str = "ETH") -> Optional[str]:
                 try:
                     amount = float(match)
                     if amount > 0:
-                        return str(amount)
+                        return (str(amount), False)  # Human-readable format
                 except ValueError:
                     continue
     
-    return None
+    return (None, False)
 
 
 def extract_token_info(text: str) -> Tuple[Optional[str], Optional[int]]:
@@ -371,13 +411,15 @@ def extract_parameters(intent: str, transaction_type: TransactionType) -> Dict[s
     }
     
     if transaction_type == TransactionType.SEND_ETH:
-        amount = extract_amount(intent, "ETH")
+        amount, is_wei = extract_amount(intent, "ETH")
         params['amount'] = amount
+        params['_is_wei'] = is_wei  # Flag to indicate if already in Wei
         
     elif transaction_type == TransactionType.TRANSFER_ERC20:
-        amount = extract_amount(intent, "ERC20")
+        amount, is_wei = extract_amount(intent, "ERC20")
         token_address, decimals = extract_token_info(intent)
         params['amount'] = amount
+        params['_is_wei'] = is_wei  # Flag to indicate if already in base units
         params['token_address'] = token_address
         params['decimals'] = decimals
         
@@ -410,13 +452,36 @@ def create_executable_payload(
             if not parameters.get('to_address') or not parameters.get('amount'):
                 return None
             
-            # Convert ETH amount to Wei
-            eth_amount = Decimal(str(parameters['amount']))
-            wei_per_eth = Decimal("1000000000000000000")  # 1e18
-            value_wei = str(int((eth_amount * wei_per_eth).to_integral_value()))
+            # Validate amount is not None and is a valid number
+            amount_str = parameters.get('amount')
+            if amount_str is None:
+                return None
             
-            # Build human-readable amount string
-            human_readable = f"{parameters['amount']} ETH"
+            # Check if amount is already in Wei format
+            is_wei = parameters.get('_is_wei', False)
+            
+            try:
+                if is_wei:
+                    # Amount is already in Wei, use it directly
+                    value_wei = str(int(Decimal(str(amount_str)).to_integral_value()))
+                    # Convert Wei to ETH for human-readable display
+                    wei_amount = Decimal(value_wei)
+                    eth_amount = wei_amount / Decimal("1000000000000000000")  # 1e18
+                    # Format human-readable amount nicely
+                    if eth_amount >= 1:
+                        human_readable = f"{eth_amount:.6f}".rstrip('0').rstrip('.') + " ETH"
+                    else:
+                        human_readable = f"{eth_amount:.18f}".rstrip('0').rstrip('.') + " ETH"
+                else:
+                    # Convert ETH amount to Wei
+                    eth_amount = Decimal(str(amount_str))
+                    wei_per_eth = Decimal("1000000000000000000")  # 1e18
+                    value_wei = str(int((eth_amount * wei_per_eth).to_integral_value()))
+                    # Build human-readable amount string
+                    human_readable = f"{amount_str} ETH"
+            except (ValueError, TypeError, Exception) as e:
+                print(f"Error converting ETH amount '{amount_str}': {e}")
+                return None
             
             return ExecutablePayload(
                 chain_id=chain_id,
@@ -434,11 +499,32 @@ def create_executable_payload(
             if not parameters.get('to_address') or not parameters.get('amount') or not parameters.get('token_address'):
                 return None
             
-            # Convert token amount to base units
-            token_amount = Decimal(str(parameters['amount']))
-            decimals = parameters.get('decimals', 18)
-            scale = Decimal(10) ** int(decimals)
-            value_base_units = str(int((token_amount * scale).to_integral_value()))
+            # Validate amount is not None and is a valid number
+            amount_str = parameters.get('amount')
+            if amount_str is None:
+                return None
+            
+            # Check if amount is already in base units format
+            is_wei = parameters.get('_is_wei', False)
+            
+            try:
+                if is_wei:
+                    # Amount is already in base units, use it directly
+                    value_base_units = str(int(Decimal(str(amount_str)).to_integral_value()))
+                    # Convert base units back to human-readable for display
+                    base_amount = Decimal(value_base_units)
+                    decimals = parameters.get('decimals', 18)
+                    scale = Decimal(10) ** int(decimals)
+                    token_amount = base_amount / scale
+                else:
+                    # Convert token amount to base units
+                    token_amount = Decimal(str(amount_str))
+                    decimals = parameters.get('decimals', 18)
+                    scale = Decimal(10) ** int(decimals)
+                    value_base_units = str(int((token_amount * scale).to_integral_value()))
+            except (ValueError, TypeError, Exception) as e:
+                print(f"Error converting amount '{amount_str}': {e}")
+                return None
             
             # Detect token symbol for human-readable
             token_symbol = "TOKEN"  # Default
@@ -452,7 +538,11 @@ def create_executable_payload(
             elif 'weth' in intent_lower:
                 token_symbol = "WETH"
             
-            human_readable = f"{parameters['amount']} {token_symbol}"
+            # Build human-readable amount
+            if is_wei and 'token_amount' in locals():
+                human_readable = f"{token_amount} {token_symbol}"
+            else:
+                human_readable = f"{amount_str} {token_symbol}"
             
             return ExecutablePayload(
                 chain_id=chain_id,
@@ -696,8 +786,8 @@ def interactive_annotate(
 
 
 def annotate_dataset(
-    raw_intents_path: str = "data/raw_intents.json",
-    output_path: str = "data/annotated_dataset.json",
+    raw_intents_path: str = "data/datasets/raw_intents.json",
+    output_path: str = "data/datasets/annotated_dataset.json",
     interactive: bool = True
 ) -> List[Dict[str, Any]]:
     """
@@ -717,8 +807,9 @@ def annotate_dataset(
     if not os.path.isabs(output_path):
         output_path = str(project_root / output_path)
     
-    # Load token registry first
+    # Load registries first
     load_token_registry()
+    load_ens_registry()
     
     print("Loading raw intents...")
     raw_intents = load_raw_intents(raw_intents_path)
@@ -796,12 +887,12 @@ def main():
     parser = argparse.ArgumentParser(description="Annotate transaction intent dataset")
     parser.add_argument(
         '--input',
-        default='data/raw_intents.json',
+        default='data/datasets/raw_intents.json',
         help='Path to raw intents JSON file'
     )
     parser.add_argument(
         '--output',
-        default='data/annotated_dataset.json',
+        default='data/datasets/annotated_dataset.json',
         help='Path to save annotated dataset'
     )
     parser.add_argument(

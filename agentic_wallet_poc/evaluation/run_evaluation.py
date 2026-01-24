@@ -2,7 +2,7 @@
 """
 Evaluation Runner for Agentic Wallet Intent Translation System
 
-Main script to evaluate baseline translator on test datasets.
+Main script to evaluate translator on annotated dataset.
 """
 
 import json
@@ -154,17 +154,17 @@ def run_evaluation(
     translator_type: str = 'baseline'
 ) -> Dict[str, Any]:
     """
-    Run evaluation on test dataset.
+    Run evaluation on annotated dataset.
     
     Args:
-        test_data_path: Path to test dataset JSON
+        test_data_path: Path to annotated dataset JSON
         output_path: Path to save results
         verbose: Print detailed progress
         
     Returns:
         Evaluation metrics dictionary
     """
-    print(f"Loading test data from {test_data_path}...")
+    print(f"Loading annotated dataset from {test_data_path}...")
     test_data = load_json_file(test_data_path)
     print(f"Loaded {len(test_data)} test examples\n")
     
@@ -210,18 +210,18 @@ def run_evaluation(
 def main():
     """Main evaluation function."""
     parser = argparse.ArgumentParser(
-        description="Evaluate baseline translator on test dataset",
+        description="Evaluate translator on annotated dataset",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # Evaluate on default test set
+  # Evaluate on default annotated dataset
   python evaluation/run_evaluation.py
   
   # Evaluate with verbose output
   python evaluation/run_evaluation.py --verbose
   
-  # Custom test set and output
-  python evaluation/run_evaluation.py --test-data data/custom_test.json --output results/custom.json
+  # Custom dataset and output
+  python evaluation/run_evaluation.py --test-data data/datasets/custom_dataset.json --output evaluation/results/custom.json
   
   # Also evaluate on edge cases
   python evaluation/run_evaluation.py --include-edge-cases
@@ -230,20 +230,14 @@ Examples:
     
     parser.add_argument(
         '--test-data',
-        default='data/test_set.json',
-        help='Path to test dataset JSON (default: data/test_set.json)'
-    )
-    
-    parser.add_argument(
-        '--train-data',
-        default=None,
-        help='Path to training set JSON (optional, for comparison)'
+        default='data/datasets/annotated_dataset.json',
+        help='Path to annotated dataset JSON (default: data/datasets/annotated_dataset.json)'
     )
     
     parser.add_argument(
         '--output',
-        default='evaluation/results.json',
-        help='Path to save results JSON (default: evaluation/results.json)'
+        default='evaluation/results/results.json',
+        help='Path to save results JSON (default: evaluation/results/results.json)'
     )
     
     parser.add_argument(
@@ -320,7 +314,7 @@ Examples:
         
         # Optional: Evaluate on edge cases
         if args.include_edge_cases:
-            edge_cases_path = project_root / "data" / "edge_cases.json"
+            edge_cases_path = project_root / "data" / "datasets" / "edge_cases.json"
             if edge_cases_path.exists():
                 print("\n" + "=" * 60)
                 print("Evaluating on Edge Cases")
@@ -335,23 +329,6 @@ Examples:
             else:
                 print(f"\n⚠ Edge cases file not found at {edge_cases_path}")
         
-        # Optional: Compare with training set (if provided)
-        if args.train_data:
-            train_data_path = Path(args.train_data)
-            if train_data_path.exists():
-                print("\n" + "=" * 60)
-                print("Evaluating on Training Set (for comparison)")
-                print("=" * 60)
-                
-                train_output_path = output_path.parent / f"{output_path.stem}_train{output_path.suffix}"
-                run_evaluation(
-                    test_data_path=train_data_path,
-                    output_path=train_output_path,
-                    verbose=args.verbose
-                )
-            else:
-                print(f"\n⚠ Training data file not found at {train_data_path}")
-        
         print("\n" + "=" * 60)
         print("✓ Evaluation completed successfully!")
         print("=" * 60)
@@ -361,8 +338,8 @@ Examples:
     except FileNotFoundError as e:
         print(f"\n❌ Error: {e}")
         print("\nPlease ensure:")
-        print("  1. Test dataset exists (run: python data/split_dataset.py)")
-        print("  2. Dataset has been annotated (run: python data/dataset_annotator.py)")
+        print("  1. Dataset has been annotated (run: python data/dataset_annotator.py)")
+        print("  2. Annotated dataset exists at: data/datasets/annotated_dataset.json")
         return 1
         
     except Exception as e:

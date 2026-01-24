@@ -27,7 +27,7 @@ Advanced:
   --erc721-count INT   TRANSFER_ERC721 examples
 
 General:
-  --output PATH        Output file (default: data/raw_intents.json)
+  --output PATH        Output file (default: data/datasets/raw_intents.json)
   --append             Append to existing file
 ```
 
@@ -68,12 +68,12 @@ The generator automatically includes:
 
 ## Dataset Files
 
-- **`raw_intents.json`**: Natural language intents (input)
+- **`datasets/raw_intents.json`**: Natural language intents (input)
   ```json
   {"intent": "send 0.5 ETH to alice.eth", "transaction_type": "SEND_ETH"}
   ```
 
-- **`annotated_dataset.json`**: Structured executable payloads (output)
+- **`datasets/annotated_dataset.json`**: Structured executable payloads (output)
   ```json
   {
     "user_intent": "send 0.5 ETH to alice.eth",
@@ -90,9 +90,12 @@ The generator automatically includes:
   }
   ```
 
-- **`edge_cases.json`**: 31 hand-crafted adversarial examples
-- **`edge.json`**: Annotated edge cases (validation results)
-- **`token_registry.json`**: Real ERC-20/ERC-721 contract addresses
+- **`datasets/edge_cases.json`**: 31 hand-crafted adversarial examples
+- **`datasets/edge.json`**: Annotated edge cases (validation results)
+- **`datasets/train_set.json`**: Training dataset (80% split)
+- **`datasets/test_set.json`**: Test dataset (20% split)
+- **`registries/token_registry.json`**: Real ERC-20/ERC-721 contract addresses
+- **`registries/ens_registry.json`**: ENS name to address mappings
 
 ## Complete Workflow
 
@@ -130,7 +133,7 @@ Test how the annotator handles edge cases:
 
 ```bash
 # Annotate edge cases to see which ones can be processed
-python data/dataset_annotator.py --input data/edge_cases.json --output data/edge.json --non-interactive
+python data/dataset_annotator.py --input data/datasets/edge_cases.json --output data/datasets/edge.json --non-interactive
 ```
 
 This generates `edge.json` showing:

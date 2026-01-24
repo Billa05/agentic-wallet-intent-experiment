@@ -22,6 +22,8 @@ class EvaluationResult:
     correct_contract: bool
     exact_match: bool
     error: Optional[str] = None
+    ground_truth: Optional[Dict[str, Any]] = None  # Full ground truth annotation
+    predicted: Optional[Dict[str, Any]] = None  # Full predicted annotation
 
 
 def evaluate_single(
@@ -53,7 +55,9 @@ def evaluate_single(
             correct_amount=False,
             correct_contract=False,
             exact_match=False,
-            error="Prediction failed"
+            error="Prediction failed",
+            ground_truth=ground_truth,
+            predicted=None
         )
     
     # Extract payloads
@@ -71,9 +75,17 @@ def evaluate_single(
     correct_address = (pred_to == true_to) if (pred_to and true_to) else False
     
     # Compare amounts (exact string match for Wei/base units)
-    pred_value = pred_payload.get("arguments", {}).get("value", "")
-    true_value = true_payload.get("arguments", {}).get("value", "")
-    correct_amount = (pred_value == true_value) if (pred_value and true_value) else False
+    # For ERC-721, there's no "value" field - compare tokenId instead
+    if true_action == "transfer_erc721":
+        # For ERC-721, compare tokenId (the "amount" equivalent)
+        pred_token_id = pred_payload.get("arguments", {}).get("tokenId")
+        true_token_id = true_payload.get("arguments", {}).get("tokenId")
+        correct_amount = (pred_token_id == true_token_id) if (pred_token_id is not None and true_token_id is not None) else False
+    else:
+        # For ETH and ERC-20, compare value fields (Wei/base units)
+        pred_value = pred_payload.get("arguments", {}).get("value", "")
+        true_value = true_payload.get("arguments", {}).get("value", "")
+        correct_amount = (pred_value == true_value) if (pred_value and true_value) else False
     
     # Compare target contracts
     # None for native ETH, address for tokens/NFTs (case-insensitive)
@@ -111,7 +123,9 @@ def evaluate_single(
         correct_amount=correct_amount,
         correct_contract=correct_contract,
         exact_match=exact_match,
-        error=None
+        error=None,
+        ground_truth=ground_truth,
+        predicted=predicted
     )
 
 

@@ -1,0 +1,242 @@
+[
+  {
+    "user_intent": "Please initiate transfer of 1.234567890123456789 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "value": "1234567890123456700",
+        "human_readable_amount": "1.2345678901234567 ETH"
+      }
+    }
+  },
+  {
+    "user_intent": "URGENT: tx 500000000000000000 wei to dave.eth ASAP!",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
+        "value": "500000000000000000",
+        "human_readable_amount": "0.5 ETH"
+      }
+    }
+  },
+  {
+    "user_intent": "I need to move 0.05 ether to vitalik.eth please, could you do that?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
+        "value": "50000000000000000",
+        "human_readable_amount": "0.05 ETH"
+      }
+    }
+  },
+  {
+    "user_intent": "Yo, disburse fifty ETH to 0x8aDc3E48f57212a537bBc98342730b777f987654, double chek it.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x8aDc3e48f57212a537bBc98342730B777F987654",
+        "value": "50000000000000000000",
+        "human_readable_amount": "50.0 ETH"
+      }
+    }
+  },
+  {
+    "user_intent": "Kindly initiate an ERC-20 transfer of 100.00 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e for invoice #2023-007.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "value": "100000000",
+        "human_readable_amount": "100.0 USDC"
+      }
+    }
+  },
+  {
+    "user_intent": "can u pls fwd 50 usdt toknes to freind.eth, thanks!",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x4D076bcae8bC873735621b5F34B60Fe188b40d1E",
+        "value": "50000000",
+        "human_readable_amount": "50.0 USDT"
+      }
+    }
+  },
+  {
+    "user_intent": "I need to disburse 1.234567890123456789 DAI to charity.eth, please confirm before execution.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
+        "value": "1234567890123456700",
+        "human_readable_amount": "1.2345678901234567 DAI"
+      }
+    }
+  },
+  {
+    "user_intent": "Hey, could you move around 0.0005 WETH to 0xAbc123456789012345678901234567890123456D again for the gas fees?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0xABC123456789012345678901234567890123456d",
+        "value": "500000000000000",
+        "human_readable_amount": "0.0005 WETH"
+      }
+    }
+  },
+  {
+    "user_intent": "Yo fam, send that Mutant Ape #12345 to homie.eth asap for the loan repayment.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
+        "tokenId": 12345,
+        "human_readable_amount": "Token #12345"
+      }
+    }
+  },
+  {
+    "user_intent": "I would like to formally transfer CryptoPunk token ID 7890 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "tokenId": 7890,
+        "human_readable_amount": "Token #7890"
+      }
+    }
+  },
+  {
+    "user_intent": "Could you please move nft #9999 to 0xBaE79B22B705971aF8125E170C0D7664B5C60C0a?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xbae79b22b705971AF8125E170C0d7664b5c60c0a",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0xbae79b22b705971AF8125E170C0d7664b5c60c0a",
+        "tokenId": 9999,
+        "human_readable_amount": "Token #9999"
+      }
+    }
+  },
+  {
+    "user_intent": "Get this Bored Ape Yacht Club token number 6789 over to alice.eth, she's waiting on it.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "tokenId": 6789,
+        "human_readable_amount": "Token #6789"
+      }
+    }
+  }
+]
