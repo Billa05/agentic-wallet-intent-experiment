@@ -13,7 +13,7 @@ def create_system_prompt(
     ens_registry: Dict[str, str]
 ) -> str:
     """
-    Create system prompt with schema and token registry information.
+    Create system prompt with schema, token registry, and ENS registry information.
     
     Args:
         token_registry: Token registry dictionary with erc20_tokens and erc721_collections
@@ -29,7 +29,7 @@ def create_system_prompt(
     
     collections_info = []
     for name, info in token_registry.get("erc721_collections", {}).items():
-        collections_info.append(f"- {name}: {info['address']}")
+        collections_info.append(f"- {name}: {info['address']} ({info.get('name', name)})")
     
     # Build ENS registry info
     ens_info = []
@@ -55,6 +55,12 @@ ERC-20 Tokens:
 ERC-721 Collections (use EXACTLY these addresses):
 {chr(10).join(collections_info) if collections_info else "- None"}
 
+CRITICAL: For tokens and NFTs, you MUST:
+1. Use the EXACT address from the registry above
+2. Do NOT generate, create, or make up any addresses
+3. Match token symbols/collection names to the registry entries (case-insensitive)
+4. If a token or collection is not in the registry, return null
+
 ENS NAMES (use ONLY these - map to addresses below):
 {chr(10).join(ens_info) if ens_info else "- None"}
 Available ENS names: {ens_names_str}
@@ -62,7 +68,7 @@ Available ENS names: {ens_names_str}
 CRITICAL: For ENS names in the intent, you MUST:
 1. Look up the ENS name in the registry above
 2. Use the EXACT address from the registry (copy it exactly as shown)
-3. Do NOT generate, create, or make up any addresses
+3. Do NOT generate, create, or make up any addresses for ENS names
 4. Do NOT use ENS names in your output - always convert them to the 0x address from the registry
 5. If an ENS name is not in the registry, return null
 
@@ -108,7 +114,8 @@ For transfer_erc721:
 }}
 
 IMPORTANT FOR ERC-721:
-- If collection name is mentioned (Bored Ape, CryptoPunk, Mutant Ape, Azuki, Doodles), use the EXACT address from registry
+- Match collection names to registry entries (case-insensitive): "bored ape", "boredape", "bayc" → Bored Ape Yacht Club
+- Use the EXACT address from the collection registry above
 - If only "nft" or "token" is mentioned without collection name, you MUST infer from context or return null
 - Collection name patterns to recognize:
   * "bored ape", "boredape", "bayc" → Bored Ape Yacht Club
@@ -124,7 +131,7 @@ VALIDATION RULES:
 - "to" address must be checksummed (0x + 40 hex chars) - use registry addresses for ENS names
 - "value" must be a STRING of digits (Wei/base units), never a decimal
 - "chain_id" must be 1
-- If intent is ambiguous, missing required info, or ENS name not in registry, return null"""
+- If intent is ambiguous, missing required info, ENS name not in registry, or token/collection not in registry, return null"""
 
 
 def create_user_prompt(intent: str, chain_id: int = 1) -> str:

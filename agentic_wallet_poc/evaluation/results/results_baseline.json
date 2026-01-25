@@ -1,19 +1,19 @@
 {
-  "total_examples": 12,
-  "successful_predictions": 12,
-  "failed_predictions": 0,
-  "action_accuracy": 1.0,
-  "address_accuracy": 1.0,
-  "amount_accuracy": 1.0,
-  "contract_accuracy": 1.0,
-  "exact_match_accuracy": 1.0,
+  "total_examples": 19,
+  "successful_predictions": 17,
+  "failed_predictions": 2,
+  "action_accuracy": 0.8947368421052632,
+  "address_accuracy": 0.8947368421052632,
+  "amount_accuracy": 0.7894736842105263,
+  "contract_accuracy": 0.8947368421052632,
+  "exact_match_accuracy": 0.7894736842105263,
   "per_action_accuracy": {
     "transfer_native": {
-      "count": 4,
-      "exact_match": 1.0
+      "count": 8,
+      "exact_match": 0.5
     },
     "transfer_erc20": {
-      "count": 4,
+      "count": 7,
       "exact_match": 1.0
     },
     "transfer_erc721": {
@@ -23,17 +23,17 @@
   },
   "detailed_results": [
     {
-      "intent": "Please initiate transfer of 1.234567890123456789 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
-      "predicted_action": "transfer_native",
+      "intent": "hey can you send like half an ETH to bob.eth for my share of the dinner?",
+      "predicted_action": null,
       "true_action": "transfer_native",
-      "correct_action": true,
-      "correct_address": true,
-      "correct_amount": true,
-      "correct_contract": true,
-      "exact_match": true,
-      "error": null,
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed",
       "ground_truth": {
-        "user_intent": "Please initiate transfer of 1.234567890123456789 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+        "user_intent": "hey can you send like half an ETH to bob.eth for my share of the dinner?",
         "user_context": {
           "current_chain_id": 1,
           "token_prices": {
@@ -46,32 +46,13 @@
           "target_contract": null,
           "function_name": null,
           "arguments": {
-            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-            "value": "1234567890123456700",
-            "human_readable_amount": "1.2345678901234567 ETH"
+            "to": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
+            "value": "500000000000000000",
+            "human_readable_amount": "0.5 ETH"
           }
         }
       },
-      "predicted": {
-        "user_intent": "Please initiate transfer of 1.234567890123456789 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
-        "user_context": {
-          "current_chain_id": 1,
-          "token_prices": {
-            "ETH": 2500.0
-          }
-        },
-        "target_payload": {
-          "chain_id": 1,
-          "action": "transfer_native",
-          "target_contract": null,
-          "function_name": null,
-          "arguments": {
-            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-            "value": "1234567890123456700",
-            "human_readable_amount": "1.2345678901234567 ETH"
-          }
-        }
-      }
+      "predicted": null
     },
     {
       "intent": "URGENT: tx 500000000000000000 wei to dave.eth ASAP!",
@@ -181,9 +162,9 @@
       "true_action": "transfer_native",
       "correct_action": true,
       "correct_address": true,
-      "correct_amount": true,
+      "correct_amount": false,
       "correct_contract": true,
-      "exact_match": true,
+      "exact_match": false,
       "error": null,
       "ground_truth": {
         "user_intent": "Yo, disburse fifty ETH to 0x8aDc3E48f57212a537bBc98342730b777f987654, double chek it.",
@@ -200,8 +181,8 @@
           "function_name": null,
           "arguments": {
             "to": "0x8aDc3e48f57212a537bBc98342730B777F987654",
-            "value": "8000000000000000000",
-            "human_readable_amount": "8.0 ETH"
+            "value": "50000000000000000000",
+            "human_readable_amount": "50.0 ETH"
           }
         }
       },
@@ -329,7 +310,7 @@
       }
     },
     {
-      "intent": "I need to disburse 1.234567890123456789 DAI to charity.eth, please confirm before execution.",
+      "intent": "I need to disburse 1.4325675687664598 DAI to charity.eth, please confirm before execution.",
       "predicted_action": "transfer_erc20",
       "true_action": "transfer_erc20",
       "correct_action": true,
@@ -339,7 +320,7 @@
       "exact_match": true,
       "error": null,
       "ground_truth": {
-        "user_intent": "I need to disburse 1.234567890123456789 DAI to charity.eth, please confirm before execution.",
+        "user_intent": "I need to disburse 1.4325675687664598 DAI to charity.eth, please confirm before execution.",
         "user_context": {
           "current_chain_id": 1,
           "token_prices": {
@@ -353,13 +334,13 @@
           "function_name": "transfer",
           "arguments": {
             "to": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
-            "value": "1234567890123456700",
-            "human_readable_amount": "1.2345678901234567 DAI"
+            "value": "1432567568766459900",
+            "human_readable_amount": "1.4325675687664599 DAI"
           }
         }
       },
       "predicted": {
-        "user_intent": "I need to disburse 1.234567890123456789 DAI to charity.eth, please confirm before execution.",
+        "user_intent": "I need to disburse 1.4325675687664598 DAI to charity.eth, please confirm before execution.",
         "user_context": {
           "current_chain_id": 1,
           "token_prices": {
@@ -373,8 +354,8 @@
           "function_name": "transfer",
           "arguments": {
             "to": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
-            "value": "1234567890123456700",
-            "human_readable_amount": "1.2345678901234567 DAI"
+            "value": "1432567568766459900",
+            "human_readable_amount": "1.4325675687664599 DAI"
           }
         }
       }
@@ -533,57 +514,6 @@
       }
     },
     {
-      "intent": "Could you please move nft #9999 to 0xBaE79B22B705971aF8125E170C0D7664B5C60C0a?",
-      "predicted_action": "transfer_erc721",
-      "true_action": "transfer_erc721",
-      "correct_action": true,
-      "correct_address": true,
-      "correct_amount": true,
-      "correct_contract": true,
-      "exact_match": true,
-      "error": null,
-      "ground_truth": {
-        "user_intent": "Could you please move nft #9999 to 0xBaE79B22B705971aF8125E170C0D7664B5C60C0a?",
-        "user_context": {
-          "current_chain_id": 1,
-          "token_prices": {
-            "ETH": 2500.0
-          }
-        },
-        "target_payload": {
-          "chain_id": 1,
-          "action": "transfer_erc721",
-          "target_contract": "0xbae79b22b705971AF8125E170C0d7664b5c60c0a",
-          "function_name": "transferFrom",
-          "arguments": {
-            "to": "0xbae79b22b705971AF8125E170C0d7664b5c60c0a",
-            "tokenId": 9999,
-            "human_readable_amount": "Token #9999"
-          }
-        }
-      },
-      "predicted": {
-        "user_intent": "Could you please move nft #9999 to 0xBaE79B22B705971aF8125E170C0D7664B5C60C0a?",
-        "user_context": {
-          "current_chain_id": 1,
-          "token_prices": {
-            "ETH": 2500.0
-          }
-        },
-        "target_payload": {
-          "chain_id": 1,
-          "action": "transfer_erc721",
-          "target_contract": "0xbae79b22b705971AF8125E170C0d7664b5c60c0a",
-          "function_name": "transferFrom",
-          "arguments": {
-            "to": "0xbae79b22b705971AF8125E170C0d7664b5c60c0a",
-            "tokenId": 9999,
-            "human_readable_amount": "Token #9999"
-          }
-        }
-      }
-    },
-    {
       "intent": "Get this Bored Ape Yacht Club token number 6789 over to alice.eth, she's waiting on it.",
       "predicted_action": "transfer_erc721",
       "true_action": "transfer_erc721",
@@ -633,17 +563,431 @@
           }
         }
       }
+    },
+    {
+      "intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "predicted_action": "transfer_native",
+      "true_action": "transfer_native",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "1",
+            "human_readable_amount": "1e-18 ETH"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "1",
+            "human_readable_amount": "1e-18 ETH"
+          }
+        }
+      }
+    },
+    {
+      "intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "predicted_action": null,
+      "true_action": "transfer_native",
+      "correct_action": false,
+      "correct_address": false,
+      "correct_amount": false,
+      "correct_contract": false,
+      "exact_match": false,
+      "error": "Prediction failed",
+      "ground_truth": {
+        "user_intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "500000000000000000",
+            "human_readable_amount": "0.5 ETH"
+          }
+        }
+      },
+      "predicted": null
+    },
+    {
+      "intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e 0.5 ETH",
+      "predicted_action": "transfer_native",
+      "true_action": "transfer_native",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e 0.5 ETH",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "500000000000000000",
+            "human_readable_amount": "0.5 ETH"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e 0.5 ETH",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "500000000000000000",
+            "human_readable_amount": "0.5 ETH"
+          }
+        }
+      }
+    },
+    {
+      "intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "predicted_action": "transfer_erc20",
+      "true_action": "transfer_erc20",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc20",
+          "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "function_name": "transfer",
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "1000000000000000000000000",
+            "human_readable_amount": "1e+18 USDC"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc20",
+          "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "function_name": "transfer",
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "1000000000000000000000000",
+            "human_readable_amount": "1e+18 USDC"
+          }
+        }
+      }
+    },
+    {
+      "intent": "send 0.000001 USDC to bob.eth",
+      "predicted_action": "transfer_erc20",
+      "true_action": "transfer_erc20",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "send 0.000001 USDC to bob.eth",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc20",
+          "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "function_name": "transfer",
+          "arguments": {
+            "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+            "value": "1",
+            "human_readable_amount": "1e-06 USDC"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "send 0.000001 USDC to bob.eth",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc20",
+          "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "function_name": "transfer",
+          "arguments": {
+            "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+            "value": "1",
+            "human_readable_amount": "1e-06 USDC"
+          }
+        }
+      }
+    },
+    {
+      "intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "predicted_action": "transfer_erc20",
+      "true_action": "transfer_erc20",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc20",
+          "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "function_name": "transfer",
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "100000000",
+            "human_readable_amount": "100.0 USDC"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc20",
+          "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "function_name": "transfer",
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "100000000",
+            "human_readable_amount": "100.0 USDC"
+          }
+        }
+      }
+    },
+    {
+      "intent": "send Bored Ape #999999999999999999999999 to alice.eth",
+      "predicted_action": "transfer_erc721",
+      "true_action": "transfer_erc721",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": true,
+      "correct_contract": true,
+      "exact_match": true,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "send Bored Ape #999999999999999999999999 to alice.eth",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc721",
+          "target_contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+          "function_name": "transferFrom",
+          "arguments": {
+            "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+            "tokenId": 999999999999999999999999,
+            "human_readable_amount": "Token #999999999999999999999999"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "send Bored Ape #999999999999999999999999 to alice.eth",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_erc721",
+          "target_contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+          "function_name": "transferFrom",
+          "arguments": {
+            "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+            "tokenId": 999999999999999999999999,
+            "human_readable_amount": "Token #999999999999999999999999"
+          }
+        }
+      }
+    },
+    {
+      "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
+      "predicted_action": "transfer_native",
+      "true_action": "transfer_native",
+      "correct_action": true,
+      "correct_address": true,
+      "correct_amount": false,
+      "correct_contract": true,
+      "exact_match": false,
+      "error": null,
+      "ground_truth": {
+        "user_intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "1000000000000000000",
+            "human_readable_amount": "1 ETH"
+          }
+        }
+      },
+      "predicted": {
+        "user_intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
+        "user_context": {
+          "current_chain_id": 1,
+          "token_prices": {
+            "ETH": 2500.0
+          }
+        },
+        "target_payload": {
+          "chain_id": 1,
+          "action": "transfer_native",
+          "target_contract": null,
+          "function_name": null,
+          "arguments": {
+            "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            "value": "500000000000000000",
+            "human_readable_amount": "0.5 ETH"
+          }
+        }
+      }
     }
   ],
   "error_analysis": {
-    "total_errors": 0,
+    "total_errors": 4,
     "error_by_type": {
-      "prediction_failed": 0,
+      "prediction_failed": 2,
       "wrong_action": 0,
       "wrong_address": 0,
-      "wrong_amount": 0,
+      "wrong_amount": 2,
       "wrong_contract": 0
     },
-    "failed_intents": []
+    "failed_intents": [
+      {
+        "intent": "hey can you send like half an ETH to bob.eth for my share of the dinner?",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_native"
+      },
+      {
+        "intent": "Yo, disburse fifty ETH to 0x8aDc3E48f57212a537bBc98342730b777f987654, double chek it.",
+        "error_type": "wrong_amount",
+        "predicted_action": "transfer_native",
+        "true_action": "transfer_native"
+      },
+      {
+        "intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "error_type": "prediction_failed",
+        "predicted_action": null,
+        "true_action": "transfer_native"
+      },
+      {
+        "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
+        "error_type": "wrong_amount",
+        "predicted_action": "transfer_native",
+        "true_action": "transfer_native"
+      }
+    ]
   }
 }

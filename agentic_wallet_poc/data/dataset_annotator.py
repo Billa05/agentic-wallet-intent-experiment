@@ -2,7 +2,7 @@
 Dataset Annotator for Agentic Wallet Intent Translation System
 
 Loads raw intents, extracts parameters, and creates structured annotations
-with interactive validation and correction interface.
+automatically using regex-based extraction and registry lookups.
 """
 
 import json
@@ -682,121 +682,16 @@ def validate_annotation(annotation: Dict[str, Any]) -> Tuple[bool, List[str]]:
     return len(errors) == 0, errors
 
 
-def interactive_annotate(
-    intent: str,
-    transaction_type: TransactionType,
-    auto_params: Dict[str, Any]
-) -> Dict[str, Any]:
-    """
-    Interactive annotation interface for a single intent.
-    
-    Args:
-        intent: Original intent text
-        transaction_type: Transaction type
-        auto_params: Auto-extracted parameters
-        
-    Returns:
-        Final annotation dictionary
-    """
-    print("\n" + "="*70)
-    print(f"Intent: {intent}")
-    print(f"Type: {transaction_type.value}")
-    print("-"*70)
-    print("Auto-extracted parameters:")
-    for key, value in auto_params.items():
-        print(f"  {key}: {value}")
-    print("-"*70)
-    
-    # Ask for confirmation/correction
-    response = input("\nAccept these parameters? (y/n/edit): ").strip().lower()
-    
-    if response == 'y' or response == '':
-        # Accept auto-extracted
-        final_params = auto_params
-    elif response == 'edit':
-        # Manual editing
-        final_params = {}
-        print("\nEnter parameters (press Enter to keep auto-extracted value):")
-        
-        if transaction_type == TransactionType.SEND_ETH:
-            to_addr = input(f"To address [{auto_params.get('to_address', '')}]: ").strip()
-            final_params['to_address'] = normalize_address(to_addr) if to_addr else auto_params.get('to_address')
-            amount = input(f"Amount (ETH) [{auto_params.get('amount', '')}]: ").strip()
-            final_params['amount'] = amount if amount else auto_params.get('amount')
-            final_params['from_address'] = auto_params.get('from_address')
-        
-        elif transaction_type == TransactionType.TRANSFER_ERC20:
-            to_addr = input(f"To address [{auto_params.get('to_address', '')}]: ").strip()
-            final_params['to_address'] = normalize_address(to_addr) if to_addr else auto_params.get('to_address')
-            token_addr = input(f"Token address [{auto_params.get('token_address', '')}]: ").strip()
-            final_params['token_address'] = normalize_address(token_addr) if token_addr else auto_params.get('token_address')
-            amount = input(f"Amount [{auto_params.get('amount', '')}]: ").strip()
-            final_params['amount'] = amount if amount else auto_params.get('amount')
-            decimals = input(f"Decimals [{auto_params.get('decimals', 18)}]: ").strip()
-            final_params['decimals'] = int(decimals) if decimals else auto_params.get('decimals', 18)
-            final_params['from_address'] = auto_params.get('from_address')
-        
-        elif transaction_type == TransactionType.TRANSFER_ERC721:
-            to_addr = input(f"To address [{auto_params.get('to_address', '')}]: ").strip()
-            final_params['to_address'] = normalize_address(to_addr) if to_addr else auto_params.get('to_address')
-            contract_addr = input(f"Contract address [{auto_params.get('contract_address', '')}]: ").strip()
-            final_params['contract_address'] = normalize_address(contract_addr) if contract_addr else auto_params.get('contract_address')
-            token_id = input(f"Token ID [{auto_params.get('token_id', '')}]: ").strip()
-            final_params['token_id'] = int(token_id) if token_id else auto_params.get('token_id')
-            final_params['from_address'] = auto_params.get('from_address')
-    else:
-        # Skip this one
-        return None
-    
-    # Create executable payload
-    final_params['_intent'] = intent  # Store intent for token symbol detection
-    executable_payload = create_executable_payload(transaction_type, final_params, chain_id=1)
-    
-    if not executable_payload:
-        print("ERROR: Could not create valid executable payload!")
-        retry = input("Retry editing? (y/n): ").strip().lower()
-        if retry == 'y':
-            return interactive_annotate(intent, transaction_type, final_params)
-        return None
-    
-    # Create user context
-    user_context = UserContext(
-        current_chain_id=1,
-        token_prices={"ETH": 2500.00}  # Default price, can be updated
-    )
-    
-    # Create annotated intent
-    annotated_intent = AnnotatedIntent(
-        user_intent=intent,
-        user_context=user_context,
-        target_payload=executable_payload
-    )
-    
-    annotation = annotated_intent.model_dump(mode='json')
-    
-    is_valid, errors = validate_annotation(annotation)
-    if not is_valid:
-        print(f"Validation errors: {errors}")
-        retry = input("Retry editing? (y/n): ").strip().lower()
-        if retry == 'y':
-            return interactive_annotate(intent, transaction_type, final_params)
-        return None
-    
-    return annotation
-
-
 def annotate_dataset(
     raw_intents_path: str = "data/datasets/raw_intents.json",
-    output_path: str = "data/datasets/annotated_dataset.json",
-    interactive: bool = True
+    output_path: str = "data/datasets/annotated_dataset.json"
 ) -> List[Dict[str, Any]]:
     """
-    Annotate the entire dataset.
+    Annotate the entire dataset automatically.
     
     Args:
         raw_intents_path: Path to raw intents JSON
         output_path: Path to save annotated dataset
-        interactive: Whether to use interactive mode
         
     Returns:
         List of annotated examples
@@ -827,43 +722,34 @@ def annotate_dataset(
         # Auto-extract parameters
         auto_params = extract_parameters(intent, transaction_type)
         
-        if interactive:
-            annotation = interactive_annotate(intent, transaction_type, auto_params)
-            if annotation:
+        # Auto-annotate and validate
+        auto_params['_intent'] = intent  # Store intent for token symbol detection
+        executable_payload = create_executable_payload(transaction_type, auto_params, chain_id=1)
+        if executable_payload:
+            # Create user context
+            user_context = UserContext(
+                current_chain_id=1,
+                token_prices={"ETH": 2500.00}
+            )
+            
+            # Create annotated intent
+            annotated_intent = AnnotatedIntent(
+                user_intent=intent,
+                user_context=user_context,
+                target_payload=executable_payload
+            )
+            
+            annotation = annotated_intent.model_dump(mode='json')
+            is_valid, errors = validate_annotation(annotation)
+            if is_valid:
                 annotated.append(annotation)
-                print("✓ Annotation saved")
+                print("✓ Auto-annotated")
             else:
+                print(f"⊘ Validation failed: {errors}")
                 skipped.append(i)
-                print("⊘ Annotation skipped")
         else:
-            # Non-interactive: auto-annotate and validate
-            auto_params['_intent'] = intent  # Store intent for token symbol detection
-            executable_payload = create_executable_payload(transaction_type, auto_params, chain_id=1)
-            if executable_payload:
-                # Create user context
-                user_context = UserContext(
-                    current_chain_id=1,
-                    token_prices={"ETH": 2500.00}
-                )
-                
-                # Create annotated intent
-                annotated_intent = AnnotatedIntent(
-                    user_intent=intent,
-                    user_context=user_context,
-                    target_payload=executable_payload
-                )
-                
-                annotation = annotated_intent.model_dump(mode='json')
-                is_valid, errors = validate_annotation(annotation)
-                if is_valid:
-                    annotated.append(annotation)
-                    print("✓ Auto-annotated")
-                else:
-                    print(f"⊘ Validation failed: {errors}")
-                    skipped.append(i)
-            else:
-                print("⊘ Could not create executable payload")
-                skipped.append(i)
+            print("⊘ Could not create executable payload")
+            skipped.append(i)
     
     # Save annotated dataset
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -895,11 +781,6 @@ def main():
         default='data/datasets/annotated_dataset.json',
         help='Path to save annotated dataset'
     )
-    parser.add_argument(
-        '--non-interactive',
-        action='store_true',
-        help='Run in non-interactive mode (auto-annotate all)'
-    )
     
     args = parser.parse_args()
     
@@ -908,8 +789,7 @@ def main():
     
     annotated = annotate_dataset(
         raw_intents_path=args.input,
-        output_path=args.output,
-        interactive=not args.non_interactive
+        output_path=args.output
     )
     
     print(f"\nSuccessfully annotated {len(annotated)} examples!")

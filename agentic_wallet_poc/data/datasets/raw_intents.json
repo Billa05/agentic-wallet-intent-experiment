@@ -4,10 +4,6 @@
     "transaction_type": "SEND_ETH"
   },
   {
-    "intent": "Please initiate transfer of 1.234567890123456789 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
-    "transaction_type": "SEND_ETH"
-  },
-  {
     "intent": "URGENT: tx 500000000000000000 wei to dave.eth ASAP!",
     "transaction_type": "SEND_ETH"
   },
@@ -28,7 +24,7 @@
     "transaction_type": "TRANSFER_ERC20"
   },
   {
-    "intent": "I need to disburse 1.234567890123456789 DAI to charity.eth, please confirm before execution.",
+    "intent": "I need to disburse 1.4325675687664598 DAI to charity.eth, please confirm before execution.",
     "transaction_type": "TRANSFER_ERC20"
   },
   {
@@ -44,11 +40,39 @@
     "transaction_type": "TRANSFER_ERC721"
   },
   {
-    "intent": "Could you please move nft #9999 to 0xBaE79B22B705971aF8125E170C0D7664B5C60C0a?",
+    "intent": "Get this Bored Ape Yacht Club token number 6789 over to alice.eth, she's waiting on it.",
     "transaction_type": "TRANSFER_ERC721"
   },
   {
-    "intent": "Get this Bored Ape Yacht Club token number 6789 over to alice.eth, she's waiting on it.",
+    "intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e 0.5 ETH",
+    "transaction_type": "SEND_ETH"
+  },
+  {
+    "intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "send 0.000001 USDC to bob.eth",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "transaction_type": "TRANSFER_ERC20"
+  },
+  {
+    "intent": "send Bored Ape #999999999999999999999999 to alice.eth",
     "transaction_type": "TRANSFER_ERC721"
+  },
+  {
+    "intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
+    "transaction_type": "SEND_ETH"
   }
 ]

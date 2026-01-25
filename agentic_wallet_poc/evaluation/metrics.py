@@ -160,12 +160,21 @@ def evaluate_dataset(
     correct_contract_count = 0
     exact_match_count = 0
     
+    # Check if translator is LLM-based (for rate limiting)
+    is_llm = hasattr(translator, 'model_name')  # LLMTranslator has model_name attribute
+    
     for i, ground_truth in enumerate(test_data):
         intent = ground_truth.get("user_intent", "")
         chain_id = ground_truth.get("user_context", {}).get("current_chain_id", 1)
         
         if verbose and (i + 1) % 10 == 0:
             print(f"Processing {i + 1}/{total_examples}...")
+        
+        # Add small delay for LLM to avoid hitting rate limits too quickly
+        # Free tier: 5 requests/minute, so we add 12 second delay between requests
+        if is_llm and i > 0:  # Skip delay for first request
+            import time
+            time.sleep(12)  # 12 seconds = 5 requests per minute
         
         # Get prediction
         try:
@@ -177,11 +186,18 @@ def evaluate_dataset(
                 successful_predictions += 1
             else:
                 failed_predictions += 1
+                if verbose:
+                    print(f"  [{i + 1}/{total_examples}] Translation returned None for: {intent[:60]}...")
         except Exception as e:
             predicted = None
             failed_predictions += 1
             if verbose:
-                print(f"Error translating intent {i + 1}: {e}")
+                print(f"  [{i + 1}/{total_examples}] Exception translating: {intent[:60]}...")
+                print(f"    Error: {e}")
+            else:
+                # Always log exceptions, even if not verbose
+                import sys
+                print(f"DEBUG: Exception translating intent {i + 1}: {e}", file=sys.stderr)
         
         # Evaluate
         result = evaluate_single(predicted, ground_truth, intent)
