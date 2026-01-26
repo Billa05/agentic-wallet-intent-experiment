@@ -176,7 +176,15 @@ def run_evaluation(
     elif translator_type == 'llm':
         print("Initializing LLMTranslator...")
         translator = LLMTranslator()
-        translator_name = "LLM (Gemini)"
+        # Extract model name and create sanitized filename
+        model_name = translator.model
+        # Sanitize model name for filename (replace / with _, remove other special chars)
+        sanitized_model = model_name.replace('/', '_').replace(':', '_').replace(' ', '_')
+        translator_name = f"LLM ({model_name})"
+        
+        # Update output path to include model name if not already customized
+        if output_path.name == "results.json" or output_path.name.startswith("results_"):
+            output_path = output_path.parent / f"results_{sanitized_model}.json"
     else:
         raise ValueError(f"Unknown translator type: {translator_type}")
     
@@ -291,7 +299,11 @@ Examples:
             print("\n" + "=" * 60)
             print("Evaluating LLM Translator")
             print("=" * 60)
-            llm_output = output_path.parent / f"{output_path.stem}_llm{output_path.suffix}"
+            # Get model name from LLM translator to create proper filename
+            temp_translator = LLMTranslator()
+            model_name = temp_translator.model
+            sanitized_model = model_name.replace('/', '_').replace(':', '_').replace(' ', '_')
+            llm_output = output_path.parent / f"results_{sanitized_model}{output_path.suffix}"
             run_evaluation(
                 test_data_path=test_data_path,
                 output_path=llm_output,

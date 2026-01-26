@@ -42,7 +42,7 @@ class LLMTranslator:
         self, 
         token_registry_path: str = "data/registries/token_registry.json", 
         ens_registry_path: str = "data/registries/ens_registry.json", 
-        model: str = "groq/llama-3.1-8b-instant"
+        model: str = "gemini/gemini-2.5-flash"
     ):
         """
         Initialize the LLM translator.
