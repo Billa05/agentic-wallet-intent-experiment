@@ -1,0 +1,468 @@
+[
+  {
+    "user_intent": "Can you supply 500 USDC to Aave for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "500",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "500 USDC"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to deposit 200 DAI into the Aave pool, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "200",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "200 DAI"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw 500 DAI from Aave to my main wallet.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "500",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "500 DAI",
+        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you please pull 2500 USDC out of Aave for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "2500",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "2500 USDC",
+        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could you assist me in borrowing 500 USDT from Aave?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "amount": "500",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "500 USDT"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to borrow 2000 DAI from Aave, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "2000",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "2000 DAI"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to repay 500 DAI on Aave, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "500",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "500 DAI"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you help me repay my Aave loan of 1200 USDC?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "1200",
+        "onBehalfOf": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "human_readable_amount": "1200 USDC"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please stake 5 ETH on Lido for me.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "lido_stake",
+      "target_contract": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "function_name": "submit",
+      "arguments": {
+        "value": "5",
+        "human_readable_amount": "5 ETH"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to put 10 ETH into the Lido pool, thanks!",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "lido_stake",
+      "target_contract": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "function_name": "submit",
+      "arguments": {
+        "value": "10",
+        "human_readable_amount": "10 ETH"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could you please facilitate the withdrawal of 15 stETH from Lido?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "lido_unstake",
+      "target_contract": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "function_name": "requestWithdrawals",
+      "arguments": {
+        "amount": "15000000000000000000",
+        "human_readable_amount": "15 stETH"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to unstake 25 stETH from Lido, thanks!",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "lido_unstake",
+      "target_contract": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "function_name": "requestWithdrawals",
+      "arguments": {
+        "amount": "25000000000000000000",
+        "human_readable_amount": "25 stETH"
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to swap 150 USDC for some DAI on Uniswap.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "uniswap_swap",
+      "target_contract": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+      "function_name": "swapExactTokensForTokens",
+      "arguments": {
+        "amountIn": "150000000",
+        "amountOutMin": "0",
+        "path": [
+          "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+        ],
+        "to": "",
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you please exchange 0.5 WETH to USDT using Uniswap?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "uniswap_swap",
+      "target_contract": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+      "function_name": "swapExactTokensForTokens",
+      "arguments": {
+        "amountIn": "500000",
+        "amountOutMin": "0",
+        "path": [
+          "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        ],
+        "to": "",
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I wish to swap 1500 USDC for DAI using 1inch, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "oneinch_swap",
+      "target_contract": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "function_name": "swap",
+      "arguments": {
+        "amountIn": "1500000000",
+        "amountOutMin": "0",
+        "path": [
+          "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+        ],
+        "to": "",
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you help me convert 0.5 ETH to USDT via 1inch?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "oneinch_swap",
+      "target_contract": "0x111111125421cA6dc452d289314280a0f8842A65",
+      "function_name": "swap",
+      "arguments": {
+        "amountIn": "500000",
+        "amountOutMin": "0",
+        "path": [
+          "ETH",
+          "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+        ],
+        "to": "",
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to add 1500 USDC to the Curve 3pool, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "1500000000",
+          "0",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you help me add 500 DAI into the Curve 3pool?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "500000000000000000000",
+          "0",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to pull out 500 DAI from the Curve pool, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "500",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you remove 300 USDT liquidity from Curve 3pool for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "token_prices": {
+        "ETH": 2500.0
+      }
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "300",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": ""
+      }
+    },
+    "_annotation_failed": false
+  }
+]

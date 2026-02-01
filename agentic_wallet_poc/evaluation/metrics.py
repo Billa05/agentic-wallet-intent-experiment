@@ -2,12 +2,51 @@
 Evaluation Metrics for Agentic Wallet Intent Translation System
 
 Measures accuracy of intent translation models against ground truth annotations.
+Supports transfer actions and DeFi actions (AAVE, Lido, Uniswap, 1inch, Curve).
 """
 
 import json
 from dataclasses import dataclass, asdict
 from typing import Optional, Dict, List, Any
 from collections import Counter, defaultdict
+
+try:
+    from utils.schemas import ACTION_REQUIRED_ARGS
+except ImportError:
+    ACTION_REQUIRED_ARGS = {}
+
+
+def _normalize_arg_value(v: Any) -> Any:
+    """Normalize argument value for comparison (e.g. list order, str)."""
+    if v is None:
+        return None
+    if isinstance(v, list):
+        return tuple(_normalize_arg_value(x) for x in v)
+    if isinstance(v, str) and v.lower() in ("null", ""):
+        return None
+    return v
+
+
+def _arguments_match(
+    pred_args: Dict[str, Any],
+    true_args: Dict[str, Any],
+    action: str,
+) -> bool:
+    """Check if predicted arguments match ground truth for this action type."""
+    required = ACTION_REQUIRED_ARGS.get(action, list(pred_args.keys()) or list(true_args.keys()))
+    for key in required:
+        if key not in true_args:
+            continue
+        pv = _normalize_arg_value(pred_args.get(key))
+        tv = _normalize_arg_value(true_args.get(key))
+        if pv != tv:
+            return False
+    return True
+
+
+def _action_has_recipient(action: str) -> bool:
+    """True if this action type has a 'to' (recipient) field."""
+    return "to" in ACTION_REQUIRED_ARGS.get(action, [])
 
 
 @dataclass
@@ -20,6 +59,7 @@ class EvaluationResult:
     correct_address: bool
     correct_amount: bool
     correct_contract: bool
+    correct_arguments: bool
     exact_match: bool
     error: Optional[str] = None
     ground_truth: Optional[Dict[str, Any]] = None  # Full ground truth annotation
@@ -54,6 +94,7 @@ def evaluate_single(
             correct_address=False,
             correct_amount=False,
             correct_contract=False,
+            correct_arguments=False,
             exact_match=False,
             error="Prediction failed",
             ground_truth=ground_truth,
@@ -63,42 +104,43 @@ def evaluate_single(
     # Extract payloads
     pred_payload = predicted.get("target_payload", {})
     true_payload = ground_truth.get("target_payload", {})
+    pred_args = pred_payload.get("arguments", {})
+    true_args = true_payload.get("arguments", {})
     
     # Compare action types
     pred_action = pred_payload.get("action")
     true_action = true_payload.get("action", "unknown")
     correct_action = (pred_action == true_action)
     
-    # Compare addresses (case-insensitive, both should be valid)
-    pred_to = pred_payload.get("arguments", {}).get("to", "").lower()
-    true_to = true_payload.get("arguments", {}).get("to", "").lower()
-    correct_address = (pred_to == true_to) if (pred_to and true_to) else False
+    # Address: N/A when action has no "to"; otherwise compare (case-insensitive)
+    has_recipient = _action_has_recipient(true_action)
+    if not has_recipient:
+        correct_address = True  # N/A
+    else:
+        pred_to = (pred_args.get("to") or "").lower()
+        true_to = (true_args.get("to") or "").lower()
+        correct_address = bool(pred_to and true_to and pred_to == true_to)
     
-    # Compare amounts (exact string match for Wei/base units)
-    # For ERC-721, there's no "value" field - compare tokenId instead
+    # Primary amount (for backward compat / reporting)
     if true_action == "transfer_erc721":
-        # For ERC-721, compare tokenId (the "amount" equivalent)
-        pred_token_id = pred_payload.get("arguments", {}).get("tokenId")
-        true_token_id = true_payload.get("arguments", {}).get("tokenId")
+        pred_token_id = pred_args.get("tokenId")
+        true_token_id = true_args.get("tokenId")
         correct_amount = (pred_token_id == true_token_id) if (pred_token_id is not None and true_token_id is not None) else False
     else:
-        # For ETH and ERC-20, compare value fields (Wei/base units)
-        pred_value = pred_payload.get("arguments", {}).get("value", "")
-        true_value = true_payload.get("arguments", {}).get("value", "")
-        correct_amount = (pred_value == true_value) if (pred_value and true_value) else False
+        pred_value = pred_args.get("value", pred_args.get("amount", pred_args.get("amountIn", "")))
+        true_value = true_args.get("value", true_args.get("amount", true_args.get("amountIn", "")))
+        correct_amount = (str(pred_value) == str(true_value)) if (pred_value is not None and true_value is not None) else False
     
-    # Compare target contracts
-    # None for native ETH, address for tokens/NFTs (case-insensitive)
+    # Arguments: all required fields must match (Wei/base as exact strings)
+    correct_arguments = _arguments_match(pred_args, true_args, true_action)
+    
+    # Compare target contracts (case-insensitive)
     pred_contract = pred_payload.get("target_contract")
     true_contract = true_payload.get("target_contract")
-    
-    # Normalize None vs "null" string
     if pred_contract is None or pred_contract == "null":
         pred_contract = None
     if true_contract is None or true_contract == "null":
         true_contract = None
-    
-    # Compare (both None, or both addresses - case-insensitive)
     if pred_contract is None and true_contract is None:
         correct_contract = True
     elif pred_contract is not None and true_contract is not None:
@@ -106,12 +148,12 @@ def evaluate_single(
     else:
         correct_contract = False
     
-    # Exact match requires all components to be correct
+    # Exact match: action, contract, (address when applicable), and all arguments
     exact_match = (
-        correct_action and 
-        correct_address and 
-        correct_amount and 
-        correct_contract
+        correct_action
+        and correct_contract
+        and correct_address
+        and correct_arguments
     )
     
     return EvaluationResult(
@@ -122,6 +164,7 @@ def evaluate_single(
         correct_address=correct_address,
         correct_amount=correct_amount,
         correct_contract=correct_contract,
+        correct_arguments=correct_arguments,
         exact_match=exact_match,
         error=None,
         ground_truth=ground_truth,
@@ -130,7 +173,7 @@ def evaluate_single(
 
 
 def evaluate_dataset(
-    translator,  # BaselineTranslator instance
+    translator,  # LLMTranslator (hybrid) or any translator with translate(intent, chain_id)
     test_data: List[Dict[str, Any]],
     verbose: bool = False
 ) -> Dict[str, Any]:
@@ -138,7 +181,7 @@ def evaluate_dataset(
     Evaluate translator on entire test dataset.
     
     Args:
-        translator: Instance of BaselineTranslator
+        translator: Translator instance (e.g. engine.llm_translator.LLMTranslator) with translate(intent, chain_id)
         test_data: List of annotated intents (ground truth)
         verbose: If True, print progress
     
@@ -158,10 +201,11 @@ def evaluate_dataset(
     correct_address_count = 0
     correct_amount_count = 0
     correct_contract_count = 0
+    correct_arguments_count = 0
     exact_match_count = 0
     
     # Check if translator is LLM-based (for rate limiting)
-    is_llm = hasattr(translator, 'model_name')  # LLMTranslator has model_name attribute
+    is_llm = hasattr(translator, 'model') or hasattr(translator, 'model_name')
     
     for i, ground_truth in enumerate(test_data):
         intent = ground_truth.get("user_intent", "")
@@ -178,7 +222,7 @@ def evaluate_dataset(
         
         # Get prediction
         try:
-            # Call translate method (both baseline and LLM have same signature)
+            # Call translate method
             predicted = translator.translate(intent, chain_id=chain_id)
             if predicted is not None:
                 # Convert Pydantic model to dict
@@ -212,6 +256,8 @@ def evaluate_dataset(
             correct_amount_count += 1
         if result.correct_contract:
             correct_contract_count += 1
+        if result.correct_arguments:
+            correct_arguments_count += 1
         if result.exact_match:
             exact_match_count += 1
         
@@ -226,18 +272,28 @@ def evaluate_dataset(
     address_accuracy = correct_address_count / total_examples if total_examples > 0 else 0.0
     amount_accuracy = correct_amount_count / total_examples if total_examples > 0 else 0.0
     contract_accuracy = correct_contract_count / total_examples if total_examples > 0 else 0.0
+    arguments_accuracy = correct_arguments_count / total_examples if total_examples > 0 else 0.0
     exact_match_accuracy = exact_match_count / total_examples if total_examples > 0 else 0.0
     
-    # Per-action breakdown
+    # Per-action breakdown (all actions present in dataset)
     per_action_accuracy = {}
-    for action in ["transfer_native", "transfer_erc20", "transfer_erc721"]:
-        count = action_counts.get(action, 0)
+    for action in sorted(action_counts.keys()):
+        count = action_counts[action]
         exact_matches = action_exact_matches.get(action, 0)
         exact_match_rate = exact_matches / count if count > 0 else 0.0
-        
-        per_action_accuracy[action] = {
+        per_action_accuracy[action] = {"count": count, "exact_match": exact_match_rate}
+    
+    # Per-protocol breakdown (prefix: aave_, lido_, uniswap_, oneinch_, curve_)
+    protocol_prefixes = ("aave_", "lido_", "uniswap_", "oneinch_", "curve_")
+    per_protocol_accuracy = {}
+    for prefix in protocol_prefixes:
+        count = sum(c for a, c in action_counts.items() if a.startswith(prefix))
+        if count == 0:
+            continue
+        exact_matches = sum(action_exact_matches.get(a, 0) for a in action_counts if a.startswith(prefix))
+        per_protocol_accuracy[prefix.rstrip("_")] = {
             "count": count,
-            "exact_match": exact_match_rate
+            "exact_match": exact_matches / count if count > 0 else 0.0,
         }
     
     return {
@@ -248,8 +304,10 @@ def evaluate_dataset(
         "address_accuracy": address_accuracy,
         "amount_accuracy": amount_accuracy,
         "contract_accuracy": contract_accuracy,
+        "arguments_accuracy": arguments_accuracy,
         "exact_match_accuracy": exact_match_accuracy,
         "per_action_accuracy": per_action_accuracy,
+        "per_protocol_accuracy": per_protocol_accuracy,
         "detailed_results": detailed_results
     }
 
@@ -269,31 +327,31 @@ def print_evaluation_report(metrics: Dict[str, Any]) -> None:
     # Overall Accuracy
     print("\nOverall Accuracy:")
     print(f"  Action classification: {metrics['action_accuracy'] * 100:5.1f}%")
-    print(f"  Address extraction:   {metrics['address_accuracy'] * 100:5.1f}%")
+    print(f"  Address extraction:    {metrics['address_accuracy'] * 100:5.1f}%")
     print(f"  Amount conversion:    {metrics['amount_accuracy'] * 100:5.1f}%")
     print(f"  Contract lookup:      {metrics['contract_accuracy'] * 100:5.1f}%")
+    print(f"  Arguments match:      {metrics.get('arguments_accuracy', 0) * 100:5.1f}%")
     print("  " + "-" * 55)
     print(f"  EXACT MATCH:          {metrics['exact_match_accuracy'] * 100:5.1f}%")
     
-    # Per-Action Breakdown
+    # Per-Action Breakdown (all actions in dataset)
     print("\nPer-Action Breakdown:")
     per_action = metrics.get("per_action_accuracy", {})
+    for action in sorted(per_action.keys()):
+        stats = per_action[action]
+        count = stats.get("count", 0)
+        exact_match = stats.get("exact_match", 0.0)
+        print(f"  {action:25s}: {exact_match * 100:5.1f}% exact match ({count:3d} examples)")
     
-    # Display in order: native, erc20, erc721
-    action_order = ["transfer_native", "transfer_erc20", "transfer_erc721"]
-    action_labels = {
-        "transfer_native": "transfer_native",
-        "transfer_erc20": "transfer_erc20",
-        "transfer_erc721": "transfer_erc721"
-    }
-    
-    for action in action_order:
-        if action in per_action:
-            stats = per_action[action]
+    # Per-Protocol Breakdown
+    per_protocol = metrics.get("per_protocol_accuracy", {})
+    if per_protocol:
+        print("\nPer-Protocol Breakdown:")
+        for protocol in sorted(per_protocol.keys()):
+            stats = per_protocol[protocol]
             count = stats.get("count", 0)
             exact_match = stats.get("exact_match", 0.0)
-            label = action_labels.get(action, action)
-            print(f"  {label:20s}: {exact_match * 100:5.1f}% exact match ({count:3d} examples)")
+            print(f"  {protocol:15s}: {exact_match * 100:5.1f}% exact match ({count:3d} examples)")
     
     print("\n" + "=" * 60)
 
@@ -331,8 +389,8 @@ if __name__ == "__main__":
     print("  - save_results(): Save results to JSON")
     print("\nUsage:")
     print("  from evaluation.metrics import evaluate_dataset, print_evaluation_report")
-    print("  from models.baseline_translator import BaselineTranslator")
+    print("  from engine.llm_translator import LLMTranslator")
     print("  ")
-    print("  translator = BaselineTranslator()")
+    print("  translator = LLMTranslator()")
     print("  metrics = evaluate_dataset(translator, test_data)")
     print("  print_evaluation_report(metrics)")

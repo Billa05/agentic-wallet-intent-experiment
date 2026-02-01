@@ -299,3 +299,68 @@ Include some examples with missing token IDs or ambiguous collection names for e
     
     else:
         raise ValueError(f"Unknown transaction type: {transaction_type}")
+
+
+def create_prompt_for_defi_action(
+    action_type: str,
+    config: PromptConfig,
+) -> str:
+    """
+    Create a prompt for generating DeFi intent examples (AAVE, Lido, Uniswap, 1inch, Curve).
+    Used by dataset generator for synthetic DeFi intents.
+    """
+    base = f"""Generate {config.count} diverse natural language examples of users requesting this DeFi action.
+
+REQUIREMENTS:
+- Each example must be a single line of natural language text
+- Use VARIED language: formal, casual, "I want to", "please", "can you", etc.
+- Include amounts and asset names (USDC, USDT, DAI, WETH, ETH, stETH) where relevant
+- Output ONLY a JSON array of strings. Example: ["intent 1", "intent 2"]
+
+"""
+    prompts = {
+        "aave_supply": base + """
+ACTION: Supply/deposit assets to Aave.
+Each example must include: amount, asset (USDC, USDT, DAI, WETH), and intent to supply/deposit to Aave.
+Phrasings: "Supply X USDC to AAVE", "Deposit X in Aave", "Put X USDC into Aave pool", "Stake X USDC in Aave"
+""",
+        "aave_withdraw": base + """
+ACTION: Withdraw assets from Aave.
+Include: amount, asset, optional recipient. "Withdraw X USDC from AAVE", "Pull X out of Aave"
+""",
+        "aave_borrow": base + """
+ACTION: Borrow assets from Aave.
+Include: amount, asset. "Borrow X USDC from AAVE", "I want to borrow X DAI from Aave"
+""",
+        "aave_repay": base + """
+ACTION: Repay borrowed assets on Aave.
+Include: amount, asset. "Repay X USDC on AAVE", "Repay my Aave loan: X USDC"
+""",
+        "lido_stake": base + """
+ACTION: Stake ETH on Lido (receive stETH).
+Include: amount in ETH. "Stake X ETH on Lido", "Stake X ETH in Lido pool", "Put X ETH into Lido"
+""",
+        "lido_unstake": base + """
+ACTION: Unstake/withdraw stETH from Lido.
+Include: amount in stETH. "Unstake X stETH from Lido", "Request withdrawal of X stETH from Lido"
+""",
+        "uniswap_swap": base + """
+ACTION: Swap tokens on Uniswap.
+Include: amount, input token, output token. "Swap X ETH for USDC on Uniswap", "Swap X USDC to DAI via Uniswap"
+""",
+        "oneinch_swap": base + """
+ACTION: Swap tokens via 1inch.
+Include: amount, tokens. "Swap X USDC to DAI via 1inch", "Swap X ETH for USDC using 1inch"
+""",
+        "curve_add_liquidity": base + """
+ACTION: Add liquidity to Curve pool (e.g. 3pool).
+Include: amount, asset (USDC, USDT, DAI). "Add X USDC to Curve 3pool", "Add liquidity: X USDC to Curve pool"
+""",
+        "curve_remove_liquidity": base + """
+ACTION: Remove liquidity from Curve pool.
+Include: amount. "Remove X USDC liquidity from Curve 3pool", "Remove X from Curve pool"
+""",
+    }
+    if action_type not in prompts:
+        raise ValueError(f"Unknown DeFi action type: {action_type}. Known: {list(prompts.keys())}")
+    return prompts[action_type]

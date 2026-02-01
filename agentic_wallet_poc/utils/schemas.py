@@ -191,10 +191,46 @@ class TransferERC721Transaction(BaseTransaction):
 class ActionType(str, Enum):
     """
     Action types for executable payloads.
+    Includes simple transfers and DeFi actions (AAVE, Lido, Uniswap, 1inch, Curve).
     """
+    # Simple transfers (existing)
     TRANSFER_NATIVE = "transfer_native"
     TRANSFER_ERC20 = "transfer_erc20"
     TRANSFER_ERC721 = "transfer_erc721"
+    # AAVE
+    AAVE_SUPPLY = "aave_supply"
+    AAVE_WITHDRAW = "aave_withdraw"
+    AAVE_BORROW = "aave_borrow"
+    AAVE_REPAY = "aave_repay"
+    # Lido
+    LIDO_STAKE = "lido_stake"
+    LIDO_UNSTAKE = "lido_unstake"
+    # Uniswap
+    UNISWAP_SWAP = "uniswap_swap"
+    # 1inch
+    ONEINCH_SWAP = "oneinch_swap"
+    # Curve
+    CURVE_ADD_LIQUIDITY = "curve_add_liquidity"
+    CURVE_REMOVE_LIQUIDITY = "curve_remove_liquidity"
+
+
+# Golden schema: required arguments per action type (for dataset and evaluation).
+# All amounts in arguments must be Wei/base units as strings.
+ACTION_REQUIRED_ARGS: Dict[str, list] = {
+    "transfer_native": ["to", "value", "human_readable_amount"],
+    "transfer_erc20": ["to", "value", "human_readable_amount"],
+    "transfer_erc721": ["to", "tokenId", "human_readable_amount"],
+    "aave_supply": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+    "aave_withdraw": ["asset", "amount", "to", "human_readable_amount"],
+    "aave_borrow": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+    "aave_repay": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+    "lido_stake": ["value", "human_readable_amount"],
+    "lido_unstake": ["amount", "human_readable_amount"],
+    "uniswap_swap": ["amountIn", "amountOutMin", "path", "to", "human_readable_amount"],
+    "oneinch_swap": ["amountIn", "amountOutMin", "path", "to", "human_readable_amount"],
+    "curve_add_liquidity": ["pool", "amounts", "min_mint_amount", "human_readable_amount"],
+    "curve_remove_liquidity": ["pool", "amount", "min_amounts", "human_readable_amount"],
+}
 
 
 class UserContext(BaseModel):

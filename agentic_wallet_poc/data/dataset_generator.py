@@ -1,7 +1,7 @@
 """
 Dataset Generator for Agentic Wallet Intent Translation System
 
-Generates synthetic natural language transaction intents using Google Gemini API.
+Generates synthetic natural language transaction intents using litellm (gpt-4o).
 Creates diverse examples with varied phrasings, formality levels, and styles.
 """
 
@@ -13,7 +13,7 @@ import time
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 
-from google import genai
+from litellm import completion
 from dotenv import load_dotenv
 
 # Add parent directory to path for imports
@@ -29,11 +29,8 @@ from data.prompts import (
 # Load environment variables
 load_dotenv()
 
-# Initialize Gemini API
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_CLIENT = None
-if GEMINI_API_KEY:
-    GEMINI_CLIENT = genai.Client(api_key=GEMINI_API_KEY)
+# litellm uses OPENAI_API_KEY for gpt-4o by default
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 def validate_intent_example(intent: str, transaction_type: TransactionType) -> bool:
@@ -89,36 +86,29 @@ def validate_intent_example(intent: str, transaction_type: TransactionType) -> b
 
 def list_available_models() -> List[str]:
     """
-    List available Gemini models that support generateContent.
+    List available models for litellm (OpenAI, etc.).
     
     Returns:
         List of available model names
     """
-    if not GEMINI_CLIENT:
-        raise ValueError("GEMINI_API_KEY not found in environment variables")
-    
-    try:
-        # Common model names - the new API may not have list_models easily accessible
-        return ["gemini-2.5-flash", "gemini-2.0-flash-exp", "gemini-1.5-flash", "gemini-1.5-pro", "gemini-pro"]
-    except Exception as e:
-        print(f"Warning: Could not list models: {e}")
-        return ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
+    if not OPENAI_API_KEY:
+        raise ValueError("OPENAI_API_KEY not found in environment variables")
+    return ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"]
 
 
 def generate_intent_examples(
     transaction_type: TransactionType, 
     count: int = 10,
-    model_name: str = "gemini-2.5-flash",
+    model_name: str = "gpt-4o",
     config: Optional[PromptConfig] = None
 ) -> List[Dict[str, Any]]:
     """
-    Generate diverse natural language transaction intent examples using Gemini API.
+    Generate diverse natural language transaction intent examples using litellm (gpt-4o).
     
     Args:
         transaction_type: Type of transaction (SEND_ETH, TRANSFER_ERC20, TRANSFER_ERC721)
         count: Number of examples to generate
-        model_name: Gemini model to use (default: "gemini-2.5-flash")
-                    Common options: "gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"
+        model_name: Model to use via litellm (default: "gpt-4o")
         config: Optional prompt configuration. If None, uses defaults with count.
         
     Returns:
@@ -128,9 +118,9 @@ def generate_intent_examples(
         ValueError: If API key is not configured
         RuntimeError: If generation fails or validation fails
     """
-    if not GEMINI_CLIENT:
+    if not OPENAI_API_KEY:
         raise ValueError(
-            "GEMINI_API_KEY not found in environment variables. "
+            "OPENAI_API_KEY not found in environment variables. "
             "Please set it in your .env file."
         )
     
@@ -150,27 +140,22 @@ def generate_intent_examples(
         max_retries = 3
         for attempt in range(max_retries):
             try:
-                response = GEMINI_CLIENT.models.generate_content(
+                response = completion(
                     model=model_name,
-                    contents=prompt
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.7,
                 )
-                # Extract text from response - new API structure
                 response_text = None
-                if hasattr(response, 'text'):
-                    response_text = response.text.strip()
-                elif hasattr(response, 'candidates') and len(response.candidates) > 0:
-                    candidate = response.candidates[0]
-                    if hasattr(candidate, 'content'):
-                        if hasattr(candidate.content, 'parts') and len(candidate.content.parts) > 0:
-                            response_text = candidate.content.parts[0].text.strip()
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text.strip()
-                
+                if hasattr(response, "choices") and len(response.choices) > 0:
+                    choice = response.choices[0]
+                    if hasattr(choice, "message") and hasattr(choice.message, "content"):
+                        response_text = choice.message.content
+                    elif hasattr(choice, "text"):
+                        response_text = choice.text
+                if response_text:
+                    response_text = response_text.strip()
                 if not response_text:
-                    # Fallback: convert entire response to string
                     response_text = str(response).strip()
-                    # Try to extract JSON if it's embedded
-                    import re
                     json_match = re.search(r'\[.*\]', response_text, re.DOTALL)
                     if json_match:
                         response_text = json_match.group(0).strip()
@@ -267,7 +252,7 @@ def generate_intent_examples(
                     available_models = list_available_models()
                     raise ValueError(
                         f"Model '{model_name}' not found. Available models: {', '.join(available_models)}\n"
-                        f"Try using one of: gemini-1.5-flash, gemini-1.5-pro, or gemini-pro"
+                        f"Try using one of: gpt-4o, gpt-4o-mini, gpt-4-turbo"
                     ) from e
                 if attempt < max_retries - 1:
                     print(f"Generation failed. Retrying... Error: {e}")
@@ -287,7 +272,7 @@ def generate_full_dataset(
     eth_count: int = 10,
     erc20_count: int = 5,
     erc721_count: int = 5,
-    output_path: str = "data/datasets/raw_intents.json",
+    output_path: str = "data/datasets/intents/raw_intents.json",
     append: bool = False
 ) -> List[Dict[str, Any]]:
     """
@@ -428,8 +413,8 @@ Examples:
     
     parser.add_argument(
         '--output',
-        default='data/datasets/raw_intents.json',
-        help='Output file path (default: data/datasets/raw_intents.json)'
+        default='data/datasets/intents/raw_intents.json',
+        help='Output file path (default: data/datasets/intents/raw_intents.json)'
     )
     parser.add_argument(
         '--append',
@@ -465,9 +450,9 @@ Examples:
     print("Agentic Wallet Intent Translation System - Dataset Generator")
     print("="*60)
     
-    if not GEMINI_CLIENT:
-        print("ERROR: GEMINI_API_KEY not found in environment variables")
-        print("Please set it in your .env file")
+    if not OPENAI_API_KEY:
+        print("ERROR: OPENAI_API_KEY not found in environment variables")
+        print("Please set it in your .env file (required for gpt-4o via litellm)")
         return
     
     print(f"Generation plan:")

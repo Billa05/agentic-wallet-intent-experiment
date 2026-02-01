@@ -15,8 +15,7 @@ from typing import List, Dict, Any
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from models.baseline_translator import BaselineTranslator
-from models.llm_translator import LLMTranslator
+from engine.llm_translator import LLMTranslator
 from evaluation.metrics import (
     evaluate_dataset,
     print_evaluation_report,
@@ -49,7 +48,8 @@ def analyze_errors(results: List[EvaluationResult]) -> Dict[str, Any]:
         "wrong_action": 0,
         "wrong_address": 0,
         "wrong_amount": 0,
-        "wrong_contract": 0
+        "wrong_contract": 0,
+        "wrong_arguments": 0,
     }
     
     failed_intents = []
@@ -58,17 +58,19 @@ def analyze_errors(results: List[EvaluationResult]) -> Dict[str, Any]:
         if result.exact_match:
             continue
         
-        # Categorize error
+        # Categorize error (order matters: most specific first)
         if result.error or result.predicted_action is None:
             error_type = "prediction_failed"
         elif not result.correct_action:
             error_type = "wrong_action"
-        elif not result.correct_address:
-            error_type = "wrong_address"
-        elif not result.correct_amount:
-            error_type = "wrong_amount"
         elif not result.correct_contract:
             error_type = "wrong_contract"
+        elif not result.correct_address:
+            error_type = "wrong_address"
+        elif not getattr(result, "correct_arguments", True):
+            error_type = "wrong_arguments"
+        elif not result.correct_amount:
+            error_type = "wrong_amount"
         else:
             error_type = "unknown"
         
@@ -151,10 +153,9 @@ def run_evaluation(
     test_data_path: Path,
     output_path: Path,
     verbose: bool = False,
-    translator_type: str = 'baseline'
 ) -> Dict[str, Any]:
     """
-    Run evaluation on annotated dataset.
+    Run evaluation on annotated dataset using the hybrid (LLM) translator.
     
     Args:
         test_data_path: Path to annotated dataset JSON
@@ -168,26 +169,13 @@ def run_evaluation(
     test_data = load_json_file(test_data_path)
     print(f"Loaded {len(test_data)} test examples\n")
     
-    # Initialize translator
-    if translator_type == 'baseline':
-        print("Initializing BaselineTranslator...")
-        translator = BaselineTranslator()
-        translator_name = "Baseline (Rule-based)"
-    elif translator_type == 'llm':
-        print("Initializing LLMTranslator...")
-        translator = LLMTranslator()
-        # Extract model name and create sanitized filename
-        model_name = translator.model
-        # Sanitize model name for filename (replace / with _, remove other special chars)
-        sanitized_model = model_name.replace('/', '_').replace(':', '_').replace(' ', '_')
-        translator_name = f"LLM ({model_name})"
-        
-        # Update output path to include model name if not already customized
-        if output_path.name == "results.json" or output_path.name.startswith("results_"):
-            output_path = output_path.parent / f"results_{sanitized_model}.json"
-    else:
-        raise ValueError(f"Unknown translator type: {translator_type}")
-    
+    print("Initializing hybrid translator (LLMTranslator)...")
+    translator = LLMTranslator()
+    model_name = translator.model
+    sanitized_model = model_name.replace('/', '_').replace(':', '_').replace(' ', '_')
+    translator_name = f"Hybrid ({model_name})"
+    if output_path.name == "results.json" or output_path.name.startswith("results_"):
+        output_path = output_path.parent / f"results_{sanitized_model}.json"
     print(f"✓ {translator_name} translator ready\n")
     
     print("Running evaluation...")
@@ -229,7 +217,7 @@ Examples:
   python evaluation/run_evaluation.py --verbose
   
   # Custom dataset and output
-  python evaluation/run_evaluation.py --test-data data/datasets/custom_dataset.json --output evaluation/results/custom.json
+  python evaluation/run_evaluation.py --test-data data/datasets/annotated/custom_dataset.json --output evaluation/results/custom.json
   
   # Also evaluate on edge cases
   python evaluation/run_evaluation.py --include-edge-cases
@@ -238,8 +226,8 @@ Examples:
     
     parser.add_argument(
         '--test-data',
-        default='data/datasets/annotated_dataset.json',
-        help='Path to annotated dataset JSON (default: data/datasets/annotated_dataset.json)'
+        default='data/datasets/annotated/annotated_dataset.json',
+        help='Path to annotated dataset JSON (default: data/datasets/annotated/annotated_dataset.json)'
     )
     
     parser.add_argument(
@@ -260,13 +248,6 @@ Examples:
         help='Also evaluate on edge_cases.json'
     )
     
-    parser.add_argument(
-        '--translator',
-        choices=['baseline', 'llm', 'both'],
-        default='baseline',
-        help='Which translator to use: baseline (rule-based), llm (Gemini), or both (default: baseline)'
-    )
-    
     args = parser.parse_args()
     
     print("=" * 60)
@@ -283,50 +264,16 @@ Examples:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
     try:
-        # Handle 'both' translator option
-        if args.translator == 'both':
-            print("=" * 60)
-            print("Evaluating Baseline Translator")
-            print("=" * 60)
-            baseline_output = output_path.parent / f"{output_path.stem}_baseline{output_path.suffix}"
-            run_evaluation(
-                test_data_path=test_data_path,
-                output_path=baseline_output,
-                verbose=args.verbose,
-                translator_type='baseline'
-            )
-            
-            print("\n" + "=" * 60)
-            print("Evaluating LLM Translator")
-            print("=" * 60)
-            # Get model name from LLM translator to create proper filename
-            temp_translator = LLMTranslator()
-            model_name = temp_translator.model
-            sanitized_model = model_name.replace('/', '_').replace(':', '_').replace(' ', '_')
-            llm_output = output_path.parent / f"results_{sanitized_model}{output_path.suffix}"
-            run_evaluation(
-                test_data_path=test_data_path,
-                output_path=llm_output,
-                verbose=args.verbose,
-                translator_type='llm'
-            )
-            
-            print("\n" + "=" * 60)
-            print("✓ Both evaluations completed!")
-            print("=" * 60)
-            return 0
-        
-        # Run main evaluation
+        # Run evaluation (hybrid translator only)
         metrics = run_evaluation(
             test_data_path=test_data_path,
             output_path=output_path,
             verbose=args.verbose,
-            translator_type=args.translator
         )
         
         # Optional: Evaluate on edge cases
         if args.include_edge_cases:
-            edge_cases_path = project_root / "data" / "datasets" / "edge_cases.json"
+            edge_cases_path = project_root / "data" / "datasets" / "edgecases" / "edge_cases.json"
             if edge_cases_path.exists():
                 print("\n" + "=" * 60)
                 print("Evaluating on Edge Cases")
@@ -350,8 +297,8 @@ Examples:
     except FileNotFoundError as e:
         print(f"\n❌ Error: {e}")
         print("\nPlease ensure:")
-        print("  1. Dataset has been annotated (run: python data/dataset_annotator.py)")
-        print("  2. Annotated dataset exists at: data/datasets/annotated_dataset.json")
+        print("  1. Raw intents have been annotated with the hybrid translator (run: python data/annotate_with_hybrid.py)")
+        print("  2. After human validation, annotated dataset exists at: data/datasets/annotated/annotated_dataset.json")
         return 1
         
     except Exception as e:

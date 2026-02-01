@@ -1,0 +1,82 @@
+[
+  {
+    "intent": "Can you supply 500 USDC to Aave for me?",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "I want to deposit 200 DAI into the Aave pool, please.",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "I want to withdraw 500 DAI from Aave to my main wallet.",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Can you please pull 2500 USDC out of Aave for me?",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Could you assist me in borrowing 500 USDT from Aave?",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "I want to borrow 2000 DAI from Aave, please.",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "I'd like to repay 500 DAI on Aave, please.",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "Can you help me repay my Aave loan of 1200 USDC?",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "Please stake 5 ETH on Lido for me.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "I want to put 10 ETH into the Lido pool, thanks!",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Could you please facilitate the withdrawal of 15 stETH from Lido?",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "I want to unstake 25 stETH from Lido, thanks!",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "I'd like to swap 150 USDC for some DAI on Uniswap.",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "Can you please exchange 0.5 WETH to USDT using Uniswap?",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "I wish to swap 1500 USDC for DAI using 1inch, please.",
+    "transaction_type": "oneinch_swap"
+  },
+  {
+    "intent": "Can you help me convert 0.5 ETH to USDT via 1inch?",
+    "transaction_type": "oneinch_swap"
+  },
+  {
+    "intent": "I'd like to add 1500 USDC to the Curve 3pool, please.",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Can you help me add 500 DAI into the Curve 3pool?",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "I'd like to pull out 500 DAI from the Curve pool, please.",
+    "transaction_type": "curve_remove_liquidity"
+  },
+  {
+    "intent": "Can you remove 300 USDT liquidity from Curve 3pool for me?",
+    "transaction_type": "curve_remove_liquidity"
+  }
+]
