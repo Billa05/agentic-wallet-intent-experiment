@@ -134,8 +134,8 @@
       "function_name": "transfer",
       "arguments": {
         "to": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
-        "value": "1432567568766459900",
-        "human_readable_amount": "1.4325675687664599 DAI"
+        "value": "1432567568766459800",
+        "human_readable_amount": "1.4325675687664598 DAI"
       }
     }
   },
@@ -235,7 +235,7 @@
       "arguments": {
         "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
         "value": "1",
-        "human_readable_amount": "1e-18 ETH"
+        "human_readable_amount": "0.000000000000000001 ETH"
       }
     }
   },
@@ -295,7 +295,7 @@
       "arguments": {
         "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
         "value": "1000000000000000000000000",
-        "human_readable_amount": "1e+18 USDC"
+        "human_readable_amount": "1000000000000000000 USDC"
       }
     }
   },
@@ -315,7 +315,7 @@
       "arguments": {
         "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
         "value": "1",
-        "human_readable_amount": "1e-06 USDC"
+        "human_readable_amount": "0.000001 USDC"
       }
     }
   },

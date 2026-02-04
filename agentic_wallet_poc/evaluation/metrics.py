@@ -84,7 +84,7 @@ def evaluate_single(
     """
     # Handle failed predictions
     if predicted is None:
-        true_payload = ground_truth.get("target_payload", {})
+        true_payload = ground_truth.get("target_payload") or {}
         true_action = true_payload.get("action", "unknown")
         return EvaluationResult(
             intent=intent,
@@ -101,11 +101,11 @@ def evaluate_single(
             predicted=None
         )
     
-    # Extract payloads
-    pred_payload = predicted.get("target_payload", {})
-    true_payload = ground_truth.get("target_payload", {})
-    pred_args = pred_payload.get("arguments", {})
-    true_args = true_payload.get("arguments", {})
+    # Extract payloads (guard against None for failed-annotation rows)
+    pred_payload = predicted.get("target_payload") or {}
+    true_payload = ground_truth.get("target_payload") or {}
+    pred_args = pred_payload.get("arguments") or {}
+    true_args = true_payload.get("arguments") or {}
     
     # Compare action types
     pred_action = pred_payload.get("action")

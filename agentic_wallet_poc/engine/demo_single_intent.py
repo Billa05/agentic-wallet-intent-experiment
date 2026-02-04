@@ -153,6 +153,7 @@ def step4_convert_human_to_payload(
     protocol_registry,
     ens_registry,
     chain_id: int,
+    from_address: str | None = None,
 ):
     print("\n" + "=" * 70)
     print("STEP 4: convert_human_to_payload (payload builder)")
@@ -163,13 +164,14 @@ def step4_convert_human_to_payload(
     action = payload_dict.get("action")
     print(f"  action: {action}")
     print("  Always run payload builder (LLM only returns intent + human params; we construct everything in code).")
-    print("  Calling convert_human_to_payload(llm_payload, token_registry, protocol_registry, ens_registry, chain_id) ...")
+    print("  Calling convert_human_to_payload(..., chain_id, from_address) ...")
     built = convert_human_to_payload(
         payload_dict,
         token_registry,
         protocol_registry,
         ens_registry,
         chain_id=chain_id,
+        from_address=from_address,
     )
     if built is None:
         print("  -> convert_human_to_payload returned None (e.g. unknown action/asset or missing args).")

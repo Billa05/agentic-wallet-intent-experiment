@@ -3,369 +3,440 @@
     "user_intent": "hey can you send like half an ETH to bob.eth for my share of the dinner?",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
-        "value": "500000000000000000",
-        "human_readable_amount": "0.5 ETH"
-      }
+      "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+      "value": "500000000000000000",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": "bob.eth",
+      "resolved_recipient": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+      "human_readable_amount": "0.5 ETH",
+      "amount_wei": "500000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "URGENT: tx 500000000000000000 wei to dave.eth ASAP!",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
-        "value": "500000000000000000",
-        "human_readable_amount": "0.5 ETH"
-      }
+      "to": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
+      "value": "500000000000000000",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": "dave.eth",
+      "resolved_recipient": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
+      "human_readable_amount": "0.5 ETH",
+      "amount_wei": "500000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "I need to move 0.05 ether to vitalik.eth please, could you do that?",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
-        "value": "50000000000000000",
-        "human_readable_amount": "0.05 ETH"
-      }
+      "to": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
+      "value": "50000000000000000",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": "vitalik.eth",
+      "resolved_recipient": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
+      "human_readable_amount": "0.05 ETH",
+      "amount_wei": "50000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "Yo, disburse fifty ETH to 0x8aDc3E48f57212a537bBc98342730b777f987654, double chek it.",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0x8aDc3E48f57212a537bBc98342730b777f987654",
-        "value": "50000000000000000000",
-        "human_readable_amount": "50 ETH"
-      }
+      "to": "0x8aDc3E48f57212a537bBc98342730b777f987654",
+      "value": "50000000000000000000",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": null,
+      "resolved_recipient": "0x8aDc3E48f57212a537bBc98342730b777f987654",
+      "human_readable_amount": "50 ETH",
+      "amount_wei": "50000000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "Kindly initiate an ERC-20 transfer of 100.00 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e for invoice #2023-007.",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc20",
-      "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-      "function_name": "transfer",
-      "arguments": {
-        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-        "value": "100000000",
-        "human_readable_amount": "100 USDC"
-      }
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": "0xa9059cbb000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000005f5e100"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "token_symbol": "USDC",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "human_readable_amount": "100.00 USDC",
+      "amount_wei": "100000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "can u pls fwd 50 usdt toknes to freind.eth, thanks!",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc20",
-      "target_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
-      "function_name": "transfer",
-      "arguments": {
-        "to": "0x4D076bcae8bC873735621b5F34B60Fe188b40d1E",
-        "value": "50000000",
-        "human_readable_amount": "50 USDT"
-      }
+      "to": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "value": "0",
+      "data": "0xa9059cbb0000000000000000000000004d076bcae8bc873735621b5f34b60fe188b40d1e0000000000000000000000000000000000000000000000000000000002faf080"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "token_symbol": "USDT",
+      "recipient": "freind.eth",
+      "resolved_recipient": "0x4D076bcae8bC873735621b5F34B60Fe188b40d1E",
+      "human_readable_amount": "50 USDT",
+      "amount_wei": "50000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "I need to disburse 1.4325675687664598 DAI to charity.eth, please confirm before execution.",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc20",
-      "target_contract": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-      "function_name": "transfer",
-      "arguments": {
-        "to": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
-        "value": "1432567568766459800",
-        "human_readable_amount": "1.4325675687664598 DAI"
-      }
+      "to": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "value": "0",
+      "data": "0xa9059cbb00000000000000000000000026b51437ebfcd5c4e97722aac45bdc6c9b511c8d00000000000000000000000000000000000000000000000013e1809d1d11df98"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "token_symbol": "DAI",
+      "recipient": "charity.eth",
+      "resolved_recipient": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
+      "human_readable_amount": "1.4325675687664598 DAI",
+      "amount_wei": "1432567568766459800"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "Hey, could you move around 0.0005 WETH to 0xAbc123456789012345678901234567890123456D again for the gas fees?",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc20",
-      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-      "function_name": "transfer",
-      "arguments": {
-        "to": "0xAbc123456789012345678901234567890123456D",
-        "value": "500000000000000",
-        "human_readable_amount": "0.0005 WETH"
-      }
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0xa9059cbb000000000000000000000000abc123456789012345678901234567890123456d0000000000000000000000000000000000000000000000000001c6bf52634000"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "token_symbol": "WETH",
+      "recipient": null,
+      "resolved_recipient": "0xAbc123456789012345678901234567890123456D",
+      "human_readable_amount": "0.0005 WETH",
+      "amount_wei": "500000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "Yo fam, send that Mutant Ape #12345 to homie.eth asap for the loan repayment.",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc721",
-      "target_contract": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
-      "function_name": "transferFrom",
-      "arguments": {
-        "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
-        "tokenId": 12345,
-        "human_readable_amount": "Token #12345"
-      }
+      "to": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
+      "value": "0",
+      "data": "0x23b872dd00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000004e4f1ab2179da816dd9e1f5db3eb20cd85365d4b0000000000000000000000000000000000000000000000000000000000003039"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc721",
+      "token_address": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
+      "recipient": "homie.eth",
+      "resolved_recipient": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
+      "token_id": 12345,
+      "human_readable_amount": "Token #12345"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "I would like to formally transfer CryptoPunk token ID 7890 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc721",
-      "target_contract": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
-      "function_name": "transferFrom",
-      "arguments": {
-        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-        "tokenId": 7890,
-        "human_readable_amount": "Token #7890"
-      }
+      "to": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+      "value": "0",
+      "data": "0x23b872dd00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000000001ed2"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc721",
+      "token_address": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "token_id": 7890,
+      "human_readable_amount": "Token #7890"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "Get this Bored Ape Yacht Club token number 6789 over to alice.eth, she's waiting on it.",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc721",
-      "target_contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
-      "function_name": "transferFrom",
-      "arguments": {
-        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
-        "tokenId": 6789,
-        "human_readable_amount": "Token #6789"
-      }
+      "to": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "value": "0",
+      "data": "0x23b872dd00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000008fa227fd019b562e0db08881c53ee5d3c7f10bf0000000000000000000000000000000000000000000000000000000000001a85"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc721",
+      "token_address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "recipient": "alice.eth",
+      "resolved_recipient": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+      "token_id": 6789,
+      "human_readable_amount": "Token #6789"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-        "value": "1",
-        "human_readable_amount": "0.000000000000000001 ETH"
-      }
+      "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "value": "1",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "human_readable_amount": "0.000000000000000001 ETH",
+      "amount_wei": "1"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": null,
-    "_annotation_failed": true
+    "metadata": {
+      "action": null
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
   },
   {
     "user_intent": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e 0.5 ETH",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-        "value": "500000000000000000",
-        "human_readable_amount": "0.5 ETH"
-      }
+      "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "value": "500000000000000000",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "human_readable_amount": "0.5 ETH",
+      "amount_wei": "500000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
-    "target_payload": null,
-    "_annotation_failed": true
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": "0xa9059cbb000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e00000000000000000000000000000000000000000000d3c21bcecceda1000000"
+    },
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "token_symbol": "USDC",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "human_readable_amount": "1000000000000000000 USDC",
+      "amount_wei": "1000000000000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "send 0.000001 USDC to bob.eth",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc20",
-      "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-      "function_name": "transfer",
-      "arguments": {
-        "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
-        "value": "1",
-        "human_readable_amount": "0.000001 USDC"
-      }
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": "0xa9059cbb0000000000000000000000008c4a948421b268494b39f5db87502d8a154b903d0000000000000000000000000000000000000000000000000000000000000001"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "token_symbol": "USDC",
+      "recipient": "bob.eth",
+      "resolved_recipient": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+      "human_readable_amount": "0.000001 USDC",
+      "amount_wei": "1"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_erc20",
-      "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
-      "function_name": "transfer",
-      "arguments": {
-        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-        "value": "100000000",
-        "human_readable_amount": "100 USDC"
-      }
+      "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "value": "0",
+      "data": "0xa9059cbb000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000005f5e100"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_erc20",
+      "token_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "token_symbol": "USDC",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "human_readable_amount": "100 USDC",
+      "amount_wei": "100000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   },
   {
     "user_intent": "send Bored Ape #999999999999999999999999 to alice.eth",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": null,
-    "_annotation_failed": true
+    "metadata": {
+      "action": null
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
   },
   {
     "user_intent": "send 0.5 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e but wait actually make it 1 ETH",
     "user_context": {
       "current_chain_id": 1,
-      "token_prices": {
-        "ETH": 2500.0
-      }
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
       "chain_id": 1,
-      "action": "transfer_native",
-      "target_contract": null,
-      "function_name": null,
-      "arguments": {
-        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-        "value": "1000000000000000000",
-        "human_readable_amount": "1 ETH"
-      }
+      "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "value": "1000000000000000000",
+      "data": "0x"
     },
-    "_annotation_failed": false
+    "metadata": {
+      "action": "transfer_native",
+      "recipient": null,
+      "resolved_recipient": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "human_readable_amount": "1 ETH",
+      "amount_wei": "1000000000000000000"
+    },
+    "_tenderly_validated": false,
+    "_annotation_failed": false,
+    "_tenderly_error": "Bad request input parameters"
   }
 ]

@@ -66,6 +66,7 @@ def convert_human_to_payload(
     protocol_registry: Dict[str, Any],
     ens_registry: Dict[str, str],
     chain_id: int = 1,
+    from_address: Optional[str] = None,
 ) -> Optional[Dict[str, Any]]:
     """
     Convert LLM output (possibly human-readable) to final ExecutablePayload dict.
@@ -91,7 +92,7 @@ def convert_human_to_payload(
             "arguments": {
                 "to": _resolve_ens(args.get("to"), ens_registry) or args.get("to"),
                 "value": str(value),
-                "human_readable_amount": args.get("human_readable_amount", ""),
+                "human_readable_amount": args.get("human_readable_amount") or (f"{args.get('amount_human')} ETH" if args.get("amount_human") else ""),
             },
         }
 
@@ -115,7 +116,7 @@ def convert_human_to_payload(
             "arguments": {
                 "to": _resolve_ens(args.get("to"), ens_registry) or args.get("to"),
                 "value": str(value),
-                "human_readable_amount": args.get("human_readable_amount", ""),
+                "human_readable_amount": args.get("human_readable_amount") or (f"{args.get('amount_human')} {args.get('asset')}".strip() if (args.get("amount_human") or args.get("asset")) else ""),
             },
         }
 
@@ -139,7 +140,7 @@ def convert_human_to_payload(
             "arguments": {
                 "to": _resolve_ens(args.get("to"), ens_registry) or args.get("to"),
                 "tokenId": args.get("tokenId"),
-                "human_readable_amount": args.get("human_readable_amount", ""),
+                "human_readable_amount": args.get("human_readable_amount") or (f"Token #{args.get('tokenId')}" if args.get("tokenId") is not None else ""),
             },
         }
 
@@ -152,7 +153,7 @@ def convert_human_to_payload(
     def resolve_addr(a):
         return _resolve_ens(a, ens_registry) if isinstance(a, str) and not a.startswith("0x") else a
 
-    # AAVE supply/withdraw/borrow/repay
+    # AAVE supply/withdraw/borrow/repay (amounts in base units; supply/borrow need referralCode; borrow/repay need interestRateMode)
     if action.startswith("aave_"):
         asset_sym = args.get("asset", "USDC")
         res = _resolve_asset(asset_sym, token_registry)
@@ -160,11 +161,10 @@ def convert_human_to_payload(
             return None
         asset_addr, decimals = res
         amount_human = args.get("amount_human") or args.get("amount")
-        if isinstance(amount_human, str) and not amount_human.isdigit():
-            amount = _token_to_base(amount_human, decimals)
-        else:
-            amount = str(amount_human) if amount_human is not None else "0"
-        on_behalf = resolve_addr(args.get("onBehalfOf")) or list(ens_registry.values())[0] if ens_registry else None
+        amount = _token_to_base(str(amount_human or "0"), decimals)
+        on_behalf = resolve_addr(args.get("onBehalfOf")) or from_address or (list(ens_registry.values())[0] if ens_registry else None)
+        if not on_behalf:
+            return None
         out = {
             "chain_id": chain_id,
             "action": action,
@@ -174,20 +174,24 @@ def convert_human_to_payload(
                 "asset": asset_addr,
                 "amount": amount,
                 "onBehalfOf": on_behalf,
-                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', amount)} {asset_sym}"),
+                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', amount_human)} {asset_sym}"),
             },
         }
+        if action == "aave_supply":
+            out["arguments"]["referralCode"] = int(args.get("referralCode", 0))
         if action == "aave_withdraw":
-            out["arguments"]["to"] = resolve_addr(args.get("to")) or out["arguments"]["onBehalfOf"]
+            out["arguments"]["to"] = resolve_addr(args.get("to")) or on_behalf
+        if action == "aave_borrow":
+            out["arguments"]["referralCode"] = int(args.get("referralCode", 0))
+            out["arguments"]["interestRateMode"] = int(args.get("interestRateMode", 2))  # 2 = variable
+        if action == "aave_repay":
+            out["arguments"]["interestRateMode"] = int(args.get("interestRateMode", 2))
         return out
 
-    # Lido stake
+    # Lido stake: value in wei (submit is payable; amount goes in tx.value)
     if action == "lido_stake":
         amount_human = args.get("amount_human") or args.get("value")
-        if isinstance(amount_human, str) and not amount_human.isdigit():
-            value = _eth_to_wei(amount_human)
-        else:
-            value = str(amount_human) if amount_human else "0"
+        value = _eth_to_wei(str(amount_human or "0"))
         return {
             "chain_id": chain_id,
             "action": action,
@@ -195,50 +199,71 @@ def convert_human_to_payload(
             "function_name": function_name,
             "arguments": {
                 "value": value,
-                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', '0')} ETH"),
+                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', amount_human)} ETH"),
             },
         }
 
-    # Lido unstake: amount_human is in stETH (18 decimals)
+    # Lido unstake: requestWithdrawals(uint256[] _amounts, address _owner)
     if action == "lido_unstake":
         amount_human = args.get("amount_human") or args.get("amount")
-        if isinstance(amount_human, str) and not amount_human.replace(".", "").replace("-", "").isdigit():
-            value = _token_to_base(amount_human, 18)
-        else:
-            value = _token_to_base(str(amount_human or "0"), 18)
+        amount_base = _token_to_base(str(amount_human or "0"), 18)
+        owner = resolve_addr(args.get("onBehalfOf")) or args.get("_owner") or from_address
+        if not owner:
+            return None
         return {
             "chain_id": chain_id,
             "action": action,
             "target_contract": target_contract,
             "function_name": function_name,
             "arguments": {
-                "amount": value,
-                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', '0')} stETH"),
+                "_amounts": [amount_base],
+                "_owner": owner,
+                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', amount_human)} stETH"),
             },
         }
 
-    # Uniswap / 1inch swap: require amountIn, path, to; amountOutMin can be "0"
+    # Uniswap / 1inch swap: amountIn/amountOutMin in correct token decimals; to required (user address); deadline set in encoder
     if action in ("uniswap_swap", "oneinch_swap"):
-        amount_in = args.get("amountIn")
+        path_raw = args.get("path") or []
+        path = []
+        for p in path_raw:
+            if isinstance(p, str) and not p.startswith("0x") and p.upper() != "ETH":
+                r = _resolve_asset(p, token_registry)
+                path.append(r[0] if r else p)
+            elif isinstance(p, str) and p.upper() == "ETH":
+                weth = _resolve_asset("WETH", token_registry)
+                path.append(weth[0] if weth else p)
+            else:
+                path.append(p)
         amount_human = args.get("amount_human")
-        if amount_human and (not amount_in or not str(amount_in).isdigit()):
-            path = args.get("path") or []
-            if path and isinstance(path[0], str) and path[0].startswith("0x"):
-                amount_in = _eth_to_wei(amount_human)
+        amount_in = args.get("amountIn")
+        if amount_human and (not amount_in or str(amount_in) == "0"):
+            if path and path[0].startswith("0x"):
+                # First token is address: get decimals from registry (WETH=18)
+                first_addr = path[0].lower()
+                dec = 18
+                for _sym, info in (token_registry.get("erc20_tokens") or {}).items():
+                    if (info.get("address") or "").lower() == first_addr:
+                        dec = info.get("decimals", 18)
+                        break
+                amount_in = _token_to_base(str(amount_human), dec)
             else:
                 res = _resolve_asset(args.get("asset_in", "USDC"), token_registry)
                 dec = res[1] if res else 6
-                amount_in = _token_to_base(amount_human, dec)
-        path = args.get("path")
-        if isinstance(path, list) and path:
-            resolved = []
-            for p in path:
-                if isinstance(p, str) and not p.startswith("0x"):
-                    r = _resolve_asset(p, token_registry)
-                    resolved.append(r[0] if r else p)
-                else:
-                    resolved.append(p)
-            path = resolved
+                amount_in = _token_to_base(str(amount_human), dec)
+        amount_out_min = args.get("amountOutMin", "0")
+        if path and str(amount_out_min) != "0" and amount_out_min == args.get("amountOutMin"):
+            last_addr = path[-1] if isinstance(path[-1], str) else None
+            if last_addr and last_addr.startswith("0x"):
+                dec_out = 18
+                for _sym, info in (token_registry.get("erc20_tokens") or {}).items():
+                    if (info.get("address") or "").lower() == last_addr.lower():
+                        dec_out = info.get("decimals", 18)
+                        break
+                amount_out_min = _token_to_base(str(amount_out_min), dec_out)
+        to_addr = resolve_addr(args.get("to")) or args.get("to") or from_address
+        path_str = " -> ".join(str(p) for p in path_raw) if path_raw else "tokens"
+        swap_desc = args.get("human_readable_amount") or (f"Swap {args.get('amount_human', '')} ({path_str})" if args.get("amount_human") else "")
         return {
             "chain_id": chain_id,
             "action": action,
@@ -246,19 +271,23 @@ def convert_human_to_payload(
             "function_name": function_name,
             "arguments": {
                 "amountIn": str(amount_in or "0"),
-                "amountOutMin": str(args.get("amountOutMin", "0")),
+                "amountOutMin": str(amount_out_min),
                 "path": path or [],
-                "to": resolve_addr(args.get("to")) or args.get("to"),
-                "human_readable_amount": args.get("human_readable_amount", ""),
+                "to": to_addr,
+                "human_readable_amount": swap_desc,
             },
         }
 
-    # Curve add/remove liquidity
+    # Curve 3pool: add_liquidity(uint256[3] amounts, uint256 min_mint_amount). Pool order: DAI=0, USDC=1, USDT=2
     if action == "curve_add_liquidity":
         amount_human = args.get("amount_human") or args.get("amount")
-        res = _resolve_asset(args.get("asset", "USDC"), token_registry)
+        asset_sym = (args.get("asset") or "USDC").upper()
+        res = _resolve_asset(asset_sym, token_registry)
         dec = res[1] if res else 6
         amt = _token_to_base(str(amount_human or "0"), dec)
+        idx = {"DAI": 0, "USDC": 1, "USDT": 2}.get(asset_sym, 1)
+        amounts = ["0", "0", "0"]
+        amounts[idx] = amt
         return {
             "chain_id": chain_id,
             "action": action,
@@ -266,16 +295,18 @@ def convert_human_to_payload(
             "function_name": function_name,
             "arguments": {
                 "pool": target_contract,
-                "amounts": [amt, "0", "0"],
+                "amounts": amounts,
                 "min_mint_amount": str(args.get("min_mint_amount", "0")),
-                "human_readable_amount": args.get("human_readable_amount", ""),
+                "human_readable_amount": args.get("human_readable_amount") or (f"{args.get('amount_human')} {asset_sym}".strip() if args.get("amount_human") else ""),
             },
         }
+    # remove_liquidity(uint256 amount, uint256[3] min_amounts): amount is LP token (18 decimals)
     if action == "curve_remove_liquidity":
         amount_human = args.get("amount_human") or args.get("amount")
-        amt = str(amount_human) if amount_human else "0"
-        if isinstance(amount_human, str) and not amount_human.isdigit():
-            amt = _token_to_base(amount_human, 18)
+        amt = _token_to_base(str(amount_human or "0"), 18)
+        min_amounts = args.get("min_amounts", ["0", "0", "0"])
+        if isinstance(min_amounts, list) and len(min_amounts) < 3:
+            min_amounts = (min_amounts + ["0", "0", "0"])[:3]
         return {
             "chain_id": chain_id,
             "action": action,
@@ -284,8 +315,8 @@ def convert_human_to_payload(
             "arguments": {
                 "pool": target_contract,
                 "amount": amt,
-                "min_amounts": args.get("min_amounts", ["0", "0", "0"]),
-                "human_readable_amount": args.get("human_readable_amount", ""),
+                "min_amounts": min_amounts if isinstance(min_amounts, list) else ["0", "0", "0"],
+                "human_readable_amount": args.get("human_readable_amount") or (f"{args.get('amount_human')} LP" if args.get("amount_human") else ""),
             },
         }
 

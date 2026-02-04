@@ -126,6 +126,7 @@ class LLMTranslator:
         user_intent: str,
         chain_id: int = 1,
         failure_info: Optional[MutableMapping[str, Any]] = None,
+        from_address: Optional[str] = None,
     ) -> Optional[AnnotatedIntent]:
         """
         Main entry point. Translates natural language intent to AnnotatedIntent using LLM.
@@ -227,6 +228,7 @@ class LLMTranslator:
                 self.protocol_registry,
                 self.ens_registry,
                 chain_id=chain_id,
+                from_address=from_address,
             )
             if built is None:
                 set_fail("payload_builder", "convert_human_to_payload returned null (e.g. unknown action/asset or missing args).", raw=response_text)
