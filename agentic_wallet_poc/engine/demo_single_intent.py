@@ -6,15 +6,27 @@ Usage (from agentic_wallet_poc/):
   python engine/demo_single_intent.py "Your intent here"
 
 Default intent: "Could you please facilitate the withdrawal of 15 stETH from Lido?"
+
+Actions that need a sender (e.g. lido_unstake, aave_*) use from_address; set
+TENDERLY_FROM_ADDRESS in .env or environment, or a test address is used.
 """
 
 import json
+import os
 import sys
-import re
 from pathlib import Path
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent.parent / ".env")
+except ImportError:
+    pass
 
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+# Default sender for actions that require it (lido_unstake _owner, aave onBehalfOf, swap to)
+DEFAULT_FROM_ADDRESS = os.getenv("TENDERLY_FROM_ADDRESS", "0x70997970C51812dc3A010C7d01b50e0d17dc79C8")
 
 # -----------------------------------------------------------------------------
 # Step 0: Load registries
@@ -242,6 +254,7 @@ def main():
     print("#" * 70)
     print(f"\n  Intent: \"{intent}\"")
     print(f"  Chain ID: {chain_id}")
+    print(f"  From address (for DeFi/sender): {DEFAULT_FROM_ADDRESS}")
 
     token_registry, ens_registry, protocol_registry = step0_load_registries()
     system_prompt, user_prompt = step1_build_prompts(
@@ -263,6 +276,7 @@ def main():
         protocol_registry,
         ens_registry,
         chain_id,
+        from_address=DEFAULT_FROM_ADDRESS,
     )
     if payload_dict is None:
         print("\n  Pipeline stopped: payload builder returned None.")
