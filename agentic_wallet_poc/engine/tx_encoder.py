@@ -14,6 +14,10 @@ except ImportError:
 # ERC20 / ERC721
 TRANSFER_SELECTOR = "0xa9059cbb"
 TRANSFER_FROM_SELECTOR = "0x23b872dd"
+
+# CryptoPunks (non-standard - uses transferPunk instead of transferFrom)
+CRYPTOPUNKS_ADDRESS = "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB".lower()
+CRYPTOPUNKS_TRANSFER_SELECTOR = "0x8b72a2ec"  # transferPunk(address,uint256)
 # Aave V3 Pool (first 4 bytes of keccak256(signature))
 AAVE_SUPPLY_SELECTOR = "0x617ba037"      # supply(address,uint256,address,uint16)
 AAVE_WITHDRAW_SELECTOR = "0x69328dec"   # withdraw(address,uint256,address)
@@ -45,6 +49,14 @@ def _encode_erc721_transfer_from(from_address: str, to_address: str, token_id: i
         raise ImportError("eth_abi is required for tx encoding; pip install eth-abi")
     encoded = encode(["address", "address", "uint256"], [_addr(from_address), _addr(to_address), token_id])
     return TRANSFER_FROM_SELECTOR + encoded.hex()
+
+
+def _encode_cryptopunks_transfer(to_address: str, punk_index: int) -> str:
+    """Encode CryptoPunks transferPunk(address to, uint punkIndex)."""
+    if encode is None:
+        raise ImportError("eth_abi is required for tx encoding; pip install eth-abi")
+    encoded = encode(["address", "uint256"], [_addr(to_address), punk_index])
+    return CRYPTOPUNKS_TRANSFER_SELECTOR + encoded.hex()
 
 
 def _encode_aave_supply(asset: str, amount: str, on_behalf_of: str, referral_code: int = 0) -> str:
@@ -172,6 +184,7 @@ def payload_to_raw_tx(
         }
 
     # transfer_erc721: call token.transferFrom(from, to, tokenId)
+    # Special case: CryptoPunks uses transferPunk(to, punkIndex) instead
     if action == "transfer_erc721":
         to_recipient = args.get("to")
         token_id = args.get("tokenId")
@@ -179,7 +192,14 @@ def payload_to_raw_tx(
             return None
         if not from_address:
             return None
-        data = _encode_erc721_transfer_from(from_address, to_recipient, int(token_id))
+        
+        # CryptoPunks: use transferPunk(address to, uint punkIndex)
+        if target_contract.lower() == CRYPTOPUNKS_ADDRESS:
+            data = _encode_cryptopunks_transfer(to_recipient, int(token_id))
+        else:
+            # Standard ERC721: transferFrom(from, to, tokenId)
+            data = _encode_erc721_transfer_from(from_address, to_recipient, int(token_id))
+        
         return {
             "chain_id": chain_id,
             "to": target_contract,

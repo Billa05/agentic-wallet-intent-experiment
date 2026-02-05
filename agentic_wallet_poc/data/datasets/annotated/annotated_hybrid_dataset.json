@@ -18,9 +18,8 @@
       "human_readable_amount": "0.5 ETH",
       "amount_wei": "500000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "URGENT: tx 500000000000000000 wei to dave.eth ASAP!",
@@ -41,9 +40,8 @@
       "human_readable_amount": "0.5 ETH",
       "amount_wei": "500000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "I need to move 0.05 ether to vitalik.eth please, could you do that?",
@@ -64,9 +62,8 @@
       "human_readable_amount": "0.05 ETH",
       "amount_wei": "50000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "Yo, disburse fifty ETH to 0x8aDc3E48f57212a537bBc98342730b777f987654, double chek it.",
@@ -87,9 +84,8 @@
       "human_readable_amount": "50 ETH",
       "amount_wei": "50000000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "Kindly initiate an ERC-20 transfer of 100.00 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e for invoice #2023-007.",
@@ -112,9 +108,8 @@
       "human_readable_amount": "100.00 USDC",
       "amount_wei": "100000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "can u pls fwd 50 usdt toknes to freind.eth, thanks!",
@@ -137,9 +132,8 @@
       "human_readable_amount": "50 USDT",
       "amount_wei": "50000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "I need to disburse 1.4325675687664598 DAI to charity.eth, please confirm before execution.",
@@ -162,9 +156,8 @@
       "human_readable_amount": "1.4325675687664598 DAI",
       "amount_wei": "1432567568766459800"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "Hey, could you move around 0.0005 WETH to 0xAbc123456789012345678901234567890123456D again for the gas fees?",
@@ -187,9 +180,8 @@
       "human_readable_amount": "0.0005 WETH",
       "amount_wei": "500000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "Yo fam, send that Mutant Ape #12345 to homie.eth asap for the loan repayment.",
@@ -211,9 +203,8 @@
       "token_id": 12345,
       "human_readable_amount": "Token #12345"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "I would like to formally transfer CryptoPunk token ID 7890 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
@@ -225,7 +216,7 @@
       "chain_id": 1,
       "to": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
       "value": "0",
-      "data": "0x23b872dd00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000000001ed2"
+      "data": "0x8b72a2ec000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000000001ed2"
     },
     "metadata": {
       "action": "transfer_erc721",
@@ -235,9 +226,8 @@
       "token_id": 7890,
       "human_readable_amount": "Token #7890"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "Get this Bored Ape Yacht Club token number 6789 over to alice.eth, she's waiting on it.",
@@ -261,7 +251,7 @@
     },
     "_tenderly_validated": false,
     "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_error": "invalid opcode: INVALID"
   },
   {
     "user_intent": "send 0.000000000000000001 ETH to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
@@ -282,9 +272,8 @@
       "human_readable_amount": "0.000000000000000001 ETH",
       "amount_wei": "1"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "send 0.5 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
@@ -321,9 +310,8 @@
       "human_readable_amount": "0.5 ETH",
       "amount_wei": "500000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "transfer 1000000000000000000 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
@@ -346,9 +334,8 @@
       "human_readable_amount": "1000000000000000000 USDC",
       "amount_wei": "1000000000000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "send 0.000001 USDC to bob.eth",
@@ -371,9 +358,8 @@
       "human_readable_amount": "0.000001 USDC",
       "amount_wei": "1"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "transfer 100 USDC to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e using contract 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
@@ -396,9 +382,8 @@
       "human_readable_amount": "100 USDC",
       "amount_wei": "100000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   },
   {
     "user_intent": "send Bored Ape #999999999999999999999999 to alice.eth",
@@ -435,8 +420,7 @@
       "human_readable_amount": "1 ETH",
       "amount_wei": "1000000000000000000"
     },
-    "_tenderly_validated": false,
-    "_annotation_failed": false,
-    "_tenderly_error": "Bad request input parameters"
+    "_tenderly_validated": true,
+    "_annotation_failed": false
   }
 ]

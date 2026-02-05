@@ -8,6 +8,9 @@ performs Wei/base-unit conversion and transaction construction deterministically
 from decimal import Decimal, ROUND_DOWN
 from typing import Dict, Any, Optional
 
+# Non-standard NFT contracts that need special handling
+CRYPTOPUNKS_ADDRESS = "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB".lower()
+
 
 def _eth_to_wei(amount: str) -> str:
     d = Decimal(amount)
@@ -132,11 +135,18 @@ def convert_human_to_payload(
                         break
         if not target:
             return None
+        
+        # CryptoPunks uses non-standard interface: transferPunk(to, punkIndex)
+        if target.lower() == CRYPTOPUNKS_ADDRESS:
+            function_name = "transferPunk"
+        else:
+            function_name = "transferFrom"
+        
         return {
             "chain_id": chain_id,
             "action": action,
             "target_contract": target,
-            "function_name": "transferFrom",
+            "function_name": function_name,
             "arguments": {
                 "to": _resolve_ens(args.get("to"), ens_registry) or args.get("to"),
                 "tokenId": args.get("tokenId"),
