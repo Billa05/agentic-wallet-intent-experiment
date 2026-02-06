@@ -8,7 +8,7 @@ Usage (from agentic_wallet_poc/):
 Default intent: "Could you please facilitate the withdrawal of 15 stETH from Lido?"
 
 Actions that need a sender (e.g. lido_unstake, aave_*) use from_address; set
-TENDERLY_FROM_ADDRESS in .env or environment, or a test address is used.
+DEFAULT_FROM_ADDRESS in .env or environment, or a test address is used.
 """
 
 import json
@@ -26,7 +26,7 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 # Default sender for actions that require it (lido_unstake _owner, aave onBehalfOf, swap to)
-DEFAULT_FROM_ADDRESS = os.getenv("TENDERLY_FROM_ADDRESS", "0x70997970C51812dc3A010C7d01b50e0d17dc79C8")
+DEFAULT_FROM_ADDRESS = os.getenv("DEFAULT_FROM_ADDRESS", "0x70997970C51812dc3A010C7d01b50e0d17dc79C8")
 
 # -----------------------------------------------------------------------------
 # Step 0: Load registries

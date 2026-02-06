@@ -6,10 +6,30 @@
       "pool": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "supported_assets": ["USDC", "USDT", "DAI", "WETH"],
       "actions": {
-        "aave_supply": { "function": "supply", "description": "Supply asset to Aave" },
-        "aave_withdraw": { "function": "withdraw", "description": "Withdraw asset from Aave" },
-        "aave_borrow": { "function": "borrow", "description": "Borrow asset from Aave" },
-        "aave_repay": { "function": "repay", "description": "Repay borrowed asset" }
+        "aave_supply": {
+          "target": "pool",
+          "function": "supply",
+          "description": "Supply asset to Aave",
+          "arg_map": ["asset", "amount", "onBehalfOf", "referralCode"]
+        },
+        "aave_withdraw": {
+          "target": "pool",
+          "function": "withdraw",
+          "description": "Withdraw asset from Aave",
+          "arg_map": ["asset", "amount", "to"]
+        },
+        "aave_borrow": {
+          "target": "pool",
+          "function": "borrow",
+          "description": "Borrow asset from Aave",
+          "arg_map": ["asset", "amount", "interestRateMode", "referralCode", "onBehalfOf"]
+        },
+        "aave_repay": {
+          "target": "pool",
+          "function": "repay",
+          "description": "Repay borrowed asset",
+          "arg_map": ["asset", "amount", "interestRateMode", "onBehalfOf"]
+        }
       }
     },
     "lido": {
@@ -17,22 +37,41 @@
       "steth": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
       "withdrawal": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
       "actions": {
-        "lido_stake": { "function": "submit", "target": "steth", "description": "Stake ETH for stETH" },
-        "lido_unstake": { "function": "requestWithdrawals", "target": "withdrawal", "description": "Request stETH withdrawal" }
+        "lido_stake": {
+          "target": "steth",
+          "function": "submit",
+          "description": "Stake ETH for stETH",
+          "arg_map": ["_referral"]
+        },
+        "lido_unstake": {
+          "target": "withdrawal",
+          "function": "requestWithdrawals",
+          "description": "Request stETH withdrawal",
+          "arg_map": ["_amounts", "_owner"]
+        }
       }
     },
     "uniswap": {
       "name": "Uniswap V2",
       "router": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
       "actions": {
-        "uniswap_swap": { "function": "swapExactTokensForTokens", "description": "Swap tokens via Uniswap" }
+        "uniswap_swap": {
+          "target": "router",
+          "function": "swapExactTokensForTokens",
+          "description": "Swap tokens via Uniswap",
+          "arg_map": ["amountIn", "amountOutMin", "path", "to", "deadline"]
+        }
       }
     },
     "oneinch": {
       "name": "1inch",
       "aggregator": "0x111111125421cA6dc452d289314280a0f8842A65",
       "actions": {
-        "oneinch_swap": { "function": "swap", "description": "Swap tokens via 1inch" }
+        "oneinch_swap": {
+          "target": "aggregator",
+          "function": null,
+          "description": "Swap tokens via 1inch (requires API-generated calldata)"
+        }
       }
     },
     "curve": {
@@ -40,9 +79,46 @@
       "address_provider": "0x5ffe7FB82894076ECB99A30D6A32e969e6e35E98",
       "pool_3crv": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "actions": {
-        "curve_add_liquidity": { "function": "add_liquidity", "description": "Add liquidity to Curve pool" },
-        "curve_remove_liquidity": { "function": "remove_liquidity", "description": "Remove liquidity from Curve pool" }
+        "curve_add_liquidity": {
+          "target": "pool_3crv",
+          "function": "add_liquidity",
+          "description": "Add liquidity to Curve pool",
+          "arg_map": ["_amounts", "_min_mint_amount"]
+        },
+        "curve_remove_liquidity": {
+          "target": "pool_3crv",
+          "function": "remove_liquidity",
+          "description": "Remove liquidity from Curve pool",
+          "arg_map": ["_amount", "_min_amounts"]
+        }
       }
+    }
+  },
+  "standard_abis": {
+    "erc20_transfer": {
+      "name": "transfer",
+      "type": "function",
+      "inputs": [
+        { "name": "to", "type": "address" },
+        { "name": "value", "type": "uint256" }
+      ]
+    },
+    "erc721_transferFrom": {
+      "name": "transferFrom",
+      "type": "function",
+      "inputs": [
+        { "name": "from", "type": "address" },
+        { "name": "to", "type": "address" },
+        { "name": "tokenId", "type": "uint256" }
+      ]
+    },
+    "cryptopunks_transferPunk": {
+      "name": "transferPunk",
+      "type": "function",
+      "inputs": [
+        { "name": "to", "type": "address" },
+        { "name": "punkIndex", "type": "uint256" }
+      ]
     }
   }
 }
