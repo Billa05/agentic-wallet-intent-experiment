@@ -24,12 +24,16 @@ class PromptConfig:
     include_negative_examples: bool = False
     include_context_variations: bool = True
     amount_range: str = "varied"  # "micro", "small", "medium", "large", "varied"
-    
+    defi_style: str = "mixed"  # "basic", "advanced", "mixed" - for DeFi intent richness
+
     def __post_init__(self):
-        """Validate amount_range."""
+        """Validate amount_range and defi_style."""
         valid_ranges = ["micro", "small", "medium", "large", "varied"]
         if self.amount_range not in valid_ranges:
             raise ValueError(f"amount_range must be one of {valid_ranges}")
+        valid_styles = ["basic", "advanced", "mixed"]
+        if self.defi_style not in valid_styles:
+            raise ValueError(f"defi_style must be one of {valid_styles}")
 
 
 def get_amount_guidance(amount_range: str) -> str:
@@ -301,14 +305,84 @@ Include some examples with missing token IDs or ambiguous collection names for e
         raise ValueError(f"Unknown transaction type: {transaction_type}")
 
 
+def _get_defi_advanced_guidance(action_type: str, style: str) -> str:
+    """Return advanced-but-popular variation guidance for DeFi intents (same underlying action)."""
+    if style == "basic":
+        return ""
+    advanced_blocks = {
+        "aave_supply": """
+ADVANCED BUT POPULAR variations (still same action: supply to Aave):
+- With purpose: "Supply 500 USDC to Aave to earn yield", "Deposit 1k DAI in Aave for lending APY"
+- Specific pool/protocol: "Supply 200 USDT to Aave v3 mainnet", "Deposit into Aave USDC market"
+- Round/realistic amounts: 100, 250, 500, 1000, 2500, 5000, 10000 USDC/DAI/USDT
+""",
+        "aave_withdraw": """
+ADVANCED BUT POPULAR variations (still same action: withdraw from Aave):
+- With reason: "Withdraw 1000 USDC from Aave to my wallet", "Pull 500 DAI out of Aave for a payment"
+- "Max" style: "Withdraw all my USDC from Aave", "Pull out my full DAI balance from Aave"
+- Realistic amounts and assets: USDC, DAI, USDT, WETH
+""",
+        "aave_borrow": """
+ADVANCED BUT POPULAR variations (still same action: borrow from Aave):
+- With use case: "Borrow 2000 USDC from Aave for expenses", "I need to borrow 500 DAI from Aave"
+- Rate mention: "Borrow 1000 USDT from Aave (variable)", "Borrow 500 DAI from Aave stable rate"
+- Realistic amounts: 500, 1000, 2000, 5000, 10000
+""",
+        "aave_repay": """
+ADVANCED BUT POPULAR variations (still same action: repay on Aave):
+- Repay max / full debt: "Repay my full USDC debt on Aave", "Repay max DAI on Aave", "Pay off my Aave USDT loan"
+- With reason: "Repay 1200 USDC on Aave to improve my health factor", "Repay 500 DAI on Aave to free collateral"
+- Partial repay with specific amount: "Repay 2000 USDC on my Aave loan"
+""",
+        "lido_stake": """
+ADVANCED BUT POPULAR variations (still same action: stake ETH on Lido):
+- With yield context: "Stake 5 ETH on Lido to earn staking rewards", "Put 10 ETH into Lido for stETH yield"
+- Realistic amounts: 0.5, 1, 2, 5, 10, 20, 50 ETH
+- Casual/formal mix: "Wrap my ETH with Lido", "Deposit 3 ETH to Lido"
+""",
+        "lido_unstake": """
+ADVANCED BUT POPULAR variations (still same action: unstake/withdraw stETH from Lido):
+- Request withdrawal: "Request withdrawal of 15 stETH from Lido", "Unstake 8 stETH from Lido"
+- With reason: "Withdraw 20 stETH from Lido to my wallet", "Redeem 10 stETH for ETH via Lido"
+- Realistic amounts in stETH: 1, 5, 10, 15, 25, 50
+""",
+        "uniswap_swap": """
+ADVANCED BUT POPULAR variations (still same action: swap on Uniswap):
+- Min amount out / slippage: "Swap 1 ETH for USDC on Uniswap, accept at least 3200", "Swap 500 USDC to DAI with 0.5% slippage"
+- Common pairs: WETH/USDC, WETH/USDT, USDC/DAI, USDC/WETH, DAI/USDC
+- Realistic amounts: 0.1, 0.5, 1, 2 WETH or 100, 500, 1000, 5000 USDC/DAI
+- Phrasing: "Exchange X for Y on Uniswap", "Swap X to Y via Uniswap V2"
+""",
+        "curve_add_liquidity": """
+ADVANCED BUT POPULAR variations (still same action: add liquidity to Curve):
+- Specific pool: "Add 1000 USDC to Curve 3pool", "Add liquidity to the Curve tri-pool: 500 DAI"
+- With purpose: "Add 2000 USDC to Curve 3pool for LP fees", "Deposit 500 USDT into Curve 3pool"
+- Single-asset add: "Add 1500 USDC to Curve 3pool", "Add 500 DAI to Curve"
+""",
+        "curve_remove_liquidity": """
+ADVANCED BUT POPULAR variations (still same action: remove liquidity from Curve):
+- By amount: "Remove 500 USDC worth of liquidity from Curve 3pool", "Withdraw 300 DAI from Curve 3pool"
+- Pull out: "Pull my liquidity from Curve 3pool: 1000 USDC", "Remove 500 USDT from Curve pool"
+- Realistic amounts: 200, 500, 1000, 2000 (in one of USDC/USDT/DAI or LP terms)
+""",
+    }
+    block = advanced_blocks.get(action_type, "")
+    if style == "advanced" and block:
+        return "\nFocus MOST examples on the advanced variations below. Keep each as a single transaction.\n" + block
+    if style == "mixed" and block:
+        return "\nInclude a MIX of simple phrasings AND these advanced-but-popular variations (same action):\n" + block
+    return block
+
+
 def create_prompt_for_defi_action(
     action_type: str,
     config: PromptConfig,
 ) -> str:
     """
-    Create a prompt for generating DeFi intent examples (AAVE, Lido, Uniswap, 1inch, Curve).
+    Create a prompt for generating DeFi intent examples (AAVE, Lido, Uniswap, Curve).
     Used by dataset generator for synthetic DeFi intents.
     """
+    style = getattr(config, "defi_style", "mixed")
     base = f"""Generate {config.count} diverse natural language examples of users requesting this DeFi action.
 
 REQUIREMENTS:
@@ -348,10 +422,6 @@ Include: amount in stETH. "Unstake X stETH from Lido", "Request withdrawal of X 
 ACTION: Swap tokens on Uniswap.
 Include: amount, input token, output token. "Swap X ETH for USDC on Uniswap", "Swap X USDC to DAI via Uniswap"
 """,
-        "oneinch_swap": base + """
-ACTION: Swap tokens via 1inch.
-Include: amount, tokens. "Swap X USDC to DAI via 1inch", "Swap X ETH for USDC using 1inch"
-""",
         "curve_add_liquidity": base + """
 ACTION: Add liquidity to Curve pool (e.g. 3pool).
 Include: amount, asset (USDC, USDT, DAI). "Add X USDC to Curve 3pool", "Add liquidity: X USDC to Curve pool"
@@ -363,4 +433,5 @@ Include: amount. "Remove X USDC liquidity from Curve 3pool", "Remove X from Curv
     }
     if action_type not in prompts:
         raise ValueError(f"Unknown DeFi action type: {action_type}. Known: {list(prompts.keys())}")
-    return prompts[action_type]
+    out = prompts[action_type] + _get_defi_advanced_guidance(action_type, style)
+    return out

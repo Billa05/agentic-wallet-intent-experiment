@@ -2,7 +2,7 @@
 Evaluation Metrics for Agentic Wallet Intent Translation System
 
 Measures accuracy of intent translation models against ground truth annotations.
-Supports transfer actions and DeFi actions (AAVE, Lido, Uniswap, 1inch, Curve).
+Supports transfer actions and DeFi actions (AAVE, Lido, Uniswap, Curve).
 """
 
 import json
@@ -283,8 +283,8 @@ def evaluate_dataset(
         exact_match_rate = exact_matches / count if count > 0 else 0.0
         per_action_accuracy[action] = {"count": count, "exact_match": exact_match_rate}
     
-    # Per-protocol breakdown (prefix: aave_, lido_, uniswap_, oneinch_, curve_)
-    protocol_prefixes = ("aave_", "lido_", "uniswap_", "oneinch_", "curve_")
+    # Per-protocol breakdown (prefix: aave_, lido_, uniswap_, curve_)
+    protocol_prefixes = ("aave_", "lido_", "uniswap_", "curve_")
     per_protocol_accuracy = {}
     for prefix in protocol_prefixes:
         count = sum(c for a, c in action_counts.items() if a.startswith(prefix))

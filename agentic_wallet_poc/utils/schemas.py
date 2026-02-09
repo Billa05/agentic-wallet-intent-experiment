@@ -191,13 +191,13 @@ class TransferERC721Transaction(BaseTransaction):
 class ActionType(str, Enum):
     """
     Action types for executable payloads.
-    Includes simple transfers and DeFi actions (AAVE, Lido, Uniswap, 1inch, Curve).
+    Includes simple transfers and DeFi actions (AAVE, Lido, Uniswap, Curve).
     """
-    # Simple transfers (existing)
+    # Simple transfers
     TRANSFER_NATIVE = "transfer_native"
     TRANSFER_ERC20 = "transfer_erc20"
     TRANSFER_ERC721 = "transfer_erc721"
-    # AAVE
+    # AAVE V3
     AAVE_SUPPLY = "aave_supply"
     AAVE_WITHDRAW = "aave_withdraw"
     AAVE_BORROW = "aave_borrow"
@@ -205,10 +205,8 @@ class ActionType(str, Enum):
     # Lido
     LIDO_STAKE = "lido_stake"
     LIDO_UNSTAKE = "lido_unstake"
-    # Uniswap
+    # Uniswap V2
     UNISWAP_SWAP = "uniswap_swap"
-    # 1inch
-    ONEINCH_SWAP = "oneinch_swap"
     # Curve
     CURVE_ADD_LIQUIDITY = "curve_add_liquidity"
     CURVE_REMOVE_LIQUIDITY = "curve_remove_liquidity"
@@ -227,7 +225,6 @@ ACTION_REQUIRED_ARGS: Dict[str, list] = {
     "lido_stake": ["value", "human_readable_amount"],
     "lido_unstake": ["amount", "human_readable_amount"],
     "uniswap_swap": ["amountIn", "amountOutMin", "path", "to", "human_readable_amount"],
-    "oneinch_swap": ["amountIn", "amountOutMin", "path", "to", "human_readable_amount"],
     "curve_add_liquidity": ["pool", "amounts", "min_mint_amount", "human_readable_amount"],
     "curve_remove_liquidity": ["pool", "amount", "min_amounts", "human_readable_amount"],
 }

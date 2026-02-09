@@ -52,9 +52,6 @@ def _get_protocol_contract(action: str, protocol_registry: Dict[str, Any]) -> Op
     if action == "uniswap_swap":
         p = protocols.get("uniswap", {})
         return (p.get("router"), p.get("actions", {}).get("uniswap_swap", {}).get("function"))
-    if action == "oneinch_swap":
-        p = protocols.get("oneinch", {})
-        return (p.get("aggregator"), p.get("actions", {}).get("oneinch_swap", {}).get("function"))
     if action.startswith("curve_"):
         p = protocols.get("curve", {})
         pool = p.get("pool_3crv")
@@ -232,8 +229,8 @@ def convert_human_to_payload(
             },
         }
 
-    # Uniswap / 1inch swap: amountIn/amountOutMin in correct token decimals; to required (user address); deadline set in encoder
-    if action in ("uniswap_swap", "oneinch_swap"):
+    # Uniswap swap: amountIn/amountOutMin in correct token decimals; to required (user address); deadline set in encoder
+    if action == "uniswap_swap":
         path_raw = args.get("path") or []
         path = []
         for p in path_raw:

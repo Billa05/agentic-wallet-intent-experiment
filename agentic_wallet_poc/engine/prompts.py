@@ -68,7 +68,7 @@ aave_borrow:
 aave_repay:
   arguments: { "asset": "<symbol>", "amount_human": "<amount>", "onBehalfOf": "<address or ENS>" }
 
-uniswap_swap / oneinch_swap:
+uniswap_swap:
   arguments: { "amount_human": "<input amount>", "path": ["<symbol or 0x>", "<symbol or 0x>"], "to": "<address or ENS>" }
   Optional: "amountOutMin" as string if user specifies slippage; otherwise we use "0".
 
@@ -89,8 +89,6 @@ Return ONLY valid JSON: { "action": "<action>", "arguments": { ... } }. No expla
             actions.extend(["lido_stake", "lido_unstake"])
         if protocols.get("uniswap"):
             actions.append("uniswap_swap")
-        if protocols.get("oneinch"):
-            actions.append("oneinch_swap")
         if protocols.get("curve"):
             actions.extend(["curve_add_liquidity", "curve_remove_liquidity"])
         base += "\nDeFi actions you may classify: " + ", ".join(actions) + "\n"

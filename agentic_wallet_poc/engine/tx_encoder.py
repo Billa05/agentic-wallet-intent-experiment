@@ -325,7 +325,7 @@ def payload_to_raw_tx(
     # ── Protocol actions (ABI-driven) ────────────────────────────
     arg_mapper = ACTION_ARG_MAP.get(action)
     if arg_mapper is None:
-        return None  # Unsupported action (e.g., 1inch — needs API)
+        return None  # Unsupported action
 
     abi_entry = get_action_abi(action)
     if abi_entry is None:

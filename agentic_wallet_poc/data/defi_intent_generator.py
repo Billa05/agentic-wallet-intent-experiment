@@ -28,7 +28,7 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Number of intent examples per DeFi action type (variable; build like dataset_generator)
-DEFI_INTENTS_PER_ACTION = 2
+DEFI_INTENTS_PER_ACTION = 6
 
 # All DeFi action types we generate intents for
 DEFI_ACTION_TYPES = [
@@ -39,7 +39,6 @@ DEFI_ACTION_TYPES = [
     "lido_stake",
     "lido_unstake",
     "uniswap_swap",
-    "oneinch_swap",
     "curve_add_liquidity",
     "curve_remove_liquidity",
 ]
@@ -50,6 +49,7 @@ def generate_defi_intent_examples(
     count: int = DEFI_INTENTS_PER_ACTION,
     model_name: str = "gpt-4o",
     config: Optional[PromptConfig] = None,
+    defi_style: str = "mixed",
 ) -> List[Dict[str, Any]]:
     """
     Generate diverse natural language DeFi intent examples using litellm (gpt-4o).
@@ -61,9 +61,10 @@ def generate_defi_intent_examples(
             "Please set it in your .env file."
         )
     if config is None:
-        config = PromptConfig(count=count)
+        config = PromptConfig(count=count, defi_style=defi_style)
     else:
         config.count = count
+        config.defi_style = defi_style
 
     prompt = create_prompt_for_defi_action(action_type, config)
     max_retries = 3
@@ -128,25 +129,33 @@ def generate_full_defi_dataset(
     intents_per_action: int = DEFI_INTENTS_PER_ACTION,
     output_path: str = "data/datasets/intents/raw_intents_defi.json",
     model_name: str = "gpt-4o",
+    defi_style: str = "mixed",
 ) -> List[Dict[str, Any]]:
     """
     Generate raw DeFi intents for all DEFI_ACTION_TYPES (like generate_full_dataset in dataset_generator).
     Saves to raw_intents_defi.json; format like raw_intents.json: [{"intent": "...", "transaction_type": "aave_supply"}, ...].
+    defi_style: "basic" | "advanced" | "mixed" — mixed adds advanced-but-popular variations (slippage, repay max, etc.).
     """
     if not Path(output_path).is_absolute():
         output_path = str(project_root / output_path)
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
     all_intents = []
-    config = PromptConfig(count=intents_per_action, include_edge_cases=False, include_negative_examples=False)
+    config = PromptConfig(
+        count=intents_per_action,
+        include_edge_cases=False,
+        include_negative_examples=False,
+        defi_style=defi_style,
+    )
 
     for action_type in DEFI_ACTION_TYPES:
-        print(f"Generating {intents_per_action} examples for {action_type}...")
+        print(f"Generating {intents_per_action} examples for {action_type} (style={defi_style})...")
         intents = generate_defi_intent_examples(
             action_type,
             count=intents_per_action,
             model_name=model_name,
             config=config,
+            defi_style=defi_style,
         )
         all_intents.extend(intents)
         print(f"  ✓ {len(intents)} intents")
@@ -164,9 +173,16 @@ if __name__ == "__main__":
     parser.add_argument("--count", type=int, default=DEFI_INTENTS_PER_ACTION, help=f"Intents per action (default: {DEFI_INTENTS_PER_ACTION})")
     parser.add_argument("--output", default="data/datasets/intents/raw_intents_defi.json", help="Output JSON path")
     parser.add_argument("--model", default="gpt-4o", help="Model name via litellm (default: gpt-4o)")
+    parser.add_argument(
+        "--style",
+        choices=["basic", "advanced", "mixed"],
+        default="mixed",
+        help="Intent style: basic (simple only), advanced (mostly advanced/popular), mixed (default)",
+    )
     args = parser.parse_args()
     generate_full_defi_dataset(
         intents_per_action=args.count,
         output_path=args.output,
         model_name=args.model,
+        defi_style=args.style,
     )

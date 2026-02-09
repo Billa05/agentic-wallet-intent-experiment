@@ -311,15 +311,10 @@ def validate_record(
     if decoded.get("is_empty"):
         if action == "transfer_native":
             checks.append("data=0x (correct for native transfer)")
-        elif action == "oneinch_swap":
-            errors.append("1inch calldata is empty (needs API-generated data)")
         else:
             errors.append(f"calldata is empty for {action}")
     elif decoded.get("error"):
-        if action == "oneinch_swap" and decoded["error"] == "unknown_selector":
-            checks.append(f"1inch selector {decoded.get('selector','?')} (complex routing — expected)")
-        else:
-            errors.append(f"DECODE: {decoded['error']}")
+        errors.append(f"DECODE: {decoded['error']}")
     else:
         checks.append(f"DECODE OK: {decoded['signature']}")
 
