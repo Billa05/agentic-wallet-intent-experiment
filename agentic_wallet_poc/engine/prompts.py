@@ -62,15 +62,18 @@ lido_unstake (withdraw stETH from Lido):
 aave_supply:
   arguments: { "asset": "<symbol e.g. USDC>", "amount_human": "<amount>", "onBehalfOf": "<address or ENS>" }
 aave_withdraw:
-  arguments: { "asset": "<symbol>", "amount_human": "<amount>", "to": "<address or ENS>" }
+  arguments: { "asset": "<symbol>", "amount_human": "<amount or 'max'>", "to": "<address or ENS>" }
+  If the user says "withdraw all", "withdraw everything", "withdraw full balance", set amount_human to "max".
 aave_borrow:
   arguments: { "asset": "<symbol>", "amount_human": "<amount>", "onBehalfOf": "<address or ENS>" }
 aave_repay:
-  arguments: { "asset": "<symbol>", "amount_human": "<amount>", "onBehalfOf": "<address or ENS>" }
+  arguments: { "asset": "<symbol>", "amount_human": "<amount or 'max'>", "onBehalfOf": "<address or ENS>" }
+  If the user says "repay all", "repay full debt", "repay everything", "pay off", set amount_human to "max".
 
-uniswap_swap:
-  arguments: { "amount_human": "<input amount>", "path": ["<symbol or 0x>", "<symbol or 0x>"], "to": "<address or ENS>" }
-  Optional: "amountOutMin" as string if user specifies slippage; otherwise we use "0".
+uniswap_swap (Uniswap V3 single-hop):
+  arguments: { "amount_human": "<input amount>", "asset_in": "<input token symbol e.g. WETH>", "asset_out": "<output token symbol e.g. USDC>", "to": "<address or ENS>" }
+  Optional: "amountOutMinimum" as string if user specifies min output / slippage; otherwise we use "0".
+  Optional: "fee" as integer if user specifies pool fee tier (100, 500, 3000, 10000); otherwise auto-detected.
 
 curve_add_liquidity:
   arguments: { "amount_human": "<amount>", "asset": "<symbol e.g. USDC>" }

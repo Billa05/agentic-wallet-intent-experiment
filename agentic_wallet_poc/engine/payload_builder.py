@@ -5,11 +5,18 @@ LLMs return intent and parameters (e.g. amount_human, asset symbol); this module
 performs Wei/base-unit conversion and transaction construction deterministically.
 """
 
+import time
 from decimal import Decimal, ROUND_DOWN
 from typing import Dict, Any, Optional
 
 # Non-standard NFT contracts that need special handling
 CRYPTOPUNKS_ADDRESS = "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB".lower()
+
+# type(uint256).max — Aave uses this for "withdraw all" / "repay all"
+UINT256_MAX = str(2**256 - 1)
+
+# Stablecoins for Uniswap V3 fee tier heuristic
+_STABLE_TOKENS = {"USDC", "USDT", "DAI"}
 
 
 def _eth_to_wei(amount: str) -> str:
@@ -32,6 +39,45 @@ def _resolve_asset(symbol: str, token_registry: Dict[str, Any]) -> Optional[tupl
     if not info:
         return None
     return (info["address"], info["decimals"])
+
+
+def _is_max_amount(amount_str: str) -> bool:
+    """Check if the amount represents 'max' or 'all' (for withdraw-all / repay-all)."""
+    if not amount_str:
+        return False
+    s = str(amount_str).strip().lower()
+    return s in ("max", "all", "full", "maximum", "everything", "entire")
+
+
+def _resolve_symbol_or_address(
+    token: str, token_registry: Dict[str, Any]
+) -> Optional[tuple]:
+    """Resolve a symbol OR address to (address, decimals). Handles 'ETH' → WETH."""
+    if not token:
+        return None
+    s = token.strip()
+    if s.upper() == "ETH":
+        return _resolve_asset("WETH", token_registry)
+    if s.startswith("0x"):
+        # Already an address — look up decimals from registry
+        for _sym, info in (token_registry.get("erc20_tokens") or {}).items():
+            if (info.get("address") or "").lower() == s.lower():
+                return (info["address"], info["decimals"])
+        return (s, 18)  # fallback: assume 18 decimals
+    return _resolve_asset(s, token_registry)
+
+
+def _get_v3_fee_tier(symbol_in: str, symbol_out: str) -> int:
+    """Heuristic: pick Uniswap V3 fee tier for a token pair.
+
+    100  = 0.01%  (stable-stable: USDC/USDT/DAI)
+    3000 = 0.3%   (standard volatile pairs, most common default)
+    """
+    in_stable = (symbol_in or "").upper() in _STABLE_TOKENS
+    out_stable = (symbol_out or "").upper() in _STABLE_TOKENS
+    if in_stable and out_stable:
+        return 100
+    return 3000
 
 
 def _get_protocol_contract(action: str, protocol_registry: Dict[str, Any]) -> Optional[tuple]:
@@ -158,7 +204,15 @@ def convert_human_to_payload(
     target_contract, function_name = proto
 
     def resolve_addr(a):
-        return _resolve_ens(a, ens_registry) if isinstance(a, str) and not a.startswith("0x") else a
+        if not a or not isinstance(a, str):
+            return None
+        # Try ENS resolution for non-hex strings
+        if not a.startswith("0x"):
+            return _resolve_ens(a, ens_registry)
+        # Reject stub/incomplete hex addresses (must be 42 chars: 0x + 40 hex)
+        if len(a) != 42:
+            return None
+        return a
 
     # AAVE supply/withdraw/borrow/repay (amounts in base units; supply/borrow need referralCode; borrow/repay need interestRateMode)
     if action.startswith("aave_"):
@@ -168,7 +222,14 @@ def convert_human_to_payload(
             return None
         asset_addr, decimals = res
         amount_human = args.get("amount_human") or args.get("amount")
-        amount = _token_to_base(str(amount_human or "0"), decimals)
+        # Handle "max" / "all" / "full" for withdraw-all and repay-all
+        is_max = _is_max_amount(str(amount_human or ""))
+        if is_max and action in ("aave_withdraw", "aave_repay"):
+            amount = UINT256_MAX
+            hr_amount = f"max {asset_sym}"
+        else:
+            amount = _token_to_base(str(amount_human or "0"), decimals)
+            hr_amount = f"{amount_human} {asset_sym}"
         on_behalf = resolve_addr(args.get("onBehalfOf")) or from_address or (list(ens_registry.values())[0] if ens_registry else None)
         if not on_behalf:
             return None
@@ -181,7 +242,7 @@ def convert_human_to_payload(
                 "asset": asset_addr,
                 "amount": amount,
                 "onBehalfOf": on_behalf,
-                "human_readable_amount": args.get("human_readable_amount", f"{args.get('amount_human', amount_human)} {asset_sym}"),
+                "human_readable_amount": args.get("human_readable_amount", hr_amount),
             },
         }
         if action == "aave_supply":
@@ -229,58 +290,71 @@ def convert_human_to_payload(
             },
         }
 
-    # Uniswap swap: amountIn/amountOutMin in correct token decimals; to required (user address); deadline set in encoder
+    # Uniswap V3: exactInputSingle — single-hop swap via SwapRouter
     if action == "uniswap_swap":
-        path_raw = args.get("path") or []
-        path = []
-        for p in path_raw:
-            if isinstance(p, str) and not p.startswith("0x") and p.upper() != "ETH":
-                r = _resolve_asset(p, token_registry)
-                path.append(r[0] if r else p)
-            elif isinstance(p, str) and p.upper() == "ETH":
-                weth = _resolve_asset("WETH", token_registry)
-                path.append(weth[0] if weth else p)
-            else:
-                path.append(p)
+        # Accept both V3 format (asset_in/asset_out) and legacy V2 format (path array)
+        sym_in = args.get("asset_in")
+        sym_out = args.get("asset_out")
+        if not sym_in or not sym_out:
+            path_raw = args.get("path") or []
+            if len(path_raw) >= 2:
+                sym_in = str(path_raw[0])
+                sym_out = str(path_raw[-1])
+        if not sym_in or not sym_out:
+            return None
+
+        res_in = _resolve_symbol_or_address(sym_in, token_registry)
+        res_out = _resolve_symbol_or_address(sym_out, token_registry)
+        if not res_in or not res_out:
+            return None
+        token_in_addr, dec_in = res_in
+        token_out_addr, _dec_out = res_out
+
+        # Fee tier: user-specified or heuristic
+        fee = int(args.get("fee", _get_v3_fee_tier(sym_in, sym_out)))
+
+        # Amount in
         amount_human = args.get("amount_human")
         amount_in = args.get("amountIn")
         if amount_human and (not amount_in or str(amount_in) == "0"):
-            if path and path[0].startswith("0x"):
-                # First token is address: get decimals from registry (WETH=18)
-                first_addr = path[0].lower()
-                dec = 18
-                for _sym, info in (token_registry.get("erc20_tokens") or {}).items():
-                    if (info.get("address") or "").lower() == first_addr:
-                        dec = info.get("decimals", 18)
-                        break
-                amount_in = _token_to_base(str(amount_human), dec)
-            else:
-                res = _resolve_asset(args.get("asset_in", "USDC"), token_registry)
-                dec = res[1] if res else 6
-                amount_in = _token_to_base(str(amount_human), dec)
-        amount_out_min = args.get("amountOutMin", "0")
-        if path and str(amount_out_min) != "0" and amount_out_min == args.get("amountOutMin"):
-            last_addr = path[-1] if isinstance(path[-1], str) else None
-            if last_addr and last_addr.startswith("0x"):
-                dec_out = 18
-                for _sym, info in (token_registry.get("erc20_tokens") or {}).items():
-                    if (info.get("address") or "").lower() == last_addr.lower():
-                        dec_out = info.get("decimals", 18)
-                        break
-                amount_out_min = _token_to_base(str(amount_out_min), dec_out)
-        to_addr = resolve_addr(args.get("to")) or args.get("to") or from_address
-        path_str = " -> ".join(str(p) for p in path_raw) if path_raw else "tokens"
-        swap_desc = args.get("human_readable_amount") or (f"Swap {args.get('amount_human', '')} ({path_str})" if args.get("amount_human") else "")
+            amount_in = _token_to_base(str(amount_human), dec_in)
+
+        # Amount out minimum (slippage protection)
+        # The LLM may return a human-readable decimal (e.g. "0.15" WETH);
+        # convert to base units using the OUTPUT token's decimals.
+        amount_out_min_raw = args.get("amountOutMinimum", args.get("amountOutMin", "0"))
+        try:
+            # Already in base units (integer string)?
+            int(str(amount_out_min_raw))
+            amount_out_min = str(amount_out_min_raw)
+        except (ValueError, TypeError):
+            # Human-readable decimal → convert to base units
+            try:
+                amount_out_min = _token_to_base(str(amount_out_min_raw), _dec_out)
+            except Exception:
+                amount_out_min = "0"
+
+        # Recipient
+        to_addr = resolve_addr(args.get("to")) or from_address
+
+        # Description
+        swap_desc = args.get("human_readable_amount") or (
+            f"Swap {amount_human} ({sym_in} -> {sym_out})" if amount_human else ""
+        )
         return {
             "chain_id": chain_id,
             "action": action,
             "target_contract": target_contract,
             "function_name": function_name,
             "arguments": {
+                "tokenIn": token_in_addr,
+                "tokenOut": token_out_addr,
+                "fee": fee,
+                "recipient": to_addr,
+                "deadline": 0,  # tx_encoder fills with now+1200
                 "amountIn": str(amount_in or "0"),
-                "amountOutMin": str(amount_out_min),
-                "path": path or [],
-                "to": to_addr,
+                "amountOutMinimum": str(amount_out_min),
+                "sqrtPriceLimitX96": "0",
                 "human_readable_amount": swap_desc,
             },
         }

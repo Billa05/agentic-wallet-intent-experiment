@@ -24,17 +24,36 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from eth_abi import encode as abi_encode
-from eth_utils import keccak
+from eth_utils import keccak, to_checksum_address
 
 
 # ─────────────────────────────────────────────────────────────────────
-# ABI helpers — generic, work for any function
+# ABI helpers — generic, work for any function (including struct/tuple params)
 # ─────────────────────────────────────────────────────────────────────
+
+def _resolve_abi_type(inp: Dict) -> str:
+    """Resolve ABI input type, handling tuple/struct types recursively.
+
+    Etherscan ABIs represent struct params as ``{"type": "tuple", "components": [...]}``.
+    The canonical Solidity signature (used for selector computation) and ``eth_abi``
+    both need the expanded form, e.g. ``(address,address,uint24,...)``.
+    """
+    typ = inp.get("type", "")
+    if typ == "tuple":
+        comps = inp.get("components", [])
+        inner = ",".join(_resolve_abi_type(c) for c in comps)
+        return f"({inner})"
+    if typ == "tuple[]":
+        comps = inp.get("components", [])
+        inner = ",".join(_resolve_abi_type(c) for c in comps)
+        return f"({inner})[]"
+    return typ
+
 
 def compute_selector(abi_entry: Dict) -> str:
     """Compute 4-byte selector from an ABI function entry (the canonical way)."""
     name = abi_entry["name"]
-    types = [inp["type"] for inp in abi_entry.get("inputs", [])]
+    types = [_resolve_abi_type(inp) for inp in abi_entry.get("inputs", [])]
     sig = f"{name}({','.join(types)})"
     return "0x" + keccak(sig.encode()).hex()[:8]
 
@@ -43,8 +62,11 @@ def encode_from_abi(abi_entry: Dict, values: List[Any]) -> str:
     """
     Encode calldata from an ABI entry + ordered values.
     Returns full calldata: selector + ABI-encoded params.
+
+    Handles tuple/struct parameters: pass a Python tuple as the
+    corresponding value, e.g. ``(addr, addr, fee, ...)``.
     """
-    types = [inp["type"] for inp in abi_entry.get("inputs", [])]
+    types = [_resolve_abi_type(inp) for inp in abi_entry.get("inputs", [])]
     selector = compute_selector(abi_entry)
     if types:
         encoded = abi_encode(types, values)
@@ -169,8 +191,14 @@ CRYPTOPUNKS_ADDRESS = "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb"
 
 
 def _addr(a: str) -> str:
-    """Ensure address has 0x prefix."""
-    return a if a.startswith("0x") else "0x" + a
+    """Normalise to EIP-55 checksum address (required by eth_abi ≥ 5)."""
+    if not a:
+        raise ValueError("_addr received empty/None address")
+    s = a if a.startswith("0x") else "0x" + a
+    # Must be a full 20-byte hex address (42 chars including '0x' prefix)
+    if len(s) != 42:
+        raise ValueError(f"_addr received invalid address (length {len(s)}): {s!r}")
+    return to_checksum_address(s)
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -232,14 +260,24 @@ def _args_lido_unstake(args: Dict, from_addr: str) -> List[Any]:
 
 
 def _args_uniswap_swap(args: Dict, from_addr: str) -> List[Any]:
-    path = [_addr(p) for p in (args.get("path") or [])]
+    """Build the single-tuple argument for Uniswap V3 ``exactInputSingle``.
+
+    ABI: exactInputSingle((address tokenIn, address tokenOut, uint24 fee,
+         address recipient, uint256 deadline, uint256 amountIn,
+         uint256 amountOutMinimum, uint160 sqrtPriceLimitX96))
+    """
     deadline = int(args.get("deadline", 0)) or (int(time.time()) + 1200)
     return [
-        int(args["amountIn"]),
-        int(args.get("amountOutMin", 0)),
-        path,
-        _addr(args.get("to", from_addr)),
-        deadline,
+        (
+            _addr(args["tokenIn"]),
+            _addr(args["tokenOut"]),
+            int(args.get("fee", 3000)),
+            _addr(args.get("recipient", from_addr)),
+            deadline,
+            int(args["amountIn"]),
+            int(args.get("amountOutMinimum", 0)),
+            int(args.get("sqrtPriceLimitX96", 0)),
+        )
     ]
 
 
@@ -334,11 +372,22 @@ def payload_to_raw_tx(
     # Build values in ABI parameter order
     try:
         values = arg_mapper(args, from_address)
-    except (KeyError, TypeError, ValueError):
+    except (KeyError, TypeError, ValueError) as e:
+        print(f"DEBUG tx_encoder: arg_mapper failed for {action}: {e}", file=__import__('sys').stderr)
         return None
 
     # Encode: selector (computed from ABI) + params (encoded via eth_abi)
-    data = encode_from_abi(abi_entry, values)
+    try:
+        data = encode_from_abi(abi_entry, values)
+    except Exception as e:
+        print(
+            f"DEBUG tx_encoder: encode_from_abi failed for {action}\n"
+            f"  abi_entry name: {abi_entry.get('name')}\n"
+            f"  values: {values!r}\n"
+            f"  error: {e}",
+            file=__import__('sys').stderr,
+        )
+        return None
 
     # Resolve target contract from registry if not in payload
     to = target_contract or get_action_target(action)

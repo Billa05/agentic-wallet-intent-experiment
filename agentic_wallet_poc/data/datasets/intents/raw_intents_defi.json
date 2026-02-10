@@ -1,90 +1,90 @@
 [
   {
-    "intent": "Supply 500 USDC to Aave to earn yield",
+    "intent": "Supply 1000 USDC to Aave for yield farming.",
     "transaction_type": "aave_supply"
   },
   {
-    "intent": "Can you deposit 1000 USDT in Aave for lending APY?",
+    "intent": "Please deposit 250 DAI into the Aave lending pool.",
     "transaction_type": "aave_supply"
   },
   {
-    "intent": "I want to supply 250 DAI to Aave v3 mainnet.",
+    "intent": "Can you put 5000 USDT into the Aave v3 mainnet?",
     "transaction_type": "aave_supply"
   },
   {
-    "intent": "Please put 10000 USDC into Aave USDC market.",
+    "intent": "I want to stake 2500 WETH in the Aave USDC market.",
     "transaction_type": "aave_supply"
   },
   {
-    "intent": "Deposit 2500 WETH in Aave to boost my portfolio returns.",
+    "intent": "Deposit 500 USDC into Aave to earn some interest.",
     "transaction_type": "aave_supply"
   },
   {
-    "intent": "Stake 5000 USDT in Aave for better interest rates.",
+    "intent": "Supply 100 ETH to Aave for the best APY.",
     "transaction_type": "aave_supply"
   },
   {
-    "intent": "Withdraw 1000 USDC from Aave to my wallet",
+    "intent": "Withdraw 500 USDT from Aave to pay for a new laptop",
     "transaction_type": "aave_withdraw"
   },
   {
-    "intent": "Please pull 500 DAI out of Aave for a payment",
+    "intent": "Could you please pull out my full WETH balance from Aave?",
     "transaction_type": "aave_withdraw"
   },
   {
-    "intent": "I want to withdraw all my USDC from Aave",
+    "intent": "I want to withdraw 2000 USDC from Aave and send it to my main wallet",
     "transaction_type": "aave_withdraw"
   },
   {
-    "intent": "Can you pull out my full DAI balance from Aave?",
+    "intent": "Please withdraw all my DAI from Aave",
     "transaction_type": "aave_withdraw"
   },
   {
-    "intent": "Withdraw 2000 USDT from Aave to my account",
+    "intent": "Can you pull 1000 DAI out of Aave for an investment?",
     "transaction_type": "aave_withdraw"
   },
   {
-    "intent": "I need to pull 3 WETH out of Aave for an investment",
+    "intent": "I'd like to withdraw my entire USDC balance from Aave",
     "transaction_type": "aave_withdraw"
   },
   {
-    "intent": "Can you help me borrow 5000 USDC from Aave for my business expenses?",
+    "intent": "Borrow 2000 USDC from Aave for expenses",
     "transaction_type": "aave_borrow"
   },
   {
-    "intent": "I need to borrow 1000 DAI from Aave at a stable rate.",
+    "intent": "Could I borrow 5000 WETH from Aave?",
     "transaction_type": "aave_borrow"
   },
   {
-    "intent": "Please borrow 2000 USDT from Aave with a variable interest rate.",
+    "intent": "Please let me borrow 1000 USDT from Aave (variable)",
     "transaction_type": "aave_borrow"
   },
   {
-    "intent": "Borrow 500 DAI from Aave for some immediate expenses.",
+    "intent": "I want to borrow 500 DAI from Aave stable rate",
     "transaction_type": "aave_borrow"
   },
   {
-    "intent": "I want to borrow 10000 WETH from Aave.",
+    "intent": "Borrow 10000 ETH from Aave for my investment",
     "transaction_type": "aave_borrow"
   },
   {
-    "intent": "Borrow 5000 stETH from Aave at the current rate, please.",
+    "intent": "Can you help me borrow 500 stETH from Aave?",
     "transaction_type": "aave_borrow"
   },
   {
-    "intent": "Repay my full USDC debt on Aave",
+    "intent": "Please repay 1500 USDT on Aave for me.",
     "transaction_type": "aave_repay"
   },
   {
-    "intent": "Repay max DAI on Aave",
+    "intent": "Repay my full USDC debt on Aave.",
     "transaction_type": "aave_repay"
   },
   {
-    "intent": "Please repay 1200 USDC on Aave to improve my health factor",
+    "intent": "I want to repay 1200 USDC on Aave to improve my health factor.",
     "transaction_type": "aave_repay"
   },
   {
-    "intent": "I want to repay 500 DAI on Aave to free collateral",
+    "intent": "Repay max DAI on Aave.",
     "transaction_type": "aave_repay"
   },
   {
@@ -92,23 +92,19 @@
     "transaction_type": "aave_repay"
   },
   {
-    "intent": "Pay off my Aave USDT loan",
+    "intent": "Repay 500 DAI on Aave to free collateral.",
     "transaction_type": "aave_repay"
   },
   {
-    "intent": "Can you stake 5 ETH on Lido to earn staking rewards?",
+    "intent": "Please stake 5 ETH on Lido to earn staking rewards.",
     "transaction_type": "lido_stake"
   },
   {
-    "intent": "I'd like to put 10 ETH into Lido for stETH yield.",
+    "intent": "I want to put 10 ETH into Lido for stETH yield.",
     "transaction_type": "lido_stake"
   },
   {
-    "intent": "Please wrap my 2 ETH with Lido.",
-    "transaction_type": "lido_stake"
-  },
-  {
-    "intent": "Stake 1 ETH in the Lido pool.",
+    "intent": "Can you wrap my 2 ETH with Lido?",
     "transaction_type": "lido_stake"
   },
   {
@@ -116,55 +112,59 @@
     "transaction_type": "lido_stake"
   },
   {
-    "intent": "I want to stake 20 ETH on Lido.",
+    "intent": "Stake 20 ETH in Lido pool.",
     "transaction_type": "lido_stake"
   },
   {
-    "intent": "Please unstake 10 stETH from Lido.",
+    "intent": "I'd like to stake 0.5 ETH on Lido.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Request withdrawal of 15 stETH from Lido",
     "transaction_type": "lido_unstake"
   },
   {
-    "intent": "Can you request withdrawal of 5 stETH from Lido to my wallet?",
+    "intent": "Unstake 8 stETH from Lido",
     "transaction_type": "lido_unstake"
   },
   {
-    "intent": "I want to redeem 15 stETH for ETH via Lido.",
+    "intent": "Withdraw 20 stETH from Lido to my wallet",
     "transaction_type": "lido_unstake"
   },
   {
-    "intent": "Unstake 1 stETH from Lido.",
+    "intent": "Redeem 10 stETH for ETH via Lido",
     "transaction_type": "lido_unstake"
   },
   {
-    "intent": "Withdraw 25 stETH from Lido to my wallet.",
+    "intent": "Can you please unstake 5 stETH from Lido?",
     "transaction_type": "lido_unstake"
   },
   {
-    "intent": "Request withdrawal of 50 stETH from Lido.",
+    "intent": "I want to withdraw 25 stETH from Lido",
     "transaction_type": "lido_unstake"
   },
   {
-    "intent": "Please swap 0.5 WETH to USDC on Uniswap with a minimum of 1500 USDC out.",
+    "intent": "Swap 0.5 WETH for USDC on Uniswap V3, ensure at least 850 USDC",
     "transaction_type": "uniswap_swap"
   },
   {
-    "intent": "Can you exchange 1000 USDT for DAI on Uniswap, accepting 0.3% slippage?",
+    "intent": "Please trade 1000 USDC to DAI via Uniswap with a maximum slippage of 0.3%",
     "transaction_type": "uniswap_swap"
   },
   {
-    "intent": "I want to swap 1 ETH for USDC on Uniswap, ensure at least 3200 USDC as output.",
+    "intent": "I want to exchange 1 WETH for USDT on Uniswap and receive no less than 1550 USDT",
     "transaction_type": "uniswap_swap"
   },
   {
-    "intent": "Swap 500 USDC to DAI with 0.5% slippage on Uniswap.",
+    "intent": "Can you swap 2 ETH to DAI on Uniswap, taking a minimum of 3600 DAI?",
     "transaction_type": "uniswap_swap"
   },
   {
-    "intent": "Exchange 2 WETH for USDT via Uniswap V2.",
+    "intent": "Swap 500 USDC for WETH on Uniswap, accept no less than 0.15 WETH",
     "transaction_type": "uniswap_swap"
   },
   {
-    "intent": "Could you swap 100 USDC to WETH on Uniswap, ensuring at least 0.04 WETH received?",
+    "intent": "Please convert 100 USDC to DAI with a slippage tolerance of 0.2% on Uniswap",
     "transaction_type": "uniswap_swap"
   },
   {
@@ -172,47 +172,47 @@
     "transaction_type": "curve_add_liquidity"
   },
   {
-    "intent": "Could you please add 750 DAI to the Curve tri-pool?",
-    "transaction_type": "curve_add_liquidity"
-  },
-  {
-    "intent": "I want to deposit 500 USDT into Curve 3pool for LP fees",
-    "transaction_type": "curve_add_liquidity"
-  },
-  {
-    "intent": "Please add 1500 USDC to Curve 3pool",
-    "transaction_type": "curve_add_liquidity"
-  },
-  {
     "intent": "Add liquidity to the Curve tri-pool: 500 DAI",
     "transaction_type": "curve_add_liquidity"
   },
   {
-    "intent": "I'd like to add 2000 USDC to Curve 3pool for LP fees",
+    "intent": "Add 2000 USDC to Curve 3pool for LP fees",
     "transaction_type": "curve_add_liquidity"
   },
   {
-    "intent": "Please remove 500 USDC worth of liquidity from Curve 3pool.",
+    "intent": "Deposit 500 USDT into Curve 3pool",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Add 1500 USDC to Curve 3pool",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Add 500 DAI to Curve",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Please remove 2000 USDC worth of liquidity from Curve 3pool.",
     "transaction_type": "curve_remove_liquidity"
   },
   {
-    "intent": "Can you withdraw 300 DAI from Curve 3pool for me?",
+    "intent": "I'd like to withdraw 300 DAI from Curve 3pool.",
     "transaction_type": "curve_remove_liquidity"
   },
   {
-    "intent": "I want to pull my liquidity from Curve 3pool: 1000 USDC.",
+    "intent": "Can you pull my liquidity from Curve 3pool: 1000 USDC?",
     "transaction_type": "curve_remove_liquidity"
   },
   {
-    "intent": "Remove 2000 USDT from Curve pool, please.",
+    "intent": "Remove 500 USDT from Curve pool.",
     "transaction_type": "curve_remove_liquidity"
   },
   {
-    "intent": "Withdraw 200 USDC liquidity from Curve 3pool.",
+    "intent": "I want to remove 500 USDC worth of liquidity from Curve 3pool.",
     "transaction_type": "curve_remove_liquidity"
   },
   {
-    "intent": "Pull out 500 USDT from the Curve pool.",
+    "intent": "Pull out 2000 from Curve pool.",
     "transaction_type": "curve_remove_liquidity"
   }
 ]

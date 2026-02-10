@@ -48,12 +48,30 @@ from eth_utils import keccak
 
 
 # ─────────────────────────────────────────────────────────────────────
+# ABI type resolution (handles tuple/struct params)
+# ─────────────────────────────────────────────────────────────────────
+
+def _resolve_abi_type(inp: Dict) -> str:
+    """Resolve ABI type, expanding tuple/struct to canonical form."""
+    typ = inp.get("type", "")
+    if typ == "tuple":
+        comps = inp.get("components", [])
+        inner = ",".join(_resolve_abi_type(c) for c in comps)
+        return f"({inner})"
+    if typ == "tuple[]":
+        comps = inp.get("components", [])
+        inner = ",".join(_resolve_abi_type(c) for c in comps)
+        return f"({inner})[]"
+    return typ
+
+
+# ─────────────────────────────────────────────────────────────────────
 # Etherscan ABI cache — sole decode source (from data/abi_cache/)
 # ─────────────────────────────────────────────────────────────────────
 
 _ABI_CACHE_DIR = Path(__file__).parent / "abi_cache"
 
-# selector -> { name, types, param_names, sig }
+# selector -> { name, types, param_names, sig, raw_inputs }
 _selector_map: Dict[str, Dict] = {}
 
 
@@ -84,7 +102,7 @@ def _build_selector_map():
                 continue
             name = entry.get("name", "")
             inputs = entry.get("inputs", [])
-            types = [inp["type"] for inp in inputs]
+            types = [_resolve_abi_type(inp) for inp in inputs]
             param_names = [inp.get("name", f"arg{i}") for i, inp in enumerate(inputs)]
             sig = f"{name}({','.join(types)})"
             sel = "0x" + keccak(sig.encode()).hex()[:8]
@@ -96,6 +114,7 @@ def _build_selector_map():
                     "param_names": param_names,
                     "sig": sig,
                     "source": cache_file.stem,  # contract address
+                    "raw_inputs": inputs,  # original ABI inputs (for tuple flattening)
                 }
 
     if files_loaded == 0:
@@ -138,7 +157,7 @@ def _build_standard_selectors():
     for key, abi_entry in reg.get("standard_abis", {}).items():
         name = abi_entry.get("name", "")
         inputs = abi_entry.get("inputs", [])
-        types = [inp["type"] for inp in inputs]
+        types = [_resolve_abi_type(inp) for inp in inputs]
         param_names = [inp.get("name", f"arg{i}") for i, inp in enumerate(inputs)]
         sig = f"{name}({','.join(types)})"
         sel = "0x" + keccak(sig.encode()).hex()[:8]
@@ -148,6 +167,7 @@ def _build_standard_selectors():
             "param_names": param_names,
             "sig": sig,
             "source": f"standard:{key}",
+            "raw_inputs": inputs,
         }
 
 
@@ -201,12 +221,23 @@ def decode_calldata(data_hex: str) -> Dict:
         return {"error": f"decode_failed: {e}", "function_name": func_name,
                 "selector": selector, "signature": sig}
 
+    # Flatten tuple/struct params into individual named fields
+    raw_inputs = entry.get("raw_inputs", [])
     params = {}
     for i, val in enumerate(values):
-        if isinstance(val, bytes):
-            val = "0x" + val.hex()
-        name = param_names[i] if i < len(param_names) else f"arg{i}"
-        params[name] = val
+        raw_inp = raw_inputs[i] if i < len(raw_inputs) else {}
+        if raw_inp.get("type") == "tuple" and isinstance(val, tuple):
+            components = raw_inp.get("components", [])
+            for j, comp_val in enumerate(val):
+                comp_name = components[j].get("name", f"arg{j}") if j < len(components) else f"arg{j}"
+                if isinstance(comp_val, bytes):
+                    comp_val = "0x" + comp_val.hex()
+                params[comp_name] = comp_val
+        else:
+            if isinstance(val, bytes):
+                val = "0x" + val.hex()
+            name = param_names[i] if i < len(param_names) else f"arg{i}"
+            params[name] = val
 
     return {
         "function_name": func_name,

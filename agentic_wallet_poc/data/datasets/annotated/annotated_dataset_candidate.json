@@ -1,0 +1,953 @@
+[
+  {
+    "user_intent": "Supply 1000 USDC to Aave for yield farming.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000003b9aca0000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "1000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please deposit 250 DAI into the Aave lending pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba0370000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000000d8d726b7177a8000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "250 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you put 5000 USDT into the Aave v3 mainnet?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000012a05f20000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "5000 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to stake 2500 WETH in the Aave USDC market.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000878678326eac90000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "2500 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 500 USDC into Aave to earn some interest.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000001dcd650000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "500 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Supply 100 ETH to Aave for the best APY.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Withdraw 500 USDT from Aave to pay for a new laptop",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000001dcd650000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "500 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could you please pull out my full WETH balance from Aave?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "max WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw 2000 USDC from Aave and send it to my main wallet",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000007735940000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "2000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please withdraw all my DAI from Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "max DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you pull 1000 DAI out of Aave for an investment?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "1000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to withdraw my entire USDC balance from Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "max USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Borrow 2000 USDC from Aave for expenses",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb4800000000000000000000000000000000000000000000000000000000773594000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "2000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could I borrow 5000 WETH from Aave?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000010f0cf064dd592000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "5000 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please let me borrow 1000 USDT from Aave (variable)",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000003b9aca000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "1000 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to borrow 500 DAI from Aave stable rate",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001b1ae4d6e2ef5000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "500 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Borrow 10000 ETH from Aave for my investment",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Can you help me borrow 500 stETH from Aave?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Please repay 1500 USDT on Aave for me.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec70000000000000000000000000000000000000000000000000000000059682f00000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "1500 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay my full USDC debt on Aave.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "max USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to repay 1200 USDC on Aave to improve my health factor.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000047868c00000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "1200 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay max DAI on Aave.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "max DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you repay 2000 USDC on my Aave loan?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000077359400000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "2000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay 500 DAI on Aave to free collateral.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001b1ae4d6e2ef500000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "500 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please stake 5 ETH on Lido to earn staking rewards.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "5000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to put 10 ETH into Lido for stETH yield.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "10000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "10 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you wrap my 2 ETH with Lido?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "2000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "2 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 3 ETH to Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "3000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "3 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Stake 20 ETH in Lido pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "20000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "20 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to stake 0.5 ETH on Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "500000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "0.5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Request withdrawal of 15 stETH from Lido",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000d02ab486cedc0000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "15 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Unstake 8 stETH from Lido",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000006f05b59d3b200000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "8 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Withdraw 20 stETH from Lido to my wallet",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000001158e460913d00000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "20 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Redeem 10 stETH for ETH via Lido",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000008ac7230489e80000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "10 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you please unstake 5 stETH from Lido?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "5 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw 25 stETH from Lido",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000015af1d78b58c40000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "25 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Swap 0.5 WETH for USDC on Uniswap V3, ensure at least 850 USDC",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "value": "0",
+      "data": "0x414bf389000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000000000bb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000698af8cf00000000000000000000000000000000000000000000000006f05b59d3b2000000000000000000000000000000000000000000000000000000000000000003520000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "uniswap_swap",
+      "human_readable_amount": "Swap 0.5 (WETH -> USDC)"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please trade 1000 USDC to DAI via Uniswap with a maximum slippage of 0.3%",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "value": "0",
+      "data": "0x414bf389000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000006b175474e89094c44da98b954eedeac495271d0f000000000000000000000000000000000000000000000000000000000000006400000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000698af8d1000000000000000000000000000000000000000000000000000000003b9aca0000000000000000000000000000000000000000000000000000000000000003e50000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "uniswap_swap",
+      "human_readable_amount": "Swap 1000 (USDC -> DAI)"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to exchange 1 WETH for USDT on Uniswap and receive no less than 1550 USDT",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "value": "0",
+      "data": "0x414bf389000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec70000000000000000000000000000000000000000000000000000000000000bb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000698af8d20000000000000000000000000000000000000000000000000de0b6b3a7640000000000000000000000000000000000000000000000000000000000000000060e0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "uniswap_swap",
+      "human_readable_amount": "Swap 1 (WETH -> USDT)"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you swap 2 ETH to DAI on Uniswap, taking a minimum of 3600 DAI?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "value": "0",
+      "data": "0x414bf389000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000006b175474e89094c44da98b954eedeac495271d0f0000000000000000000000000000000000000000000000000000000000000bb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000698af8d40000000000000000000000000000000000000000000000001bc16d674ec800000000000000000000000000000000000000000000000000000000000000000e100000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "uniswap_swap",
+      "human_readable_amount": "Swap 2 (ETH -> DAI)"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Swap 500 USDC for WETH on Uniswap, accept no less than 0.15 WETH",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "value": "0",
+      "data": "0x414bf389000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc20000000000000000000000000000000000000000000000000000000000000bb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000698af8d5000000000000000000000000000000000000000000000000000000001dcd65000000000000000000000000000000000000000000000000000214e8348c4f00000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "uniswap_swap",
+      "human_readable_amount": "Swap 500 (USDC -> WETH)"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please convert 100 USDC to DAI with a slippage tolerance of 0.2% on Uniswap",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "value": "0",
+      "data": "0x414bf389000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000006b175474e89094c44da98b954eedeac495271d0f000000000000000000000000000000000000000000000000000000000000006400000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000698af8d60000000000000000000000000000000000000000000000000000000005f5e1000000000000000000000000000000000000000000000000056900d33ca7fc00000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "uniswap_swap",
+      "human_readable_amount": "Swap 100 (USDC -> DAI)"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Add 1000 USDC to Curve 3pool",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0x4515cef30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003b9aca0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_add_liquidity",
+      "human_readable_amount": "1000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Add liquidity to the Curve tri-pool: 500 DAI",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0x4515cef300000000000000000000000000000000000000000000001b1ae4d6e2ef500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_add_liquidity",
+      "human_readable_amount": "500 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Add 2000 USDC to Curve 3pool for LP fees",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0x4515cef30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007735940000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_add_liquidity",
+      "human_readable_amount": "2000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 500 USDT into Curve 3pool",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Add 1500 USDC to Curve 3pool",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0x4515cef300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000059682f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_add_liquidity",
+      "human_readable_amount": "1500 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Add 500 DAI to Curve",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0x4515cef300000000000000000000000000000000000000000000001b1ae4d6e2ef500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_add_liquidity",
+      "human_readable_amount": "500 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please remove 2000 USDC worth of liquidity from Curve 3pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "I'd like to withdraw 300 DAI from Curve 3pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Can you pull my liquidity from Curve 3pool: 1000 USDC?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0xecb586a500000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_remove_liquidity",
+      "human_readable_amount": "1000 LP"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Remove 500 USDT from Curve pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0xecb586a500000000000000000000000000000000000000000000001b1ae4d6e2ef500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_remove_liquidity",
+      "human_readable_amount": "500 LP"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to remove 500 USDC worth of liquidity from Curve 3pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Pull out 2000 from Curve pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0xecb586a500000000000000000000000000000000000000000000006c6b935b8bbd400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_remove_liquidity",
+      "human_readable_amount": "2000 LP"
+    },
+    "_annotation_failed": false
+  }
+]

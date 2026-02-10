@@ -52,14 +52,14 @@
       }
     },
     "uniswap": {
-      "name": "Uniswap V2",
-      "router": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+      "name": "Uniswap V3",
+      "router": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
       "actions": {
         "uniswap_swap": {
           "target": "router",
-          "function": "swapExactTokensForTokens",
-          "description": "Swap tokens via Uniswap",
-          "arg_map": ["amountIn", "amountOutMin", "path", "to", "deadline"]
+          "function": "exactInputSingle",
+          "description": "Swap tokens via Uniswap V3 (single-hop)",
+          "arg_map": ["params"]
         }
       }
     },

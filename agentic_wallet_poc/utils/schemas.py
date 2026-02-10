@@ -224,7 +224,7 @@ ACTION_REQUIRED_ARGS: Dict[str, list] = {
     "aave_repay": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
     "lido_stake": ["value", "human_readable_amount"],
     "lido_unstake": ["amount", "human_readable_amount"],
-    "uniswap_swap": ["amountIn", "amountOutMin", "path", "to", "human_readable_amount"],
+    "uniswap_swap": ["tokenIn", "tokenOut", "fee", "recipient", "amountIn", "amountOutMinimum", "human_readable_amount"],
     "curve_add_liquidity": ["pool", "amounts", "min_mint_amount", "human_readable_amount"],
     "curve_remove_liquidity": ["pool", "amount", "min_amounts", "human_readable_amount"],
 }

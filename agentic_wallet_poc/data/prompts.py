@@ -347,11 +347,11 @@ ADVANCED BUT POPULAR variations (still same action: unstake/withdraw stETH from 
 - Realistic amounts in stETH: 1, 5, 10, 15, 25, 50
 """,
         "uniswap_swap": """
-ADVANCED BUT POPULAR variations (still same action: swap on Uniswap):
+ADVANCED BUT POPULAR variations (still same action: swap on Uniswap V3):
 - Min amount out / slippage: "Swap 1 ETH for USDC on Uniswap, accept at least 3200", "Swap 500 USDC to DAI with 0.5% slippage"
-- Common pairs: WETH/USDC, WETH/USDT, USDC/DAI, USDC/WETH, DAI/USDC
+- Common pairs: WETH/USDC, WETH/USDT, USDC/DAI, WETH/DAI
 - Realistic amounts: 0.1, 0.5, 1, 2 WETH or 100, 500, 1000, 5000 USDC/DAI
-- Phrasing: "Exchange X for Y on Uniswap", "Swap X to Y via Uniswap V2"
+- Phrasing: "Exchange X for Y on Uniswap", "Swap X to Y via Uniswap", "Trade X for Y on Uniswap V3"
 """,
         "curve_add_liquidity": """
 ADVANCED BUT POPULAR variations (still same action: add liquidity to Curve):
@@ -419,8 +419,9 @@ ACTION: Unstake/withdraw stETH from Lido.
 Include: amount in stETH. "Unstake X stETH from Lido", "Request withdrawal of X stETH from Lido"
 """,
         "uniswap_swap": base + """
-ACTION: Swap tokens on Uniswap.
+ACTION: Swap tokens on Uniswap (V3 single-hop).
 Include: amount, input token, output token. "Swap X ETH for USDC on Uniswap", "Swap X USDC to DAI via Uniswap"
+Common pairs: WETH/USDC, WETH/USDT, USDC/DAI, WETH/DAI
 """,
         "curve_add_liquidity": base + """
 ACTION: Add liquidity to Curve pool (e.g. 3pool).
