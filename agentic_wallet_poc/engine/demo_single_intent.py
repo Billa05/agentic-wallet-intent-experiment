@@ -216,11 +216,49 @@ def step5_validate_payload(payload_dict: dict):
 
 
 # -----------------------------------------------------------------------------
-# Step 6: AnnotatedIntent
+# Step 6: Encode to raw transaction (calldata generation)
 # -----------------------------------------------------------------------------
-def step6_annotated_intent(intent: str, chain_id: int, payload):
+def step6_encode_to_raw_tx(payload, from_address: str):
     print("\n" + "=" * 70)
-    print("STEP 6: Build AnnotatedIntent")
+    print("STEP 6: Encode to raw transaction (calldata generation)")
+    print("=" * 70)
+
+    from engine.tx_encoder import payload_to_raw_tx
+
+    payload_dict = payload.model_dump(mode="json") if hasattr(payload, "model_dump") else dict(payload)
+    print(f"  action: {payload_dict.get('action')}")
+    print(f"  from_address: {from_address}")
+    print("  Calling payload_to_raw_tx(...) ...")
+
+    raw_tx = payload_to_raw_tx(payload_dict, from_address)
+    if raw_tx is None:
+        print("  -> payload_to_raw_tx returned None (unsupported action or missing ABI).")
+        return None
+
+    print("\n  [Raw Transaction]:")
+    print("  " + "-" * 60)
+    print(f"    chain_id : {raw_tx.get('chain_id')}")
+    print(f"    to       : {raw_tx.get('to')}")
+    print(f"    value    : {raw_tx.get('value')} wei")
+    data = raw_tx.get("data", "")
+    if data and data != "0x":
+        print(f"    data     : {data[:10]}...{data[-8:]}  ({(len(data) - 2) // 2} bytes)")
+        print(f"    selector : {data[:10]}")
+    else:
+        print(f"    data     : {data}")
+    print("  " + "-" * 60)
+
+    print("\n  [Full raw_tx dict]:")
+    print("  " + json.dumps(raw_tx, indent=2).replace("\n", "\n  "))
+    return raw_tx
+
+
+# -----------------------------------------------------------------------------
+# Step 7: AnnotatedIntent
+# -----------------------------------------------------------------------------
+def step7_annotated_intent(intent: str, chain_id: int, payload, raw_tx: dict | None):
+    print("\n" + "=" * 70)
+    print("STEP 7: Build AnnotatedIntent")
     print("=" * 70)
 
     from utils.schemas import AnnotatedIntent, UserContext
@@ -234,6 +272,12 @@ def step6_annotated_intent(intent: str, chain_id: int, payload):
     print("  AnnotatedIntent created.")
     print("  [Summary]: user_intent, user_context.current_chain_id, target_payload.action + arguments")
     out = annotated.model_dump(mode="json")
+
+    # Attach the raw tx to the output for a complete picture
+    if raw_tx:
+        out["raw_tx"] = raw_tx
+        print("  (raw_tx attached to output)")
+
     print("  " + json.dumps(out, indent=2).replace("\n", "\n  "))
     return annotated
 
@@ -287,9 +331,14 @@ def main():
         print("\n  Pipeline stopped: ExecutablePayload validation failed.")
         return 1
 
-    annotated = step6_annotated_intent(intent, chain_id, payload)
+    raw_tx = step6_encode_to_raw_tx(payload, from_address=DEFAULT_FROM_ADDRESS)
+    if raw_tx is None:
+        print("\n  Pipeline stopped: calldata encoding failed.")
+        return 1
+
+    annotated = step7_annotated_intent(intent, chain_id, payload, raw_tx)
     print("\n" + "=" * 70)
-    print("DONE. Pipeline succeeded.")
+    print("DONE. Pipeline succeeded — raw transaction ready for signing.")
     print("=" * 70 + "\n")
     return 0
 
