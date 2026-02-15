@@ -134,17 +134,50 @@ def annotate_with_hybrid(
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Annotate raw intents with hybrid translator")
-    parser.add_argument("--input", default="data/datasets/intents/raw_intents_defi.json", help="Raw intents JSON")
-    parser.add_argument("--output", default="data/datasets/annotated/annotated_dataset_candidate.json", help="Output path")
+    parser.add_argument("--input", default=None, help="Raw intents JSON (overrides --protocol)")
+    parser.add_argument("--output", default=None, help="Output path (overrides --protocol)")
+    parser.add_argument("--protocol", default=None, help="Protocol name (e.g. aave_v3, weth). Reads from intents/{protocol}_intents.json, writes to annotated/{protocol}_annotated.json")
+    parser.add_argument("--all", action="store_true", help="Annotate all protocols (scans intents/ dir)")
     parser.add_argument("--chain-id", type=int, default=1, help="Chain ID")
     parser.add_argument("--delay", type=float, default=0, help="Seconds between API calls")
     parser.add_argument("--from-address", default=os.getenv("DEFAULT_FROM_ADDRESS", ""), help="Sender address for user_context")
     args = parser.parse_args()
     from_addr = args.from_address or os.getenv("DEFAULT_FROM_ADDRESS", "0xe2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2")
-    annotate_with_hybrid(
-        raw_intents_path=args.input,
-        output_path=args.output,
-        chain_id=args.chain_id,
-        delay_seconds=args.delay,
-        from_address=from_addr,
-    )
+
+    if args.all:
+        # Annotate all *_intents.json files in the intents dir
+        intents_dir = project_root / "data" / "datasets" / "intents"
+        annotated_dir = project_root / "data" / "datasets" / "annotated"
+        annotated_dir.mkdir(parents=True, exist_ok=True)
+        for intent_file in sorted(intents_dir.glob("*_intents.json")):
+            proto = intent_file.stem.replace("_intents", "")
+            out_file = annotated_dir / f"{proto}_annotated.json"
+            print(f"\n[{proto}]")
+            annotate_with_hybrid(
+                raw_intents_path=str(intent_file),
+                output_path=str(out_file),
+                chain_id=args.chain_id,
+                delay_seconds=args.delay,
+                from_address=from_addr,
+            )
+    elif args.protocol:
+        inp = f"data/datasets/intents/{args.protocol}_intents.json"
+        out = f"data/datasets/annotated/{args.protocol}_annotated.json"
+        annotate_with_hybrid(
+            raw_intents_path=inp,
+            output_path=out,
+            chain_id=args.chain_id,
+            delay_seconds=args.delay,
+            from_address=from_addr,
+        )
+    else:
+        # Backward-compatible: use --input/--output
+        inp = args.input or "data/datasets/intents/raw_intents_defi.json"
+        out = args.output or "data/datasets/annotated/annotated_dataset_candidate.json"
+        annotate_with_hybrid(
+            raw_intents_path=inp,
+            output_path=out,
+            chain_id=args.chain_id,
+            delay_seconds=args.delay,
+            from_address=from_addr,
+        )

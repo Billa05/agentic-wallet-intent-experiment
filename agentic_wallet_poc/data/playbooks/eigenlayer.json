@@ -1,0 +1,50 @@
+{
+  "protocol": "eigenlayer",
+  "version": "1.0",
+  "chain_id": 1,
+
+  "contracts": {
+    "strategy_manager": {
+      "address": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "abi_source": "etherscan_cache"
+    }
+  },
+
+  "actions": {
+    "eigenlayer_deposit": {
+      "description": "Deposit LST into EigenLayer strategy for restaking",
+      "target_contract": "strategy_manager",
+      "function_name": "depositIntoStrategy",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["strategy", "__token_address", "amount", "human_readable_amount"],
+
+      "payload_args": {
+        "strategy": {
+          "source": "resolve_eigenlayer_strategy",
+          "llm_field": "asset"
+        },
+        "__token_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "strategy", "source": "arg", "arg_key": "strategy", "coerce": "address" },
+        { "name": "token", "source": "arg", "arg_key": "__token_address", "coerce": "address" },
+        { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" }
+      ]
+    }
+  }
+}

@@ -84,6 +84,39 @@ curve_add_liquidity:
 curve_remove_liquidity:
   arguments: { "amount_human": "<LP token amount>" }
 
+weth_wrap (wrap ETH into WETH):
+  arguments: { "amount_human": "<ETH amount e.g. 1>" }
+
+weth_unwrap (unwrap WETH back to ETH):
+  arguments: { "amount_human": "<WETH amount e.g. 1>" }
+
+compound_supply (supply to Compound V3):
+  arguments: { "asset": "<symbol e.g. USDC>", "amount_human": "<amount>" }
+compound_withdraw (withdraw from Compound V3):
+  arguments: { "asset": "<symbol>", "amount_human": "<amount or 'max'>" }
+  If the user says "withdraw all", set amount_human to "max".
+compound_borrow (borrow from Compound V3):
+  arguments: { "asset": "<symbol e.g. USDC>", "amount_human": "<amount>" }
+compound_repay (repay on Compound V3):
+  arguments: { "asset": "<symbol>", "amount_human": "<amount or 'max'>" }
+  If the user says "repay all", set amount_human to "max".
+
+maker_deposit (deposit DAI to MakerDAO DSR for sDAI):
+  arguments: { "amount_human": "<DAI amount>" }
+maker_redeem (redeem sDAI for DAI from MakerDAO DSR):
+  arguments: { "amount_human": "<sDAI amount>" }
+
+rocketpool_stake (stake ETH via Rocket Pool for rETH):
+  arguments: { "amount_human": "<ETH amount>" }
+rocketpool_unstake (burn rETH to receive ETH from Rocket Pool):
+  arguments: { "amount_human": "<rETH amount>" }
+
+eigenlayer_deposit (deposit LST into EigenLayer for restaking):
+  arguments: { "asset": "<LST symbol e.g. stETH, rETH, cbETH>", "amount_human": "<amount>" }
+
+balancer_swap (swap tokens via Balancer V2):
+  arguments: { "amount_human": "<input amount>", "asset_in": "<input symbol e.g. WETH>", "asset_out": "<output symbol e.g. USDC>" }
+
 Return ONLY valid JSON: { "action": "<action>", "arguments": { ... } }. No explanation. If unclear, return null.
 """
 

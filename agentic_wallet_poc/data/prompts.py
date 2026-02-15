@@ -353,6 +353,70 @@ ADVANCED BUT POPULAR variations (still same action: remove liquidity from Curve)
 - Pull out: "Pull my liquidity from Curve 3pool: 1000 USDC", "Remove 500 USDT from Curve pool"
 - Realistic amounts: 200, 500, 1000, 2000 (in one of USDC/USDT/DAI or LP terms)
 """,
+        "weth_wrap": """
+ADVANCED BUT POPULAR variations (still same action: wrap ETH to WETH):
+- With purpose: "Wrap 2 ETH so I can use it in DeFi", "Convert my ETH to WETH for a swap"
+- Realistic amounts: 0.1, 0.5, 1, 2, 5, 10, 20 ETH
+""",
+        "weth_unwrap": """
+ADVANCED BUT POPULAR variations (still same action: unwrap WETH to ETH):
+- With purpose: "Unwrap 3 WETH back to ETH for gas", "Convert my WETH back to native ETH"
+- Realistic amounts: 0.1, 0.5, 1, 2, 5, 10 WETH
+""",
+        "compound_supply": """
+ADVANCED BUT POPULAR variations (still same action: supply to Compound V3):
+- With purpose: "Supply 5000 USDC to Compound to earn interest", "Lend 2000 USDC on Compound V3 for yield"
+- Specific market: "Deposit into Compound USDC market", "Supply to Compound V3 Comet"
+- Realistic amounts: 500, 1000, 2500, 5000, 10000 USDC
+""",
+        "compound_withdraw": """
+ADVANCED BUT POPULAR variations (still same action: withdraw from Compound V3):
+- Max style: "Withdraw all my USDC from Compound", "Pull out everything from Compound V3"
+- With reason: "Withdraw 2000 USDC from Compound for expenses"
+- Realistic amounts: 500, 1000, 2000, 5000
+""",
+        "compound_borrow": """
+ADVANCED BUT POPULAR variations (still same action: borrow from Compound V3):
+- With purpose: "Borrow 3000 USDC from Compound against my collateral"
+- Realistic amounts: 500, 1000, 2000, 5000, 10000
+""",
+        "compound_repay": """
+ADVANCED BUT POPULAR variations (still same action: repay on Compound V3):
+- Max style: "Repay my full Compound loan", "Pay off all my Compound debt"
+- Partial: "Repay 2000 USDC on Compound V3"
+""",
+        "maker_deposit": """
+ADVANCED BUT POPULAR variations (still same action: deposit DAI to MakerDAO DSR):
+- With yield: "Deposit 10000 DAI into Maker DSR to earn savings rate", "Put DAI into sDAI for yield"
+- Realistic amounts: 1000, 5000, 10000, 50000 DAI
+""",
+        "maker_redeem": """
+ADVANCED BUT POPULAR variations (still same action: redeem sDAI for DAI):
+- With reason: "Redeem 5000 sDAI to get my DAI back", "Convert sDAI to DAI for a payment"
+- Realistic amounts: 1000, 5000, 10000 sDAI
+""",
+        "rocketpool_stake": """
+ADVANCED BUT POPULAR variations (still same action: stake ETH on Rocket Pool):
+- With yield: "Stake 10 ETH on Rocket Pool for rETH yield", "Get rETH by staking 5 ETH on Rocket Pool"
+- Realistic amounts: 0.5, 1, 2, 5, 10, 20, 50 ETH
+""",
+        "rocketpool_unstake": """
+ADVANCED BUT POPULAR variations (still same action: unstake/burn rETH):
+- With reason: "Burn 5 rETH to get ETH back from Rocket Pool", "Unstake my rETH"
+- Realistic amounts: 0.5, 1, 2, 5, 10 rETH
+""",
+        "eigenlayer_deposit": """
+ADVANCED BUT POPULAR variations (still same action: deposit LST into EigenLayer):
+- With context: "Restake 10 stETH on EigenLayer for extra yield", "Deposit rETH into EigenLayer strategy"
+- Different LSTs: stETH, rETH, cbETH
+- Realistic amounts: 1, 5, 10, 20, 50
+""",
+        "balancer_swap": """
+ADVANCED BUT POPULAR variations (still same action: swap on Balancer V2):
+- Common pairs: WETH/USDC, WETH/DAI, BAL/WETH
+- Phrasing: "Trade X for Y on Balancer", "Exchange X to Y via Balancer V2"
+- Realistic amounts: 0.5, 1, 2 WETH or 500, 1000, 5000 USDC/DAI
+""",
     }
     block = advanced_blocks.get(action_type, "")
     if style == "advanced" and block:
@@ -418,6 +482,68 @@ Include: amount, asset (USDC, USDT, DAI). "Add X USDC to Curve 3pool", "Add liqu
         "curve_remove_liquidity": base + """
 ACTION: Remove liquidity from Curve pool.
 Include: amount. "Remove X USDC liquidity from Curve 3pool", "Remove X from Curve pool"
+""",
+        # ─── New protocols ───
+        "weth_wrap": base + """
+ACTION: Wrap ETH into WETH.
+Include: amount in ETH. "Wrap X ETH", "Convert X ETH to WETH", "Wrap my ETH"
+Phrasings: "wrap", "convert ETH to WETH", "deposit ETH for WETH", "get WETH"
+""",
+        "weth_unwrap": base + """
+ACTION: Unwrap WETH back to ETH.
+Include: amount in WETH. "Unwrap X WETH", "Convert X WETH to ETH", "Unwrap my WETH"
+Phrasings: "unwrap", "convert WETH to ETH", "withdraw WETH for ETH", "redeem WETH"
+""",
+        "compound_supply": base + """
+ACTION: Supply/deposit assets to Compound (V3 / Comet).
+Include: amount, asset (USDC, WETH, WBTC). "Supply X USDC to Compound", "Deposit X USDC in Compound V3"
+Phrasings: "supply to Compound", "lend on Compound", "deposit into Compound"
+""",
+        "compound_withdraw": base + """
+ACTION: Withdraw assets from Compound (V3 / Comet).
+Include: amount, asset. "Withdraw X USDC from Compound", "Pull X out of Compound V3"
+Support "max"/"all" to withdraw full balance.
+""",
+        "compound_borrow": base + """
+ACTION: Borrow assets from Compound (V3 / Comet).
+Include: amount, asset. "Borrow X USDC from Compound", "I need to borrow X USDC on Compound V3"
+""",
+        "compound_repay": base + """
+ACTION: Repay borrowed assets on Compound (V3 / Comet).
+Include: amount, asset. "Repay X USDC on Compound", "Pay back my Compound loan"
+Support "max"/"all" to repay full debt.
+""",
+        "maker_deposit": base + """
+ACTION: Deposit DAI into MakerDAO DSR (receive sDAI savings token).
+Include: amount in DAI. "Deposit X DAI into Maker savings", "Put X DAI into DSR for sDAI"
+Phrasings: "deposit DAI in Maker", "save DAI with MakerDAO", "convert DAI to sDAI", "DSR deposit"
+""",
+        "maker_redeem": base + """
+ACTION: Redeem sDAI for DAI from MakerDAO DSR.
+Include: amount in sDAI. "Redeem X sDAI for DAI", "Withdraw X from Maker savings"
+Phrasings: "redeem sDAI", "convert sDAI to DAI", "withdraw from DSR", "get my DAI back from Maker"
+""",
+        "rocketpool_stake": base + """
+ACTION: Stake ETH via Rocket Pool (receive rETH).
+Include: amount in ETH. "Stake X ETH on Rocket Pool", "Deposit X ETH in Rocket Pool for rETH"
+Phrasings: "stake on Rocket Pool", "deposit to Rocket Pool", "get rETH", "liquid stake with RPL"
+""",
+        "rocketpool_unstake": base + """
+ACTION: Burn rETH to unstake from Rocket Pool (receive ETH).
+Include: amount in rETH. "Unstake X rETH from Rocket Pool", "Burn X rETH for ETH"
+Phrasings: "unstake rETH", "redeem rETH", "burn rETH", "withdraw from Rocket Pool"
+""",
+        "eigenlayer_deposit": base + """
+ACTION: Deposit LST (liquid staking token) into EigenLayer for restaking.
+Include: amount, LST asset (stETH, rETH, cbETH). "Restake X stETH on EigenLayer", "Deposit X rETH into EigenLayer"
+Phrasings: "restake on EigenLayer", "deposit into EigenLayer strategy", "EigenLayer restaking"
+Supported LSTs: stETH, rETH, cbETH, swETH, sfrxETH, osETH
+""",
+        "balancer_swap": base + """
+ACTION: Swap tokens via Balancer V2.
+Include: amount, input token, output token. "Swap X WETH for USDC on Balancer", "Trade X DAI for USDC via Balancer"
+Common pairs: WETH/USDC, WETH/DAI, BAL/WETH, USDC/DAI
+Phrasings: "swap on Balancer", "trade via Balancer", "exchange on Balancer V2"
 """,
     }
     if action_type not in prompts:

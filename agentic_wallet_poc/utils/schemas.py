@@ -191,7 +191,7 @@ class TransferERC721Transaction(BaseTransaction):
 class ActionType(str, Enum):
     """
     Action types for executable payloads.
-    Includes simple transfers and DeFi actions (AAVE, Lido, Uniswap, Curve).
+    Includes simple transfers and DeFi actions across 10 protocols.
     """
     # Simple transfers
     TRANSFER_NATIVE = "transfer_native"
@@ -205,11 +205,29 @@ class ActionType(str, Enum):
     # Lido
     LIDO_STAKE = "lido_stake"
     LIDO_UNSTAKE = "lido_unstake"
-    # Uniswap V2
+    # Uniswap V3
     UNISWAP_SWAP = "uniswap_swap"
     # Curve
     CURVE_ADD_LIQUIDITY = "curve_add_liquidity"
     CURVE_REMOVE_LIQUIDITY = "curve_remove_liquidity"
+    # WETH
+    WETH_WRAP = "weth_wrap"
+    WETH_UNWRAP = "weth_unwrap"
+    # Compound V3
+    COMPOUND_SUPPLY = "compound_supply"
+    COMPOUND_WITHDRAW = "compound_withdraw"
+    COMPOUND_BORROW = "compound_borrow"
+    COMPOUND_REPAY = "compound_repay"
+    # MakerDAO DSR
+    MAKER_DEPOSIT = "maker_deposit"
+    MAKER_REDEEM = "maker_redeem"
+    # Rocket Pool
+    ROCKETPOOL_STAKE = "rocketpool_stake"
+    ROCKETPOOL_UNSTAKE = "rocketpool_unstake"
+    # EigenLayer
+    EIGENLAYER_DEPOSIT = "eigenlayer_deposit"
+    # Balancer V2
+    BALANCER_SWAP = "balancer_swap"
 
 
 # Golden schema: required arguments per action type (for dataset and evaluation).
@@ -229,6 +247,18 @@ def _load_action_required_args() -> Dict[str, list]:
         "uniswap_swap": ["tokenIn", "tokenOut", "fee", "recipient", "amountIn", "amountOutMinimum", "human_readable_amount"],
         "curve_add_liquidity": ["pool", "amounts", "min_mint_amount", "human_readable_amount"],
         "curve_remove_liquidity": ["pool", "amount", "min_amounts", "human_readable_amount"],
+        "weth_wrap": ["value", "human_readable_amount"],
+        "weth_unwrap": ["wad", "human_readable_amount"],
+        "compound_supply": ["amount", "human_readable_amount"],
+        "compound_withdraw": ["amount", "human_readable_amount"],
+        "compound_borrow": ["amount", "human_readable_amount"],
+        "compound_repay": ["amount", "human_readable_amount"],
+        "maker_deposit": ["assets", "receiver", "human_readable_amount"],
+        "maker_redeem": ["shares", "receiver", "owner", "human_readable_amount"],
+        "rocketpool_stake": ["value", "human_readable_amount"],
+        "rocketpool_unstake": ["_rethAmount", "human_readable_amount"],
+        "eigenlayer_deposit": ["strategy", "amount", "human_readable_amount"],
+        "balancer_swap": ["amount", "recipient", "deadline", "human_readable_amount"],
     }
     try:
         from engine.playbook_engine import PlaybookEngine

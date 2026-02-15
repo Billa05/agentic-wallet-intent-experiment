@@ -1,0 +1,95 @@
+{
+  "protocol": "balancer_v2",
+  "version": "1.0",
+  "chain_id": 1,
+
+  "contracts": {
+    "vault": {
+      "address": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+      "abi_source": "etherscan_cache"
+    }
+  },
+
+  "actions": {
+    "balancer_swap": {
+      "description": "Swap tokens via Balancer V2 Vault single swap",
+      "target_contract": "vault",
+      "function_name": "swap",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["__token_in_address", "__token_out_address", "amount", "recipient", "deadline", "human_readable_amount"],
+
+      "payload_args": {
+        "__token_in_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset_in",
+          "eth_alias": "WETH"
+        },
+        "__token_out_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset_out",
+          "eth_alias": "WETH"
+        },
+        "poolId": {
+          "source": "constant",
+          "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "amount": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset_in"
+        },
+        "recipient": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "to",
+          "context_field": "from_address"
+        },
+        "sender": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "sender",
+          "context_field": "from_address"
+        },
+        "deadline": {
+          "source": "resolve_deadline",
+          "buffer_seconds": 1200
+        },
+        "limit": {
+          "source": "constant",
+          "value": "0"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "Swap {amount_human} ({asset_in} -> {asset_out})"
+        }
+      },
+
+      "param_mapping": [
+        {
+          "name": "singleSwap",
+          "source": "struct",
+          "fields": [
+            { "name": "poolId", "source": "arg", "arg_key": "poolId", "coerce": "bytes32" },
+            { "name": "kind", "source": "constant", "value": 0, "coerce": "uint256" },
+            { "name": "assetIn", "source": "arg", "arg_key": "__token_in_address", "coerce": "address" },
+            { "name": "assetOut", "source": "arg", "arg_key": "__token_out_address", "coerce": "address" },
+            { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" },
+            { "name": "userData", "source": "constant", "value": "0x", "coerce": "bytes" }
+          ]
+        },
+        {
+          "name": "funds",
+          "source": "struct",
+          "fields": [
+            { "name": "sender", "source": "arg", "arg_key": "sender", "coerce": "address" },
+            { "name": "fromInternalBalance", "source": "constant", "value": false, "coerce": "bool" },
+            { "name": "recipient", "source": "arg", "arg_key": "recipient", "coerce": "address" },
+            { "name": "toInternalBalance", "source": "constant", "value": false, "coerce": "bool" }
+          ]
+        },
+        { "name": "limit", "source": "arg", "arg_key": "limit", "coerce": "uint256" },
+        { "name": "deadline", "source": "arg", "arg_key": "deadline", "coerce": "uint256" }
+      ]
+    }
+  }
+}

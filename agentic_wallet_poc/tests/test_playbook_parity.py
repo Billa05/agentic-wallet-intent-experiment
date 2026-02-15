@@ -166,6 +166,169 @@ TEST_CASES = [
     },
 ]
 
+# ─────────────────────────────────────────────────────────────────────
+# New protocol test cases (PlaybookEngine only — no old engine equiv)
+# ─────────────────────────────────────────────────────────────────────
+
+NEW_PROTOCOL_TEST_CASES = [
+    # WETH
+    {
+        "name": "weth_wrap",
+        "llm_output": {
+            "action": "weth_wrap",
+            "arguments": {"amount_human": "2"},
+        },
+        "expect": {
+            "action": "weth_wrap",
+            "function_name": "deposit",
+            "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "value_nonzero": True,
+        },
+    },
+    {
+        "name": "weth_unwrap",
+        "llm_output": {
+            "action": "weth_unwrap",
+            "arguments": {"amount_human": "1.5"},
+        },
+        "expect": {
+            "action": "weth_unwrap",
+            "function_name": "withdraw",
+            "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        },
+    },
+    # Compound V3
+    {
+        "name": "compound_supply",
+        "llm_output": {
+            "action": "compound_supply",
+            "arguments": {"asset": "USDC", "amount_human": "1000"},
+        },
+        "expect": {
+            "action": "compound_supply",
+            "function_name": "supply",
+            "target_contract": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+        },
+    },
+    {
+        "name": "compound_withdraw",
+        "llm_output": {
+            "action": "compound_withdraw",
+            "arguments": {"asset": "USDC", "amount_human": "500"},
+        },
+        "expect": {
+            "action": "compound_withdraw",
+            "function_name": "withdraw",
+            "target_contract": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+        },
+    },
+    {
+        "name": "compound_borrow",
+        "llm_output": {
+            "action": "compound_borrow",
+            "arguments": {"asset": "USDC", "amount_human": "2000"},
+        },
+        "expect": {
+            "action": "compound_borrow",
+            "function_name": "withdraw",
+            "target_contract": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+        },
+    },
+    {
+        "name": "compound_repay",
+        "llm_output": {
+            "action": "compound_repay",
+            "arguments": {"asset": "USDC", "amount_human": "1500"},
+        },
+        "expect": {
+            "action": "compound_repay",
+            "function_name": "supply",
+            "target_contract": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+        },
+    },
+    # MakerDAO DSR
+    {
+        "name": "maker_deposit",
+        "llm_output": {
+            "action": "maker_deposit",
+            "arguments": {"amount_human": "5000"},
+        },
+        "expect": {
+            "action": "maker_deposit",
+            "function_name": "deposit",
+            "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+        },
+    },
+    {
+        "name": "maker_redeem",
+        "llm_output": {
+            "action": "maker_redeem",
+            "arguments": {"amount_human": "3000"},
+        },
+        "expect": {
+            "action": "maker_redeem",
+            "function_name": "redeem",
+            "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+        },
+    },
+    # Rocket Pool
+    {
+        "name": "rocketpool_stake",
+        "llm_output": {
+            "action": "rocketpool_stake",
+            "arguments": {"amount_human": "5"},
+        },
+        "expect": {
+            "action": "rocketpool_stake",
+            "function_name": "deposit",
+            "target_contract": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+            "value_nonzero": True,
+        },
+    },
+    {
+        "name": "rocketpool_unstake",
+        "llm_output": {
+            "action": "rocketpool_unstake",
+            "arguments": {"amount_human": "3"},
+        },
+        "expect": {
+            "action": "rocketpool_unstake",
+            "function_name": "burn",
+            "target_contract": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+        },
+    },
+    # EigenLayer
+    {
+        "name": "eigenlayer_deposit",
+        "llm_output": {
+            "action": "eigenlayer_deposit",
+            "arguments": {"asset": "stETH", "amount_human": "10"},
+        },
+        "expect": {
+            "action": "eigenlayer_deposit",
+            "function_name": "depositIntoStrategy",
+            "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+        },
+    },
+    # Balancer V2
+    {
+        "name": "balancer_swap",
+        "llm_output": {
+            "action": "balancer_swap",
+            "arguments": {
+                "asset_in": "WETH",
+                "asset_out": "USDC",
+                "amount_human": "1",
+            },
+        },
+        "expect": {
+            "action": "balancer_swap",
+            "function_name": "swap",
+            "target_contract": "0xBA12222222228d8Ba445958a75a0704d566BF2C8",
+        },
+    },
+]
+
 
 def run_old_engine(llm_output):
     """Run the backward-compat wrapper (payload_builder + tx_encoder)."""
@@ -249,6 +412,55 @@ def compare_raw_tx(old_tx, new_tx, test_name):
     return mismatches
 
 
+def run_new_protocol_test(engine, tc):
+    """Run a new-protocol test: build_payload + encode_tx, validate against expectations."""
+    name = tc["name"]
+    llm = tc["llm_output"]
+    expect = tc.get("expect", {})
+    mismatches = []
+
+    with patch("time.time", return_value=FIXED_TIME):
+        with patch("engine.resolvers.time") as mock_res_time:
+            mock_res_time.time.return_value = FIXED_TIME
+            payload = engine.build_payload(llm, chain_id=CHAIN_ID, from_address=FROM_ADDRESS)
+
+    if payload is None:
+        return ["build_payload returned None"]
+
+    # Check payload fields
+    if expect.get("action") and payload.get("action") != expect["action"]:
+        mismatches.append(f"  action: expected={expect['action']!r}, got={payload.get('action')!r}")
+    if expect.get("function_name") and payload.get("function_name") != expect["function_name"]:
+        mismatches.append(f"  function_name: expected={expect['function_name']!r}, got={payload.get('function_name')!r}")
+    if expect.get("target_contract"):
+        exp_tc = expect["target_contract"].lower()
+        got_tc = (payload.get("target_contract") or "").lower()
+        if exp_tc != got_tc:
+            mismatches.append(f"  target_contract: expected={expect['target_contract']!r}, got={payload.get('target_contract')!r}")
+
+    # Encode tx
+    with patch("time.time", return_value=FIXED_TIME):
+        with patch("engine.resolvers.time") as mock_res_time:
+            mock_res_time.time.return_value = FIXED_TIME
+            raw_tx = engine.encode_tx(payload, FROM_ADDRESS)
+
+    if raw_tx is None:
+        mismatches.append("  encode_tx returned None")
+        return mismatches
+
+    # Validate tx has required fields
+    if not raw_tx.get("data"):
+        mismatches.append("  raw_tx.data is empty")
+    if not raw_tx.get("to"):
+        mismatches.append("  raw_tx.to is empty")
+
+    # Check value for payable functions
+    if expect.get("value_nonzero") and (raw_tx.get("value", "0") == "0"):
+        mismatches.append("  raw_tx.value should be nonzero but is 0")
+
+    return mismatches
+
+
 def main():
     """Run parity tests."""
     engine = PlaybookEngine(
@@ -264,6 +476,8 @@ def main():
     print("PLAYBOOK ENGINE PARITY TEST")
     print(f"{'='*70}\n")
 
+    # --- Original parity tests (old vs new engine) ---
+    print("--- Parity tests (old vs new engine) ---\n")
     for tc in TEST_CASES:
         name = tc["name"]
         llm = tc["llm_output"]
@@ -303,8 +517,31 @@ def main():
             failed += 1
             errors.append((name, [str(e)]))
 
+    # --- New protocol tests (PlaybookEngine only) ---
+    print("\n--- New protocol tests (PlaybookEngine only) ---\n")
+    for tc in NEW_PROTOCOL_TEST_CASES:
+        name = tc["name"]
+        try:
+            mismatches = run_new_protocol_test(engine, tc)
+            if mismatches:
+                print(f"  FAIL  {name}")
+                for m in mismatches:
+                    print(f"        {m}")
+                failed += 1
+                errors.append((name, mismatches))
+            else:
+                print(f"  PASS  {name}")
+                passed += 1
+        except Exception as e:
+            print(f"  ERROR {name}: {e}")
+            import traceback
+            traceback.print_exc()
+            failed += 1
+            errors.append((name, [str(e)]))
+
+    total = len(TEST_CASES) + len(NEW_PROTOCOL_TEST_CASES)
     print(f"\n{'='*70}")
-    print(f"RESULTS: {passed} passed, {failed} failed out of {len(TEST_CASES)} tests")
+    print(f"RESULTS: {passed} passed, {failed} failed out of {total} tests")
     print(f"{'='*70}\n")
 
     if errors:

@@ -235,6 +235,38 @@ def resolve_contract_address(value: Any, ctx: ResolveContext, **kwargs) -> Optio
     return contract.get("address")
 
 
+# EigenLayer strategy addresses for LSTs
+_EIGENLAYER_STRATEGIES = {
+    "stETH":  "0x93c4b944D05dfe6df7645A86cd2206016c51564D",
+    "STETH":  "0x93c4b944D05dfe6df7645A86cd2206016c51564D",
+    "rETH":   "0x1BeE69b7dFFfA4E2d53C2a2Df135C388AD25dCD2",
+    "RETH":   "0x1BeE69b7dFFfA4E2d53C2a2Df135C388AD25dCD2",
+    "cbETH":  "0x54945180dB7943c0ed0FEE7EdaB2Bd24620256bc",
+    "CBETH":  "0x54945180dB7943c0ed0FEE7EdaB2Bd24620256bc",
+    "wBETH":  "0x7CA911E83dabf90C90dD3De5411a10F1A6112184",
+    "WBETH":  "0x7CA911E83dabf90C90dD3De5411a10F1A6112184",
+    "swETH":  "0x0Fe4F44beE93503346A3Ac9EE5A26b130a5796d6",
+    "SWETH":  "0x0Fe4F44beE93503346A3Ac9EE5A26b130a5796d6",
+    "sfrxETH": "0x8CA7A5d6f3acd3A7A8bC468a8CD0FB14B6BD28b6",
+    "SFRXETH": "0x8CA7A5d6f3acd3A7A8bC468a8CD0FB14B6BD28b6",
+    "osETH":  "0x57ba429517c3473B6d34CA9aCd56c0e735b94c02",
+    "OSETH":  "0x57ba429517c3473B6d34CA9aCd56c0e735b94c02",
+}
+
+
+def resolve_eigenlayer_strategy(value: Any, ctx: ResolveContext, **kwargs) -> Optional[str]:
+    """Map LST symbol (stETH, rETH, cbETH, etc.) to EigenLayer strategy contract address."""
+    if not value:
+        return None
+    sym = str(value).strip()
+    strategy = _EIGENLAYER_STRATEGIES.get(sym)
+    if strategy:
+        return strategy
+    # Try uppercase
+    strategy = _EIGENLAYER_STRATEGIES.get(sym.upper())
+    return strategy
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Helpers
 # ─────────────────────────────────────────────────────────────────────
@@ -299,4 +331,5 @@ RESOLVER_REGISTRY = {
     "llm_passthrough": llm_passthrough,
     "compute_human_readable": compute_human_readable,
     "resolve_contract_address": resolve_contract_address,
+    "resolve_eigenlayer_strategy": resolve_eigenlayer_strategy,
 }

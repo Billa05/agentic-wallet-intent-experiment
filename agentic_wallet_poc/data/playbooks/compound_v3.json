@@ -1,0 +1,138 @@
+{
+  "protocol": "compound_v3",
+  "version": "1.0",
+  "chain_id": 1,
+
+  "contracts": {
+    "comet_usdc": {
+      "address": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "abi_source": "etherscan_cache"
+    }
+  },
+
+  "actions": {
+    "compound_supply": {
+      "description": "Supply asset to Compound V3 (Comet USDC market)",
+      "target_contract": "comet_usdc",
+      "function_name": "supply",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["__token_address", "amount", "human_readable_amount"],
+
+      "payload_args": {
+        "__token_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset", "source": "arg", "arg_key": "__token_address", "coerce": "address" },
+        { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" }
+      ]
+    },
+
+    "compound_withdraw": {
+      "description": "Withdraw asset from Compound V3 (Comet USDC market)",
+      "target_contract": "comet_usdc",
+      "function_name": "withdraw",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["__token_address", "amount", "human_readable_amount"],
+
+      "payload_args": {
+        "__token_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount_or_max",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset", "source": "arg", "arg_key": "__token_address", "coerce": "address" },
+        { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" }
+      ]
+    },
+
+    "compound_borrow": {
+      "description": "Borrow base asset from Compound V3 (equivalent to withdraw of base asset)",
+      "target_contract": "comet_usdc",
+      "function_name": "withdraw",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["__token_address", "amount", "human_readable_amount"],
+
+      "payload_args": {
+        "__token_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset", "source": "arg", "arg_key": "__token_address", "coerce": "address" },
+        { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" }
+      ]
+    },
+
+    "compound_repay": {
+      "description": "Repay borrowed asset on Compound V3 (equivalent to supply of base asset)",
+      "target_contract": "comet_usdc",
+      "function_name": "supply",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["__token_address", "amount", "human_readable_amount"],
+
+      "payload_args": {
+        "__token_address": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount_or_max",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset", "source": "arg", "arg_key": "__token_address", "coerce": "address" },
+        { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" }
+      ]
+    }
+  }
+}

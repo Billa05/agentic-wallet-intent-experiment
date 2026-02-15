@@ -408,6 +408,26 @@ class PlaybookEngine:
             if isinstance(value, list):
                 return [int(v) for v in value]
             return []
+        if coerce == "bool":
+            if isinstance(value, bool):
+                return value
+            if isinstance(value, str):
+                return value.lower() in ("true", "1", "yes")
+            return bool(value) if value is not None else False
+        if coerce == "bytes32":
+            if isinstance(value, bytes):
+                return value.ljust(32, b'\x00')[:32]
+            s = str(value) if value is not None else "0x" + "00" * 32
+            if s.startswith("0x"):
+                s = s[2:]
+            return bytes.fromhex(s.ljust(64, '0')[:64])
+        if coerce == "bytes":
+            if isinstance(value, bytes):
+                return value
+            s = str(value) if value is not None else "0x"
+            if s.startswith("0x"):
+                s = s[2:]
+            return bytes.fromhex(s) if s else b""
         return value
 
     def _resolve_tx_value(self, action_spec: Dict, args: Dict) -> str:
