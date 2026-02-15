@@ -7,6 +7,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "maker_deposit",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "deposit",
+      "arguments": {
+        "assets": "1000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "1000 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
       "data": "0x6e553f6500000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -24,6 +35,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "maker_deposit",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "deposit",
+      "arguments": {
+        "assets": "5000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "5000 DAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
@@ -43,6 +65,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "maker_deposit",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "deposit",
+      "arguments": {
+        "assets": "10000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "10000 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
       "data": "0x6e553f6500000000000000000000000000000000000000000000021e19e0c9bab240000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -60,6 +93,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "maker_deposit",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "deposit",
+      "arguments": {
+        "assets": "50000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "50000 DAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
@@ -79,6 +123,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "maker_deposit",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "deposit",
+      "arguments": {
+        "assets": "10000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "10000 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
       "data": "0x6e553f6500000000000000000000000000000000000000000000021e19e0c9bab240000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -96,6 +151,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "maker_deposit",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "deposit",
+      "arguments": {
+        "assets": "5000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "5000 DAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
@@ -115,6 +181,18 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "maker_redeem",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "redeem",
+      "arguments": {
+        "shares": "1000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "owner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "1000 sDAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
       "data": "0xba08765200000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -131,17 +209,14 @@
       "current_chain_id": 1,
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
-    "target_payload": {
-      "chain_id": 1,
-      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
-      "value": "0",
-      "data": "0xba08765200000000000000000000000000000000000000000000010f0cf064dd5920000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
-    },
+    "target_payload": null,
     "metadata": {
-      "action": "maker_redeem",
-      "human_readable_amount": "5000 sDAI"
+      "action": null
     },
-    "_annotation_failed": false
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
   },
   {
     "user_intent": "Please withdraw 10000 sDAI from Maker savings.",
@@ -150,6 +225,18 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "maker_redeem",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "redeem",
+      "arguments": {
+        "shares": "10000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "owner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "10000 sDAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
@@ -169,6 +256,18 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "maker_redeem",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "redeem",
+      "arguments": {
+        "shares": "5000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "owner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "5000 sDAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
       "data": "0xba08765200000000000000000000000000000000000000000000010f0cf064dd5920000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -187,6 +286,18 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "maker_redeem",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "redeem",
+      "arguments": {
+        "shares": "1000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "owner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "1000 sDAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",
       "data": "0xba08765200000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -204,6 +315,18 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "maker_redeem",
+      "target_contract": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "function_name": "redeem",
+      "arguments": {
+        "shares": "10000000000000000000000",
+        "receiver": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "owner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "10000 sDAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
       "value": "0",

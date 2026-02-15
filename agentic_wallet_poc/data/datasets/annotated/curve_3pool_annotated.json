@@ -7,6 +7,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "0",
+          "1000000000",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": "1000 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
       "data": "0x4515cef30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003b9aca0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -24,6 +40,22 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "500000000000000000000",
+          "0",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": "500 DAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
@@ -43,6 +75,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "0",
+          "2000000000",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": "2000 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
       "data": "0x4515cef30000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007735940000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -59,14 +107,33 @@
       "current_chain_id": 1,
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
-    "target_payload": null,
-    "metadata": {
-      "action": null
+    "target_payload": {
+      "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "0",
+          "0",
+          "500000000"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": "500 USDT"
+      }
     },
-    "_annotation_failed": true,
-    "_failure_reason": "LLM response was null or empty.",
-    "_failure_stage": "llm_empty_or_null",
-    "raw_llm_response": "null"
+    "raw_tx": {
+      "chain_id": 1,
+      "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "value": "0",
+      "data": "0x4515cef300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001dcd65000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "curve_add_liquidity",
+      "human_readable_amount": "500 USDT"
+    },
+    "_annotation_failed": false
   },
   {
     "user_intent": "Add liquidity to the Curve tri-pool: 500 DAI",
@@ -75,6 +142,22 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "500000000000000000000",
+          "0",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": "500 DAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
@@ -94,6 +177,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "curve_add_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "add_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amounts": [
+          "0",
+          "1500000000",
+          "0"
+        ],
+        "min_mint_amount": "0",
+        "human_readable_amount": "1500 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
       "data": "0x4515cef300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000059682f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -111,6 +210,22 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "500000000000000000000",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": "500 LP"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
@@ -130,6 +245,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "1000000000000000000000",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": "1000 LP"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
       "data": "0xecb586a500000000000000000000000000000000000000000000003635c9adc5dea00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -147,6 +278,22 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "200000000000000000000",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": "200 LP"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
@@ -181,6 +328,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "2000000000000000000000",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": "2000 LP"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",
       "data": "0xecb586a500000000000000000000000000000000000000000000006c6b935b8bbd400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -198,6 +361,22 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "curve_remove_liquidity",
+      "target_contract": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+      "function_name": "remove_liquidity",
+      "arguments": {
+        "pool": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
+        "amount": "500000000000000000000",
+        "min_amounts": [
+          "0",
+          "0",
+          "0"
+        ],
+        "human_readable_amount": "500 LP"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xbEbc44782C7dB0a1A60Cb6fe97d0b483032FF1C7",
       "value": "0",

@@ -7,6 +7,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "1000000000",
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "referralCode": 0,
+        "human_readable_amount": "1000 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x617ba037000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000003b9aca00000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
@@ -25,9 +38,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "250000000000000000000",
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "referralCode": 0,
+        "human_readable_amount": "250 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
-      "data": "0x617ba0370000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000000d8d726b7177a8000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+      "data": "0x617ba0370000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000000d8d726b7177a80000000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
     },
     "metadata": {
       "action": "aave_supply",
@@ -42,6 +68,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "amount": "500000000",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "referralCode": 0,
+        "human_readable_amount": "500 USDT"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -61,6 +100,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "2500000000",
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "referralCode": 0,
+        "human_readable_amount": "2500 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x617ba037000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000009502f900000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
@@ -78,6 +130,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "amount": "200000000",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "referralCode": 0,
+        "human_readable_amount": "200 USDT"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -97,6 +162,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_supply",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "supply",
+      "arguments": {
+        "asset": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "amount": "5000000000000000000000",
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "referralCode": 0,
+        "human_readable_amount": "5000 WETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x617ba037000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000010f0cf064dd59200000000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
@@ -114,6 +192,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "amount": "500000000",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "to": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "500 USDT"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -133,9 +224,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "300000000000000000000",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "to": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "300 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
-      "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001043561a882930000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+      "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001043561a8829300000000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
     },
     "metadata": {
       "action": "aave_withdraw",
@@ -150,6 +254,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "to": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "max WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -169,6 +286,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "750000000",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "to": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "750 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x69328dec000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000002cb41780000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
@@ -186,6 +316,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+        "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "to": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "max STETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -205,6 +348,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_withdraw",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "withdraw",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "1000000000000000000000",
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "to": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "1000 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -222,6 +378,20 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "5000000000",
+        "interestRateMode": 2,
+        "referralCode": 0,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "5000 USDC"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -241,9 +411,23 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "1000000000000000000000",
+        "interestRateMode": 2,
+        "referralCode": 0,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "1000 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
-      "data": "0xa415bcad0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+      "data": "0xa415bcad0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000003635c9adc5dea000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
     },
     "metadata": {
       "action": "aave_borrow",
@@ -258,6 +442,20 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "amount": "500000000000000000000",
+        "interestRateMode": 2,
+        "referralCode": 0,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "500 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -277,9 +475,23 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "amount": "2000000000",
+        "interestRateMode": 2,
+        "referralCode": 0,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "2000 USDT"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
-      "data": "0xa415bcad000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000007735940000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+      "data": "0xa415bcad000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec700000000000000000000000000000000000000000000000000000000773594000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
     },
     "metadata": {
       "action": "aave_borrow",
@@ -294,6 +506,20 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "amount": "10000000000000000000000",
+        "interestRateMode": 2,
+        "referralCode": 0,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "10000 ETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -313,6 +539,20 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_borrow",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "borrow",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "500000000000000000000",
+        "interestRateMode": 2,
+        "referralCode": 0,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "500 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0xa415bcad0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001b1ae4d6e2ef5000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -330,6 +570,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "interestRateMode": 2,
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "max USDC"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -349,9 +602,22 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "750000000000000000000",
+        "interestRateMode": 2,
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "750 DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
-      "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0f000000000000000000000000000000000000000000000028a857425466f80000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+      "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0f000000000000000000000000000000000000000000000028a857425466f800000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
     },
     "metadata": {
       "action": "aave_repay",
@@ -366,6 +632,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+        "amount": "500000000",
+        "interestRateMode": 2,
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "500 USDT"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
@@ -385,6 +664,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        "amount": "1200000000",
+        "interestRateMode": 2,
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "1200 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x573ade81000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000047868c000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
@@ -403,6 +695,19 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "interestRateMode": 2,
+        "onBehalfOf": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
+        "human_readable_amount": "max DAI"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",
       "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
@@ -420,6 +725,19 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "aave_repay",
+      "target_contract": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "function_name": "repay",
+      "arguments": {
+        "asset": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        "amount": "1500000000000000000000",
+        "interestRateMode": 2,
+        "onBehalfOf": "0x756BeB738607e60e5347150E1bE326060b5Fb816",
+        "human_readable_amount": "1500 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
       "value": "0",

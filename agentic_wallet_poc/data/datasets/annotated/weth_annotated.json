@@ -7,6 +7,16 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "weth_wrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "deposit",
+      "arguments": {
+        "value": "2000000000000000000",
+        "human_readable_amount": "2 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "2000000000000000000",
       "data": "0xd0e30db0"
@@ -24,6 +34,16 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "weth_wrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "deposit",
+      "arguments": {
+        "value": "500000000000000000",
+        "human_readable_amount": "0.5 ETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "500000000000000000",
@@ -43,6 +63,16 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "weth_wrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "deposit",
+      "arguments": {
+        "value": "10000000000000000000",
+        "human_readable_amount": "10 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "10000000000000000000",
       "data": "0xd0e30db0"
@@ -60,6 +90,16 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "weth_wrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "deposit",
+      "arguments": {
+        "value": "1000000000000000000",
+        "human_readable_amount": "1 ETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "1000000000000000000",
@@ -79,6 +119,16 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "weth_wrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "deposit",
+      "arguments": {
+        "value": "5000000000000000000",
+        "human_readable_amount": "5 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "5000000000000000000",
       "data": "0xd0e30db0"
@@ -96,6 +146,16 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "weth_wrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "deposit",
+      "arguments": {
+        "value": "20000000000000000000",
+        "human_readable_amount": "20 ETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "20000000000000000000",
@@ -115,6 +175,16 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "weth_unwrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "withdraw",
+      "arguments": {
+        "wad": "2000000000000000000",
+        "human_readable_amount": "2 WETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
       "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000001bc16d674ec80000"
@@ -132,6 +202,16 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "weth_unwrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "withdraw",
+      "arguments": {
+        "wad": "500000000000000000",
+        "human_readable_amount": "0.5 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
@@ -151,6 +231,16 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "weth_unwrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "withdraw",
+      "arguments": {
+        "wad": "5000000000000000000",
+        "human_readable_amount": "5 WETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
       "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000004563918244f40000"
@@ -168,6 +258,16 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "weth_unwrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "withdraw",
+      "arguments": {
+        "wad": "1000000000000000000",
+        "human_readable_amount": "1 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
@@ -187,6 +287,16 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "weth_unwrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "withdraw",
+      "arguments": {
+        "wad": "3000000000000000000",
+        "human_readable_amount": "3 WETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
       "data": "0x2e1a7d4d00000000000000000000000000000000000000000000000029a2241af62c0000"
@@ -204,6 +314,16 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "weth_unwrap",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "withdraw",
+      "arguments": {
+        "wad": "10000000000000000000",
+        "human_readable_amount": "10 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",

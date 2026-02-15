@@ -7,6 +7,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "eigenlayer_deposit",
+      "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "function_name": "depositIntoStrategy",
+      "arguments": {
+        "strategy": "0x93c4b944D05dfe6df7645A86cd2206016c51564D",
+        "amount": "5000000000000000000",
+        "human_readable_amount": "5 stETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
       "value": "0",
       "data": "0xe7a050aa00000000000000000000000093c4b944d05dfe6df7645a86cd2206016c51564d00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000004563918244f40000"
@@ -24,6 +35,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "eigenlayer_deposit",
+      "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "function_name": "depositIntoStrategy",
+      "arguments": {
+        "strategy": "0x1BeE69b7dFFfA4E2d53C2a2Df135C388AD25dCD2",
+        "amount": "10000000000000000000",
+        "human_readable_amount": "10 rETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
       "value": "0",
@@ -43,6 +65,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "eigenlayer_deposit",
+      "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "function_name": "depositIntoStrategy",
+      "arguments": {
+        "strategy": "0x54945180dB7943c0ed0FEE7EdaB2Bd24620256bc",
+        "amount": "20000000000000000000",
+        "human_readable_amount": "20 cbETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
       "value": "0",
       "data": "0xe7a050aa00000000000000000000000054945180db7943c0ed0fee7edab2bd24620256bc00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000001158e460913d00000"
@@ -60,6 +93,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "eigenlayer_deposit",
+      "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "function_name": "depositIntoStrategy",
+      "arguments": {
+        "strategy": "0x57ba429517c3473B6d34CA9aCd56c0e735b94c02",
+        "amount": "50000000000000000000",
+        "human_readable_amount": "50 OSETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
       "value": "0",
@@ -79,13 +123,24 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "eigenlayer_deposit",
+      "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "function_name": "depositIntoStrategy",
+      "arguments": {
+        "strategy": "0x0Fe4F44beE93503346A3Ac9EE5A26b130a5796d6",
+        "amount": "1000000000000000000",
+        "human_readable_amount": "1 swETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
       "value": "0",
       "data": "0xe7a050aa0000000000000000000000000fe4f44bee93503346a3ac9ee5a26b130a5796d600000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000de0b6b3a7640000"
     },
     "metadata": {
       "action": "eigenlayer_deposit",
-      "human_readable_amount": "1 SWETH"
+      "human_readable_amount": "1 swETH"
     },
     "_annotation_failed": false
   },
@@ -96,6 +151,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "eigenlayer_deposit",
+      "target_contract": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "function_name": "depositIntoStrategy",
+      "arguments": {
+        "strategy": "0x8CA7A5d6f3acd3A7A8bC468a8CD0FB14B6BD28b6",
+        "amount": "5000000000000000000",
+        "human_readable_amount": "5 SFRXETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
       "value": "0",

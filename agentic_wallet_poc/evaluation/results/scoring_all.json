@@ -1,0 +1,3287 @@
+{
+  "total": 144,
+  "annotated_ok": 136,
+  "annotated_failed": 8,
+  "failure_stages": {
+    "llm_empty_or_null": 8
+  },
+  "calldata_pass": 135,
+  "calldata_fail": 0,
+  "calldata_skip": 1,
+  "calldata_checks": {
+    "decode": {
+      "pass": 129,
+      "fail": 0
+    },
+    "function": {
+      "pass": 129,
+      "fail": 0
+    },
+    "target": {
+      "pass": 118,
+      "fail": 0
+    },
+    "token": {
+      "pass": 30,
+      "fail": 0
+    },
+    "amount": {
+      "pass": 124,
+      "fail": 0
+    },
+    "sender": {
+      "pass": 69,
+      "fail": 0
+    }
+  },
+  "per_protocol": {
+    "aave": {
+      "total": 24,
+      "ok": 24,
+      "calldata_pass": 24
+    },
+    "balancer": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "compound": {
+      "total": 19,
+      "ok": 19,
+      "calldata_pass": 19
+    },
+    "curve": {
+      "total": 11,
+      "ok": 11,
+      "calldata_pass": 11
+    },
+    "eigenlayer": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "lido": {
+      "total": 11,
+      "ok": 11,
+      "calldata_pass": 11
+    },
+    "maker": {
+      "total": 11,
+      "ok": 11,
+      "calldata_pass": 11
+    },
+    "rocketpool": {
+      "total": 12,
+      "ok": 12,
+      "calldata_pass": 12
+    },
+    "transfer": {
+      "total": 18,
+      "ok": 18,
+      "calldata_pass": 17
+    },
+    "uniswap": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "unknown": {
+      "total": 8,
+      "ok": 0,
+      "calldata_pass": 0
+    },
+    "weth": {
+      "total": 12,
+      "ok": 12,
+      "calldata_pass": 12
+    }
+  },
+  "per_action": {
+    "aave_borrow": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "aave_repay": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "aave_supply": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "aave_withdraw": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "balancer_swap": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "compound_borrow": {
+      "total": 5,
+      "ok": 5,
+      "calldata_pass": 5
+    },
+    "compound_repay": {
+      "total": 3,
+      "ok": 3,
+      "calldata_pass": 3
+    },
+    "compound_supply": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "compound_withdraw": {
+      "total": 5,
+      "ok": 5,
+      "calldata_pass": 5
+    },
+    "curve_add_liquidity": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "curve_remove_liquidity": {
+      "total": 5,
+      "ok": 5,
+      "calldata_pass": 5
+    },
+    "eigenlayer_deposit": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "lido_stake": {
+      "total": 5,
+      "ok": 5,
+      "calldata_pass": 5
+    },
+    "lido_unstake": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "maker_deposit": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "maker_redeem": {
+      "total": 5,
+      "ok": 5,
+      "calldata_pass": 5
+    },
+    "rocketpool_stake": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "rocketpool_unstake": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "transfer_erc20": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "transfer_erc721": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 5
+    },
+    "transfer_native": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "uniswap_swap": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "unknown": {
+      "total": 8,
+      "ok": 0,
+      "calldata_pass": 0
+    },
+    "weth_unwrap": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    },
+    "weth_wrap": {
+      "total": 6,
+      "ok": 6,
+      "calldata_pass": 6
+    }
+  },
+  "argument_coverage": {
+    "__token_address": {
+      "present": 0,
+      "required": 25
+    },
+    "__token_in_address": {
+      "present": 0,
+      "required": 6
+    },
+    "__token_out_address": {
+      "present": 0,
+      "required": 6
+    },
+    "_amounts": {
+      "present": 6,
+      "required": 6
+    },
+    "_owner": {
+      "present": 6,
+      "required": 6
+    },
+    "_rethAmount": {
+      "present": 6,
+      "required": 6
+    },
+    "amount": {
+      "present": 60,
+      "required": 60
+    },
+    "amountIn": {
+      "present": 6,
+      "required": 6
+    },
+    "amountOutMinimum": {
+      "present": 6,
+      "required": 6
+    },
+    "amounts": {
+      "present": 6,
+      "required": 6
+    },
+    "asset": {
+      "present": 24,
+      "required": 24
+    },
+    "assets": {
+      "present": 6,
+      "required": 6
+    },
+    "deadline": {
+      "present": 6,
+      "required": 6
+    },
+    "fee": {
+      "present": 6,
+      "required": 6
+    },
+    "interestRateMode": {
+      "present": 12,
+      "required": 12
+    },
+    "min_amounts": {
+      "present": 5,
+      "required": 5
+    },
+    "min_mint_amount": {
+      "present": 6,
+      "required": 6
+    },
+    "onBehalfOf": {
+      "present": 18,
+      "required": 18
+    },
+    "owner": {
+      "present": 5,
+      "required": 5
+    },
+    "pool": {
+      "present": 11,
+      "required": 11
+    },
+    "receiver": {
+      "present": 11,
+      "required": 11
+    },
+    "recipient": {
+      "present": 12,
+      "required": 12
+    },
+    "referralCode": {
+      "present": 6,
+      "required": 6
+    },
+    "shares": {
+      "present": 5,
+      "required": 5
+    },
+    "strategy": {
+      "present": 6,
+      "required": 6
+    },
+    "to": {
+      "present": 23,
+      "required": 24
+    },
+    "tokenId": {
+      "present": 6,
+      "required": 6
+    },
+    "tokenIn": {
+      "present": 6,
+      "required": 6
+    },
+    "tokenOut": {
+      "present": 6,
+      "required": 6
+    },
+    "value": {
+      "present": 29,
+      "required": 29
+    },
+    "wad": {
+      "present": 6,
+      "required": 6
+    }
+  },
+  "detailed_results": [
+    {
+      "intent": "Please supply 1000 USDC to Aave to earn yield.",
+      "action": "aave_supply",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Can you deposit 250 DAI into Aave for lending APY?",
+      "action": "aave_supply",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "I want to put 500 USDT in the Aave pool.",
+      "action": "aave_supply",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Could you stake 2500 USDC in Aave?",
+      "action": "aave_supply",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Supply 200 USDT to Aave v3 mainnet.",
+      "action": "aave_supply",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Deposit 5000 WETH into the Aave USDC market.",
+      "action": "aave_supply",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Withdraw 500 USDT from Aave to my wallet please.",
+      "action": "aave_withdraw",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "to": true
+      }
+    },
+    {
+      "intent": "Can you pull 300 DAI out of Aave for an investment?",
+      "action": "aave_withdraw",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "to": true
+      }
+    },
+    {
+      "intent": "I want to withdraw all my WETH from Aave.",
+      "action": "aave_withdraw",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "to": true
+      }
+    },
+    {
+      "intent": "Please pull out 750 USDC from Aave for a payment.",
+      "action": "aave_withdraw",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "to": true
+      }
+    },
+    {
+      "intent": "Withdraw my full stETH balance from Aave.",
+      "action": "aave_withdraw",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "to": true
+      }
+    },
+    {
+      "intent": "Can you withdraw 1000 DAI from Aave to my account?",
+      "action": "aave_withdraw",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "to": true
+      }
+    },
+    {
+      "intent": "Borrow 5000 USDC from Aave",
+      "action": "aave_borrow",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "referralCode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "I want to borrow 1000 DAI from Aave for expenses",
+      "action": "aave_borrow",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "referralCode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Please borrow 500 WETH from Aave at a variable rate",
+      "action": "aave_borrow",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "referralCode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Can you help me borrow 2000 USDT from Aave with a stable rate?",
+      "action": "aave_borrow",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "referralCode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Borrow 10000 ETH from Aave",
+      "action": "aave_borrow",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "referralCode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "I need to borrow 500 DAI from Aave",
+      "action": "aave_borrow",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "referralCode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Repay my full USDC debt on Aave",
+      "action": "aave_repay",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Please repay 750 DAI on Aave",
+      "action": "aave_repay",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Can you repay 500 USDT on Aave for me?",
+      "action": "aave_repay",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Repay 1200 USDC on Aave to improve my health factor",
+      "action": "aave_repay",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "I want to repay max DAI on Aave",
+      "action": "aave_repay",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "Repay 1500 WETH on my Aave loan",
+      "action": "aave_repay",
+      "protocol": "aave",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "asset": true,
+        "amount": true,
+        "interestRateMode": true,
+        "onBehalfOf": true
+      }
+    },
+    {
+      "intent": "I'd like to swap 1 WETH for USDC on Balancer.",
+      "action": "balancer_swap",
+      "protocol": "balancer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_in_address": false,
+        "__token_out_address": false,
+        "amount": true,
+        "recipient": true,
+        "deadline": true
+      }
+    },
+    {
+      "intent": "Please exchange 500 DAI to USDC via Balancer V2.",
+      "action": "balancer_swap",
+      "protocol": "balancer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_in_address": false,
+        "__token_out_address": false,
+        "amount": true,
+        "recipient": true,
+        "deadline": true
+      }
+    },
+    {
+      "intent": "Can you trade 2 WETH for DAI on Balancer?",
+      "action": "balancer_swap",
+      "protocol": "balancer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_in_address": false,
+        "__token_out_address": false,
+        "amount": true,
+        "recipient": true,
+        "deadline": true
+      }
+    },
+    {
+      "intent": "Swap 1000 USDC for WETH on Balancer, please.",
+      "action": "balancer_swap",
+      "protocol": "balancer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_in_address": false,
+        "__token_out_address": false,
+        "amount": true,
+        "recipient": true,
+        "deadline": true
+      }
+    },
+    {
+      "intent": "I want to exchange 0.5 BAL for WETH via Balancer V2.",
+      "action": "balancer_swap",
+      "protocol": "balancer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_in_address": false,
+        "__token_out_address": false,
+        "amount": true,
+        "recipient": true,
+        "deadline": true
+      }
+    },
+    {
+      "intent": "Trade 5000 USDC for DAI on Balancer.",
+      "action": "balancer_swap",
+      "protocol": "balancer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_in_address": false,
+        "__token_out_address": false,
+        "amount": true,
+        "recipient": true,
+        "deadline": true
+      }
+    },
+    {
+      "intent": "Supply 5000 USDC to Compound to earn interest",
+      "action": "compound_supply",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Can you deposit 1000 USDC into Compound V3?",
+      "action": "compound_supply",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I want to lend 2500 USDC on Compound V3 for yield",
+      "action": "compound_supply",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Please supply 500 USDC to the Compound USDC market",
+      "action": "compound_supply",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Deposit 10000 USDC in Compound V3 Comet",
+      "action": "compound_supply",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Supply 2000 USDC to Compound",
+      "action": "compound_supply",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Withdraw 1000 DAI from Compound V3, please.",
+      "action": "compound_withdraw",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Can you pull out 5000 USDT from Compound?",
+      "action": "compound_withdraw",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I want to withdraw all my ETH from Compound V3.",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Withdraw 2000 USDC from Compound for expenses.",
+      "action": "compound_withdraw",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Pull out everything from Compound V3.",
+      "action": "compound_withdraw",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Please withdraw 500 WETH from Compound.",
+      "action": "compound_withdraw",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I want to borrow 500 USDC from Compound V3.",
+      "action": "compound_borrow",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Can you help me borrow 2000 DAI on Compound Comet?",
+      "action": "compound_borrow",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Please borrow 5000 USDT from Compound against my collateral.",
+      "action": "compound_borrow",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Borrow 1000 WETH from Compound V3 for liquidity purposes.",
+      "action": "compound_borrow",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I'd like to borrow 3000 ETH through Compound.",
+      "action": "compound_borrow",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Help me borrow 10000 stETH from Compound Comet.",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Repay 1500 USDT on Compound",
+      "action": "compound_repay",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Please repay my full Compound loan",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "I'd like to pay off all my Compound debt",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Can you repay 500 DAI on Compound V3?",
+      "action": "compound_repay",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Repay my entire loan in WETH on Compound",
+      "action": "compound_repay",
+      "protocol": "compound",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I want to repay 1000 stETH on Compound",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Add 1000 USDC to Curve 3pool",
+      "action": "curve_add_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amounts": true,
+        "min_mint_amount": true
+      }
+    },
+    {
+      "intent": "Please add 500 DAI into the Curve 3pool",
+      "action": "curve_add_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amounts": true,
+        "min_mint_amount": true
+      }
+    },
+    {
+      "intent": "I want to add 2000 USDC to Curve 3pool for LP fees",
+      "action": "curve_add_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amounts": true,
+        "min_mint_amount": true
+      }
+    },
+    {
+      "intent": "Can you deposit 500 USDT into Curve 3pool?",
+      "action": "curve_add_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amounts": true,
+        "min_mint_amount": true
+      }
+    },
+    {
+      "intent": "Add liquidity to the Curve tri-pool: 500 DAI",
+      "action": "curve_add_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amounts": true,
+        "min_mint_amount": true
+      }
+    },
+    {
+      "intent": "Add 1500 USDC to Curve 3pool",
+      "action": "curve_add_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amounts": true,
+        "min_mint_amount": true
+      }
+    },
+    {
+      "intent": "Please remove 500 USDC worth of liquidity from Curve 3pool.",
+      "action": "curve_remove_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amount": true,
+        "min_amounts": true
+      }
+    },
+    {
+      "intent": "I'd like to pull my liquidity from Curve 3pool: 1000 USDC.",
+      "action": "curve_remove_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amount": true,
+        "min_amounts": true
+      }
+    },
+    {
+      "intent": "Can you remove 200 DAI from the Curve pool for me?",
+      "action": "curve_remove_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amount": true,
+        "min_amounts": true
+      }
+    },
+    {
+      "intent": "I want to withdraw 300 USDT from Curve 3pool.",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Remove 2000 USDC liquidity from the Curve pool.",
+      "action": "curve_remove_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amount": true,
+        "min_amounts": true
+      }
+    },
+    {
+      "intent": "Pull out 500 USDT from the Curve pool.",
+      "action": "curve_remove_liquidity",
+      "protocol": "curve",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "pool": true,
+        "amount": true,
+        "min_amounts": true
+      }
+    },
+    {
+      "intent": "Can you please restake 5 stETH on EigenLayer for me?",
+      "action": "eigenlayer_deposit",
+      "protocol": "eigenlayer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "strategy": true,
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I'd like to deposit 10 rETH into the EigenLayer strategy.",
+      "action": "eigenlayer_deposit",
+      "protocol": "eigenlayer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "strategy": true,
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Please restake 20 cbETH on EigenLayer to maximize my yield.",
+      "action": "eigenlayer_deposit",
+      "protocol": "eigenlayer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "strategy": true,
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Restake 50 osETH on EigenLayer for some extra yield.",
+      "action": "eigenlayer_deposit",
+      "protocol": "eigenlayer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "strategy": true,
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "I want to deposit 1 swETH into the EigenLayer strategy.",
+      "action": "eigenlayer_deposit",
+      "protocol": "eigenlayer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "strategy": true,
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Could you deposit 5 sfrxETH into EigenLayer?",
+      "action": "eigenlayer_deposit",
+      "protocol": "eigenlayer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "strategy": true,
+        "__token_address": false,
+        "amount": true
+      }
+    },
+    {
+      "intent": "Can you stake 2 ETH on Lido for me?",
+      "action": "lido_stake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Please put 10 ETH into Lido for stETH yield.",
+      "action": "lido_stake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "I want to deposit 3 ETH to Lido.",
+      "action": "lido_stake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Stake 5 ETH on Lido to earn staking rewards.",
+      "action": "lido_stake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Wrap my 0.5 ETH with Lido.",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Stake 20 ETH in Lido pool.",
+      "action": "lido_stake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Please unstake 5 stETH from Lido.",
+      "action": "lido_unstake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_amounts": true,
+        "_owner": true
+      }
+    },
+    {
+      "intent": "Can you withdraw 15 stETH from Lido for me?",
+      "action": "lido_unstake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_amounts": true,
+        "_owner": true
+      }
+    },
+    {
+      "intent": "I want to redeem 10 stETH for ETH via Lido.",
+      "action": "lido_unstake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_amounts": true,
+        "_owner": true
+      }
+    },
+    {
+      "intent": "Request withdrawal of 25 stETH from Lido.",
+      "action": "lido_unstake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_amounts": true,
+        "_owner": true
+      }
+    },
+    {
+      "intent": "Withdraw 50 stETH from Lido to my wallet.",
+      "action": "lido_unstake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_amounts": true,
+        "_owner": true
+      }
+    },
+    {
+      "intent": "Unstake 1 stETH from Lido, please.",
+      "action": "lido_unstake",
+      "protocol": "lido",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_amounts": true,
+        "_owner": true
+      }
+    },
+    {
+      "intent": "Deposit 1000 DAI into Maker savings account",
+      "action": "maker_deposit",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "assets": true,
+        "receiver": true
+      }
+    },
+    {
+      "intent": "Can you please put 5000 DAI into DSR for sDAI?",
+      "action": "maker_deposit",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "assets": true,
+        "receiver": true
+      }
+    },
+    {
+      "intent": "I want to deposit 10000 DAI in MakerDAO to earn savings rate",
+      "action": "maker_deposit",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "assets": true,
+        "receiver": true
+      }
+    },
+    {
+      "intent": "Please convert 50000 DAI to sDAI in Maker",
+      "action": "maker_deposit",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "assets": true,
+        "receiver": true
+      }
+    },
+    {
+      "intent": "Deposit DAI in Maker for sDAI yield with 10000 DAI",
+      "action": "maker_deposit",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "assets": true,
+        "receiver": true
+      }
+    },
+    {
+      "intent": "Save 5000 DAI with MakerDAO DSR",
+      "action": "maker_deposit",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "assets": true,
+        "receiver": true
+      }
+    },
+    {
+      "intent": "Can you redeem 1000 sDAI for DAI, please?",
+      "action": "maker_redeem",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "shares": true,
+        "receiver": true,
+        "owner": true
+      }
+    },
+    {
+      "intent": "I want to convert 5000 sDAI to DAI for a payment.",
+      "action": "unknown",
+      "protocol": "unknown",
+      "annotation_failed": true,
+      "failure_stage": "llm_empty_or_null",
+      "failure_reason": "LLM response was null or empty.",
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": null,
+      "calldata_errors": null,
+      "per_argument": null
+    },
+    {
+      "intent": "Please withdraw 10000 sDAI from Maker savings.",
+      "action": "maker_redeem",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "shares": true,
+        "receiver": true,
+        "owner": true
+      }
+    },
+    {
+      "intent": "Redeem 5000 sDAI to get my DAI back.",
+      "action": "maker_redeem",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "shares": true,
+        "receiver": true,
+        "owner": true
+      }
+    },
+    {
+      "intent": "I'd like to withdraw my 1000 sDAI from the DSR and get DAI.",
+      "action": "maker_redeem",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "shares": true,
+        "receiver": true,
+        "owner": true
+      }
+    },
+    {
+      "intent": "Could you help me convert 10000 sDAI to DAI?",
+      "action": "maker_redeem",
+      "protocol": "maker",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "shares": true,
+        "receiver": true,
+        "owner": true
+      }
+    },
+    {
+      "intent": "Please stake 2 ETH on Rocket Pool.",
+      "action": "rocketpool_stake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "I want to deposit 0.5 ETH to Rocket Pool for rETH.",
+      "action": "rocketpool_stake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Can you stake 5 ETH on Rocket Pool for me?",
+      "action": "rocketpool_stake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Deposit 10 ETH in Rocket Pool to get rETH yield.",
+      "action": "rocketpool_stake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "I'd like to liquid stake 1 ETH with RPL.",
+      "action": "rocketpool_stake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Get rETH by staking 20 ETH on Rocket Pool.",
+      "action": "rocketpool_stake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Please unstake 2 rETH from Rocket Pool.",
+      "action": "rocketpool_unstake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_rethAmount": true
+      }
+    },
+    {
+      "intent": "Can you burn 0.5 rETH for ETH?",
+      "action": "rocketpool_unstake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_rethAmount": true
+      }
+    },
+    {
+      "intent": "I want to withdraw 5 rETH from Rocket Pool.",
+      "action": "rocketpool_unstake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_rethAmount": true
+      }
+    },
+    {
+      "intent": "Redeem 1 rETH to get ETH back from Rocket Pool.",
+      "action": "rocketpool_unstake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_rethAmount": true
+      }
+    },
+    {
+      "intent": "Unstake my 10 rETH.",
+      "action": "rocketpool_unstake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_rethAmount": true
+      }
+    },
+    {
+      "intent": "Burn 5 rETH to get ETH back from Rocket Pool.",
+      "action": "rocketpool_unstake",
+      "protocol": "rocketpool",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "_rethAmount": true
+      }
+    },
+    {
+      "intent": "Please forward 1.234567890123456789 ETH to 0xAE1234567890abcdef1234567890AbCdEf0",
+      "action": "transfer_native",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "yo fam send 1 eth to homie.eth asap",
+      "action": "transfer_native",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "URGENT: transfer 100 USDC to bob.eth immediately",
+      "action": "transfer_erc20",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "tranfer 1 eth to vitalik.eth for the project",
+      "action": "transfer_native",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "can you send 0.5 ETH to alice.eth?",
+      "action": "transfer_native",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "tx 0.001 ETH -> dave.eth for testing",
+      "action": "transfer_native",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "Transfer 10 WETH to vitalik.eth for the project funding.",
+      "action": "transfer_erc20",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "yo fam send 0.01 eth to homie.eth asap",
+      "action": "transfer_native",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "pls send around 100 dai to friend.eth",
+      "action": "transfer_erc20",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "URGENT: transfer 1000000 USDC to 0xdDacB8c90E2bA8Ee63c6aA6F3c6E5bB6fF1c8d8E imme",
+      "action": "transfer_erc20",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "can you send 1.234567890123456789 WETH to alice.eth?",
+      "action": "transfer_erc20",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "Execute ERC-20 transfer of 50 USDT to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      "action": "transfer_erc20",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "value": true
+      }
+    },
+    {
+      "intent": "yo fam send my bored ape #1234 to homie.eth asap",
+      "action": "transfer_erc721",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "tokenId": true
+      }
+    },
+    {
+      "intent": "Please transfer the CryptoPunk token id 7804 to 0x742d35Cc6634C0532925a3b844Bc45",
+      "action": "transfer_erc721",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "tokenId": true
+      }
+    },
+    {
+      "intent": "tx nft #5678 -> 0xABC1234567890abcdef1234567890abcdef1234",
+      "action": "transfer_erc721",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": null,
+      "calldata_function": null,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": null,
+      "calldata_status": "skipped",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": false,
+        "tokenId": true
+      }
+    },
+    {
+      "intent": "can you send my Mutant Ape token number 2143 to alice.eth?",
+      "action": "transfer_erc721",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "tokenId": true
+      }
+    },
+    {
+      "intent": "URGENT: dispatch Bored Ape Yacht Club nft #5678 to bob.eth immediately",
+      "action": "transfer_erc721",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "tokenId": true
+      }
+    },
+    {
+      "intent": "pls send my azuki 5678 to bob",
+      "action": "transfer_erc721",
+      "protocol": "transfer",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": null,
+      "calldata_token": null,
+      "calldata_amount": null,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "to": true,
+        "tokenId": true
+      }
+    },
+    {
+      "intent": "Please swap 0.5 WETH for USDC on Uniswap.",
+      "action": "uniswap_swap",
+      "protocol": "uniswap",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "tokenIn": true,
+        "tokenOut": true,
+        "fee": true,
+        "recipient": true,
+        "amountIn": true,
+        "amountOutMinimum": true
+      }
+    },
+    {
+      "intent": "I'd like to exchange 1000 USDC to DAI via Uniswap.",
+      "action": "uniswap_swap",
+      "protocol": "uniswap",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "tokenIn": true,
+        "tokenOut": true,
+        "fee": true,
+        "recipient": true,
+        "amountIn": true,
+        "amountOutMinimum": true
+      }
+    },
+    {
+      "intent": "Trade 2 WETH for USDT on Uniswap V3, ensuring at least 4000 USDT.",
+      "action": "uniswap_swap",
+      "protocol": "uniswap",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "tokenIn": true,
+        "tokenOut": true,
+        "fee": true,
+        "recipient": true,
+        "amountIn": true,
+        "amountOutMinimum": true
+      }
+    },
+    {
+      "intent": "Can you swap 500 USDC to DAI with 0.3% slippage?",
+      "action": "uniswap_swap",
+      "protocol": "uniswap",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "tokenIn": true,
+        "tokenOut": true,
+        "fee": true,
+        "recipient": true,
+        "amountIn": true,
+        "amountOutMinimum": true
+      }
+    },
+    {
+      "intent": "Swap 1 WETH to DAI on Uniswap, and accept a minimum of 1500 DAI.",
+      "action": "uniswap_swap",
+      "protocol": "uniswap",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "tokenIn": true,
+        "tokenOut": true,
+        "fee": true,
+        "recipient": true,
+        "amountIn": true,
+        "amountOutMinimum": true
+      }
+    },
+    {
+      "intent": "I want to exchange 5000 USDT for WETH on Uniswap.",
+      "action": "uniswap_swap",
+      "protocol": "uniswap",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": true,
+      "calldata_amount": true,
+      "calldata_sender": true,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "tokenIn": true,
+        "tokenOut": true,
+        "fee": true,
+        "recipient": true,
+        "amountIn": true,
+        "amountOutMinimum": true
+      }
+    },
+    {
+      "intent": "Please wrap 2 ETH for me.",
+      "action": "weth_wrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Can you convert 0.5 ETH to WETH?",
+      "action": "weth_wrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "I'd like to wrap 10 ETH so I can use it in DeFi.",
+      "action": "weth_wrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Wrap my 1 ETH into WETH.",
+      "action": "weth_wrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Deposit 5 ETH for WETH, please.",
+      "action": "weth_wrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Convert my ETH to WETH for a swap, specifically 20 ETH.",
+      "action": "weth_wrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "value": true
+      }
+    },
+    {
+      "intent": "Please unwrap 2 WETH back to ETH.",
+      "action": "weth_unwrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "wad": true
+      }
+    },
+    {
+      "intent": "Can you convert 0.5 WETH to ETH for me?",
+      "action": "weth_unwrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "wad": true
+      }
+    },
+    {
+      "intent": "I want to withdraw 5 WETH for ETH.",
+      "action": "weth_unwrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "wad": true
+      }
+    },
+    {
+      "intent": "Unwrap my 1 WETH back to native ETH.",
+      "action": "weth_unwrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "wad": true
+      }
+    },
+    {
+      "intent": "Convert 3 WETH back to ETH for gas.",
+      "action": "weth_unwrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "wad": true
+      }
+    },
+    {
+      "intent": "Redeem 10 WETH and get ETH.",
+      "action": "weth_unwrap",
+      "protocol": "weth",
+      "annotation_failed": false,
+      "failure_stage": null,
+      "failure_reason": null,
+      "calldata_decode": true,
+      "calldata_function": true,
+      "calldata_target": true,
+      "calldata_token": null,
+      "calldata_amount": true,
+      "calldata_sender": null,
+      "calldata_status": "PASS",
+      "calldata_errors": [],
+      "per_argument": {
+        "wad": true
+      }
+    }
+  ]
+}

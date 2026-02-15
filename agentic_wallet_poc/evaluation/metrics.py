@@ -283,10 +283,12 @@ def evaluate_dataset(
         exact_match_rate = exact_matches / count if count > 0 else 0.0
         per_action_accuracy[action] = {"count": count, "exact_match": exact_match_rate}
     
-    # Per-protocol breakdown (prefix: aave_, lido_, uniswap_, curve_)
-    protocol_prefixes = ("aave_", "lido_", "uniswap_", "curve_")
+    # Per-protocol breakdown (auto-discovered from action names)
+    protocol_prefixes = set()
+    for a in action_counts.keys():
+        protocol_prefixes.add(a.split("_")[0] + "_")
     per_protocol_accuracy = {}
-    for prefix in protocol_prefixes:
+    for prefix in sorted(protocol_prefixes):
         count = sum(c for a, c in action_counts.items() if a.startswith(prefix))
         if count == 0:
             continue
@@ -378,19 +380,306 @@ def save_results(metrics: Dict[str, Any], output_path: str) -> None:
     print(f"✓ Evaluation results saved to {output_path}")
 
 
+# ─────────────────────────────────────────────────────────────────────
+# Offline scoring — score already-annotated datasets (zero LLM calls)
+# ─────────────────────────────────────────────────────────────────────
+
+@dataclass
+class ScoringResult:
+    """Full scoring result for a single annotated record."""
+    intent: str
+    action: str
+    protocol: str
+    annotation_failed: bool
+    failure_stage: Optional[str] = None
+    failure_reason: Optional[str] = None
+    # Calldata structural checks
+    calldata_decode: Optional[bool] = None
+    calldata_function: Optional[bool] = None
+    calldata_target: Optional[bool] = None
+    calldata_token: Optional[bool] = None
+    calldata_amount: Optional[bool] = None
+    calldata_sender: Optional[bool] = None
+    calldata_status: Optional[str] = None
+    calldata_errors: Optional[List[str]] = None
+    # Per-argument presence
+    per_argument: Optional[Dict[str, bool]] = None
+
+
+def _get_raw_tx(record: Dict) -> Optional[Dict]:
+    """Extract raw tx dict from either new or old annotated format."""
+    if record.get("raw_tx"):
+        return record["raw_tx"]
+    tp = record.get("target_payload") or {}
+    if "data" in tp and "action" not in tp:
+        return tp  # old format: raw tx in target_payload
+    return None
+
+
+def _get_action(record: Dict) -> str:
+    """Extract action from either format."""
+    meta = record.get("metadata") or {}
+    if meta.get("action"):
+        return meta["action"]
+    tp = record.get("target_payload") or {}
+    return tp.get("action", "unknown")
+
+
+def _extract_calldata_flags(validation: Dict) -> Dict[str, Optional[bool]]:
+    """Parse validate_record() output into per-check booleans."""
+    flags = {
+        "decode": None, "function": None, "target": None,
+        "token": None, "amount": None, "sender": None,
+    }
+    for text in validation.get("checks", []):
+        upper = text.upper()
+        for key in flags:
+            if upper.startswith(key.upper()):
+                flags[key] = True
+                break
+    for text in validation.get("errors", []):
+        upper = text.upper()
+        for key in flags:
+            if upper.startswith(key.upper()):
+                flags[key] = False
+                break
+    return flags
+
+
+def score_annotated_record(
+    idx: int,
+    record: Dict[str, Any],
+    addr_lookup: Dict,
+    action_to_func: Dict,
+    proto_addrs: Dict,
+) -> ScoringResult:
+    """Score a single annotated record offline (no LLM calls)."""
+    intent = record.get("user_intent", "")[:80]
+    action = _get_action(record)
+    protocol = action.split("_")[0] if action != "unknown" else "unknown"
+    failed = record.get("_annotation_failed", False)
+
+    if failed:
+        return ScoringResult(
+            intent=intent,
+            action=action,
+            protocol=protocol,
+            annotation_failed=True,
+            failure_stage=record.get("_failure_stage"),
+            failure_reason=record.get("_failure_reason"),
+        )
+
+    # Per-argument check: which required args are present?
+    tp = record.get("target_payload") or {}
+    arguments = tp.get("arguments") or {}
+    required = ACTION_REQUIRED_ARGS.get(action, [])
+    per_arg = {}
+    for key in required:
+        if key == "human_readable_amount":
+            continue  # display-only, skip
+        val = arguments.get(key)
+        per_arg[key] = val is not None and str(val) != ""
+
+    # Run structural calldata validation
+    from data.validate_calldata import validate_record as _validate_record
+    validation = _validate_record(idx, record, addr_lookup, action_to_func, proto_addrs)
+    flags = _extract_calldata_flags(validation)
+
+    return ScoringResult(
+        intent=intent,
+        action=action,
+        protocol=protocol,
+        annotation_failed=False,
+        calldata_decode=flags["decode"],
+        calldata_function=flags["function"],
+        calldata_target=flags["target"],
+        calldata_token=flags["token"],
+        calldata_amount=flags["amount"],
+        calldata_sender=flags["sender"],
+        calldata_status=validation.get("status"),
+        calldata_errors=validation.get("errors", []),
+        per_argument=per_arg,
+    )
+
+
+def score_annotated_dataset(
+    records: List[Dict[str, Any]],
+    addr_lookup: Dict,
+    action_to_func: Dict,
+    proto_addrs: Dict,
+    verbose: bool = False,
+) -> Dict[str, Any]:
+    """Score an entire annotated dataset offline. Returns aggregate metrics."""
+    detailed = []
+    total = len(records)
+    ok_count = 0
+    failed_count = 0
+    failure_stages: Counter = Counter()
+    calldata_pass = 0
+    calldata_fail = 0
+    calldata_skip = 0
+    check_names = ["decode", "function", "target", "token", "amount", "sender"]
+    check_pass: Counter = Counter()
+    check_fail: Counter = Counter()
+    per_protocol: Dict[str, Dict[str, int]] = defaultdict(lambda: {"total": 0, "ok": 0, "calldata_pass": 0})
+    per_action: Dict[str, Dict[str, int]] = defaultdict(lambda: {"total": 0, "ok": 0, "calldata_pass": 0})
+    arg_present: Counter = Counter()
+    arg_required: Counter = Counter()
+
+    for i, record in enumerate(records):
+        r = score_annotated_record(i, record, addr_lookup, action_to_func, proto_addrs)
+        detailed.append(r)
+
+        per_protocol[r.protocol]["total"] += 1
+        per_action[r.action]["total"] += 1
+
+        if r.annotation_failed:
+            failed_count += 1
+            if r.failure_stage:
+                failure_stages[r.failure_stage] += 1
+            else:
+                failure_stages["unknown"] += 1
+            if verbose:
+                print(f"  [{i:3d}] FAIL  {r.action:25s}  stage={r.failure_stage}  {r.intent}")
+            continue
+
+        ok_count += 1
+        per_protocol[r.protocol]["ok"] += 1
+        per_action[r.action]["ok"] += 1
+
+        if r.calldata_status == "PASS":
+            calldata_pass += 1
+            per_protocol[r.protocol]["calldata_pass"] += 1
+            per_action[r.action]["calldata_pass"] += 1
+        elif r.calldata_status == "FAIL":
+            calldata_fail += 1
+            if verbose:
+                print(f"  [{i:3d}] FAIL  {r.action:25s}  {r.calldata_errors}  {r.intent}")
+        else:
+            calldata_skip += 1
+
+        for cn in check_names:
+            val = getattr(r, f"calldata_{cn}", None)
+            if val is True:
+                check_pass[cn] += 1
+            elif val is False:
+                check_fail[cn] += 1
+
+        if r.per_argument:
+            for k, present in r.per_argument.items():
+                arg_required[k] += 1
+                if present:
+                    arg_present[k] += 1
+
+    calldata_checks = {}
+    for cn in check_names:
+        calldata_checks[cn] = {"pass": check_pass[cn], "fail": check_fail[cn]}
+
+    argument_coverage = {}
+    for k in sorted(arg_required.keys()):
+        argument_coverage[k] = {"present": arg_present[k], "required": arg_required[k]}
+
+    return {
+        "total": total,
+        "annotated_ok": ok_count,
+        "annotated_failed": failed_count,
+        "failure_stages": dict(failure_stages),
+        "calldata_pass": calldata_pass,
+        "calldata_fail": calldata_fail,
+        "calldata_skip": calldata_skip,
+        "calldata_checks": calldata_checks,
+        "per_protocol": {k: dict(v) for k, v in sorted(per_protocol.items())},
+        "per_action": {k: dict(v) for k, v in sorted(per_action.items())},
+        "argument_coverage": argument_coverage,
+        "detailed_results": detailed,
+    }
+
+
+def print_scoring_report(metrics: Dict[str, Any]) -> None:
+    """Print formatted offline scoring report."""
+    total = metrics["total"]
+    ok = metrics["annotated_ok"]
+    failed = metrics["annotated_failed"]
+
+    print(f"\n{'='*60}")
+    print("            OFFLINE SCORING REPORT")
+    print(f"{'='*60}")
+
+    print(f"\nDataset:")
+    print(f"  Total records:       {total:4d}")
+    print(f"  Annotated OK:        {ok:4d}")
+    print(f"  Annotation failed:   {failed:4d}")
+
+    fs = metrics.get("failure_stages", {})
+    if fs:
+        print(f"\nFailure Stage Attribution ({failed} failures):")
+        for stage, count in sorted(fs.items(), key=lambda x: -x[1]):
+            print(f"  {stage:25s}  {count}")
+
+    cp = metrics["calldata_pass"]
+    cf = metrics["calldata_fail"]
+    cs = metrics["calldata_skip"]
+    validated = cp + cf
+    print(f"\nCalldata Structural Validation ({ok} annotated records):")
+    print(f"  PASS:    {cp:4d}" + (f"  ({cp/validated*100:.1f}%)" if validated else ""))
+    print(f"  FAIL:    {cf:4d}" + (f"  ({cf/validated*100:.1f}%)" if validated else ""))
+    if cs:
+        print(f"  SKIP:    {cs:4d}")
+
+    checks = metrics.get("calldata_checks", {})
+    if checks:
+        print(f"\n  Check breakdown:")
+        for cn, vals in checks.items():
+            p, f_ = vals["pass"], vals["fail"]
+            t = p + f_
+            pct = f"{p/t*100:.0f}%" if t else "n/a"
+            print(f"    {cn.upper():10s}  {p:4d}/{t:<4d}  ({pct})")
+
+    pp = metrics.get("per_protocol", {})
+    if pp:
+        print(f"\nPer-Protocol:")
+        for proto, stats in pp.items():
+            t = stats["total"]
+            o = stats["ok"]
+            cp_ = stats["calldata_pass"]
+            rate = f"{cp_/o*100:.1f}%" if o else "n/a"
+            print(f"  {proto:20s}  {t:3d} total, {o:3d} ok, {cp_:3d} calldata pass ({rate})")
+
+    pa = metrics.get("per_action", {})
+    if pa:
+        print(f"\nPer-Action:")
+        for action, stats in pa.items():
+            t = stats["total"]
+            o = stats["ok"]
+            cp_ = stats["calldata_pass"]
+            rate = f"{cp_/o*100:.1f}%" if o else "n/a"
+            print(f"  {action:25s}  {t:3d} total, {o:3d} ok, {cp_:3d} pass ({rate})")
+
+    ac = metrics.get("argument_coverage", {})
+    if ac:
+        print(f"\nArgument Coverage:")
+        for arg, vals in ac.items():
+            p, r = vals["present"], vals["required"]
+            pct = f"{p/r*100:.0f}%" if r else "n/a"
+            print(f"  {arg:25s}  {p:4d}/{r:<4d}  ({pct})")
+
+    print(f"\n{'='*60}")
+
+
+def save_scoring_results(metrics: Dict[str, Any], output_path: str) -> None:
+    """Save offline scoring results to JSON."""
+    metrics_copy = metrics.copy()
+    if "detailed_results" in metrics_copy:
+        metrics_copy["detailed_results"] = [asdict(r) for r in metrics_copy["detailed_results"]]
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(metrics_copy, f, indent=2, ensure_ascii=False, default=str)
+    print(f"Results saved to {output_path}")
+
+
 if __name__ == "__main__":
-    # Example usage
     print("Evaluation Metrics Module")
     print("=" * 60)
-    print("\nThis module provides:")
-    print("  - evaluate_single(): Evaluate one prediction")
-    print("  - evaluate_dataset(): Evaluate entire dataset")
-    print("  - print_evaluation_report(): Print formatted report")
-    print("  - save_results(): Save results to JSON")
-    print("\nUsage:")
+    print("\nLive evaluation:")
     print("  from evaluation.metrics import evaluate_dataset, print_evaluation_report")
-    print("  from engine.llm_translator import LLMTranslator")
-    print("  ")
-    print("  translator = LLMTranslator()")
-    print("  metrics = evaluate_dataset(translator, test_data)")
-    print("  print_evaluation_report(metrics)")
+    print("\nOffline scoring:")
+    print("  python evaluation/score_dataset.py --input data/datasets/annotated/weth_annotated.json")

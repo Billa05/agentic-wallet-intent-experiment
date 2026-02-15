@@ -352,19 +352,22 @@ def validate_record(
     """
     meta = record.get("metadata") or {}
     action = meta.get("action", "unknown")
+    # New format: raw_tx holds {to, value, data}; target_payload holds semantic payload.
+    # Backward compat: old format had {to, value, data} in target_payload directly.
+    tx = record.get("raw_tx") or record.get("target_payload") or {}
     payload = record.get("target_payload") or {}
     ctx = record.get("user_context") or {}
     intent = record.get("user_intent", "")[:80]
-    data_hex = payload.get("data", "0x")
-    to_addr = payload.get("to", "")
+    data_hex = tx.get("data", "0x")
+    to_addr = tx.get("to", "")
     from_addr = ctx.get("from_address", "")
 
     checks: List[str] = []
     errors: List[str] = []
 
-    if record.get("_annotation_failed") or not payload:
+    if record.get("_annotation_failed") or not tx or not tx.get("data"):
         return {"index": idx, "intent": intent, "action": action or "unknown",
-                "checks": ["SKIP: annotation failed"], "errors": [], "status": "skipped"}
+                "checks": ["SKIP: annotation failed or no raw_tx"], "errors": [], "status": "skipped"}
 
     # ── 1. DECODE ────────────────────────────────────────────────
     decoded = decode_calldata(data_hex)
@@ -462,7 +465,7 @@ def validate_record(
             matched = False
 
             # Check tx value field (native ETH / payable)
-            actual_value = int(payload.get("value", "0"))
+            actual_value = int(tx.get("value", "0"))
             if actual_value > 0 and abs(actual_value - expected_base) <= tolerance:
                 checks.append(f"AMOUNT: value={actual_value} matches {human_amount} {intent_token}")
                 matched = True
@@ -543,7 +546,7 @@ def main():
     # Show which selectors are in the dataset
     selectors = set()
     for rec in dataset:
-        tp = rec.get("target_payload") or {}
+        tp = rec.get("raw_tx") or rec.get("target_payload") or {}
         d = tp.get("data", "0x")
         if d and len(d) >= 10 and d != "0x":
             selectors.add(d[:10].lower())

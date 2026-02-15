@@ -7,6 +7,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0xAE1234567890abcdef1234567890AbCdEf012345",
+        "value": "1234567890123456789",
+        "human_readable_amount": "1.234567890123456789 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xAE1234567890abcdef1234567890AbCdEf012345",
       "value": "1234567890123456789",
       "data": "0x"
@@ -28,6 +39,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
+        "value": "1000000000000000000",
+        "human_readable_amount": "1 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
       "value": "1000000000000000000",
       "data": "0x"
@@ -48,6 +70,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+        "value": "100000000",
+        "human_readable_amount": "100 USDC"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       "value": "0",
@@ -72,6 +105,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
+        "value": "1000000000000000000",
+        "human_readable_amount": "1 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
       "value": "1000000000000000000",
       "data": "0x"
@@ -92,6 +136,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "value": "500000000000000000",
+        "human_readable_amount": "0.5 ETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
       "value": "500000000000000000",
@@ -114,6 +169,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
+        "value": "1000000000000000",
+        "human_readable_amount": "0.001 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
       "value": "1000000000000000",
       "data": "0x"
@@ -134,6 +200,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
+        "value": "10000000000000000000",
+        "human_readable_amount": "10 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
@@ -158,6 +235,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_native",
+      "target_contract": null,
+      "function_name": null,
+      "arguments": {
+        "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
+        "value": "10000000000000000",
+        "human_readable_amount": "0.01 ETH"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
       "value": "10000000000000000",
       "data": "0x"
@@ -178,6 +266,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x76Bf35FC282783F81A14c69ae8Ff3F9926321A56",
+        "value": "100000000000000000000",
+        "human_readable_amount": "100 DAI"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
       "value": "0",
@@ -202,6 +301,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0xdDacB8c90E2bA8Ee63c6aA6F3c6E5bB6fF1c8d8E",
+        "value": "1000000000000",
+        "human_readable_amount": "1000000 USDC"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       "value": "0",
       "data": "0xa9059cbb000000000000000000000000ddacb8c90e2ba8ee63c6aa6f3c6e5bb6ff1c8d8e000000000000000000000000000000000000000000000000000000e8d4a51000"
@@ -224,6 +334,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "value": "1234567890123456789",
+        "human_readable_amount": "1.234567890123456789 WETH"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       "value": "0",
@@ -248,6 +369,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_erc20",
+      "target_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "function_name": "transfer",
+      "arguments": {
+        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "value": "50000000",
+        "human_readable_amount": "50 USDT"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
       "value": "0",
       "data": "0xa9059cbb000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000002faf080"
@@ -271,6 +403,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
+        "tokenId": 1234,
+        "human_readable_amount": "Token #1234"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
       "value": "0",
       "data": "0x23b872dd00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000004e4f1ab2179da816dd9e1f5db3eb20cd85365d4b00000000000000000000000000000000000000000000000000000000000004d2"
@@ -293,6 +436,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+      "function_name": "transferPunk",
+      "arguments": {
+        "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "tokenId": 7804,
+        "human_readable_amount": "Token #7804"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
       "value": "0",
       "data": "0x8b72a2ec000000000000000000000000742d35cc6634c0532925a3b844bc454e4438f44e0000000000000000000000000000000000000000000000000000000000001e7c"
@@ -313,7 +467,18 @@
       "current_chain_id": 1,
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
-    "target_payload": null,
+    "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": null,
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": null,
+        "tokenId": 5678,
+        "human_readable_amount": "Token #5678"
+      }
+    },
+    "raw_tx": null,
     "metadata": {
       "action": "transfer_erc721",
       "token_address": null,
@@ -331,6 +496,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+        "tokenId": 2143,
+        "human_readable_amount": "Token #2143"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0x60E4d786628Fea6478F785A6d7e704777c86a7c6",
       "value": "0",
@@ -354,6 +530,17 @@
     },
     "target_payload": {
       "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+        "tokenId": 5678,
+        "human_readable_amount": "Token #5678"
+      }
+    },
+    "raw_tx": {
+      "chain_id": 1,
       "to": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
       "value": "0",
       "data": "0x23b872dd00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000008c4a948421b268494b39f5db87502d8a154b903d000000000000000000000000000000000000000000000000000000000000162e"
@@ -375,6 +562,17 @@
       "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
     },
     "target_payload": {
+      "chain_id": 1,
+      "action": "transfer_erc721",
+      "target_contract": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
+      "function_name": "transferFrom",
+      "arguments": {
+        "to": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+        "tokenId": 5678,
+        "human_readable_amount": "Token #5678"
+      }
+    },
+    "raw_tx": {
       "chain_id": 1,
       "to": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",
       "value": "0",

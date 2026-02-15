@@ -91,27 +91,22 @@ def annotate_with_hybrid(
         else:
             payload_dict = result.target_payload.model_dump(mode="json")
             raw_tx = payload_to_raw_tx(payload_dict, from_address)
-            if raw_tx is not None:
-                target_payload = {
+            if raw_tx is None:
+                # Encoding failed — keep semantic payload, raw_tx is null
+                raw_tx_out = None
+            else:
+                raw_tx_out = {
                     "chain_id": raw_tx.get("chain_id", chain_id),
                     "to": raw_tx["to"],
                     "value": raw_tx["value"],
                     "data": raw_tx["data"],
                 }
-            else:
-                # Unsupported for encoding (e.g. some DeFi) – minimal raw shape
-                args = payload_dict.get("arguments") or {}
-                target_payload = {
-                    "chain_id": chain_id,
-                    "to": payload_dict.get("target_contract") or args.get("to"),
-                    "value": args.get("value", "0"),
-                    "data": "0x",
-                } if payload_dict.get("target_contract") or args.get("to") else None
             metadata = build_metadata(payload_dict, token_resolver, ens_resolver)
             annotated.append({
                 "user_intent": intent,
                 "user_context": user_context,
-                "target_payload": target_payload,
+                "target_payload": payload_dict,
+                "raw_tx": raw_tx_out,
                 "metadata": metadata,
                 "_annotation_failed": False,
             })
