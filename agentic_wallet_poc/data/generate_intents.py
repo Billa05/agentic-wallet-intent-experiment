@@ -67,7 +67,7 @@ def _parse_llm_json_array(response_text: str) -> List[str]:
 def generate_intents_for_action(
     action_type: str,
     count: int = 6,
-    model_name: str = "gpt-4o",
+    model_name: str = "gpt-4.1",
     defi_style: str = "mixed",
 ) -> List[Dict[str, Any]]:
     """Generate intents for a single action type. Returns [{intent, transaction_type}]."""
@@ -126,7 +126,7 @@ def generate_intents_for_action(
 def generate_for_protocol(
     protocol: str,
     count_per_action: int = 6,
-    model_name: str = "gpt-4o",
+    model_name: str = "gpt-4.1",
     defi_style: str = "mixed",
 ) -> List[Dict[str, Any]]:
     """Generate intents for all actions in a protocol. Saves to intents dir."""

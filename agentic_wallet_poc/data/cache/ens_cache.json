@@ -15,7 +15,8 @@
     "charity.eth": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
     "payment.eth": "0x0eFb7993808Cc07a604205643688a63281d18Bf1",
     "dan.eth": "0x91396DaE03121588D50Af5EBF502c13927A8C3Fa",
-    "sally.eth": "0x74D5316663159Fa708A58fa571D7A7D3738E0672"
+    "sally.eth": "0x74D5316663159Fa708A58fa571D7A7D3738E0672",
+    "self.eth": "0x756BeB738607e60e5347150E1bE326060b5Fb816"
   },
   "reverse": {
     "0x08fa227fd019b562e0db08881c53ee5d3c7f10bf": "alice.eth",
@@ -33,6 +34,7 @@
     "0x26b51437ebfcd5c4e97722aac45bdc6c9b511c8d": "charity.eth",
     "0x0efb7993808cc07a604205643688a63281d18bf1": "payment.eth",
     "0x91396dae03121588d50af5ebf502c13927a8c3fa": "dan.eth",
-    "0x74d5316663159fa708a58fa571d7a7d3738e0672": "sally.eth"
+    "0x74d5316663159fa708a58fa571d7a7d3738e0672": "sally.eth",
+    "0x756beb738607e60e5347150e1be326060b5fb816": "self.eth"
   }
 }

@@ -1,0 +1,74 @@
+[
+  {
+    "intent": "Please forward 1.234567890123456789 ETH to 0xAE1234567890abcdef1234567890AbCdEf012345",
+    "transaction_type": "transfer_native"
+  },
+  {
+    "intent": "yo fam send 1 eth to homie.eth asap",
+    "transaction_type": "transfer_native"
+  },
+  {
+    "intent": "URGENT: transfer 100 USDC to bob.eth immediately",
+    "transaction_type": "transfer_native"
+  },
+  {
+    "intent": "tranfer 1 eth to vitalik.eth for the project",
+    "transaction_type": "transfer_native"
+  },
+  {
+    "intent": "can you send 0.5 ETH to alice.eth?",
+    "transaction_type": "transfer_native"
+  },
+  {
+    "intent": "tx 0.001 ETH -> dave.eth for testing",
+    "transaction_type": "transfer_native"
+  },
+  {
+    "intent": "Transfer 10 WETH to vitalik.eth for the project funding.",
+    "transaction_type": "transfer_erc20"
+  },
+  {
+    "intent": "yo fam send 0.01 eth to homie.eth asap",
+    "transaction_type": "transfer_erc20"
+  },
+  {
+    "intent": "pls send around 100 dai to friend.eth",
+    "transaction_type": "transfer_erc20"
+  },
+  {
+    "intent": "URGENT: transfer 1000000 USDC to 0xdDacB8c90E2bA8Ee63c6aA6F3c6E5bB6fF1c8d8E immediately",
+    "transaction_type": "transfer_erc20"
+  },
+  {
+    "intent": "can you send 1.234567890123456789 WETH to alice.eth?",
+    "transaction_type": "transfer_erc20"
+  },
+  {
+    "intent": "Execute ERC-20 transfer of 50 USDT to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "transaction_type": "transfer_erc20"
+  },
+  {
+    "intent": "yo fam send my bored ape #1234 to homie.eth asap",
+    "transaction_type": "transfer_erc721"
+  },
+  {
+    "intent": "Please transfer the CryptoPunk token id 7804 to 0x742d35Cc6634C0532925a3b844Bc454e4438f44e.",
+    "transaction_type": "transfer_erc721"
+  },
+  {
+    "intent": "tx nft #5678 -> 0xABC1234567890abcdef1234567890abcdef1234",
+    "transaction_type": "transfer_erc721"
+  },
+  {
+    "intent": "can you send my Mutant Ape token number 2143 to alice.eth?",
+    "transaction_type": "transfer_erc721"
+  },
+  {
+    "intent": "URGENT: dispatch Bored Ape Yacht Club nft #5678 to bob.eth immediately",
+    "transaction_type": "transfer_erc721"
+  },
+  {
+    "intent": "pls send my azuki 5678 to bob",
+    "transaction_type": "transfer_erc721"
+  }
+]

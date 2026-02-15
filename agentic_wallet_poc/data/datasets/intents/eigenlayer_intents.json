@@ -1,0 +1,26 @@
+[
+  {
+    "intent": "Can you please restake 5 stETH on EigenLayer for me?",
+    "transaction_type": "eigenlayer_deposit"
+  },
+  {
+    "intent": "I'd like to deposit 10 rETH into the EigenLayer strategy.",
+    "transaction_type": "eigenlayer_deposit"
+  },
+  {
+    "intent": "Please restake 20 cbETH on EigenLayer to maximize my yield.",
+    "transaction_type": "eigenlayer_deposit"
+  },
+  {
+    "intent": "Restake 50 osETH on EigenLayer for some extra yield.",
+    "transaction_type": "eigenlayer_deposit"
+  },
+  {
+    "intent": "I want to deposit 1 swETH into the EigenLayer strategy.",
+    "transaction_type": "eigenlayer_deposit"
+  },
+  {
+    "intent": "Could you deposit 5 sfrxETH into EigenLayer?",
+    "transaction_type": "eigenlayer_deposit"
+  }
+]

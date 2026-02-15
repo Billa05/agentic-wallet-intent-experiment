@@ -1,0 +1,434 @@
+[
+  {
+    "user_intent": "Please supply 1000 USDC to Aave to earn yield.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000003b9aca00000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "1000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you deposit 250 DAI into Aave for lending APY?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba0370000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000000d8d726b7177a8000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "250 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to put 500 USDT in the Aave pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000001dcd650000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "500 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could you stake 2500 USDC in Aave?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000009502f900000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "2500 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Supply 200 USDT to Aave v3 mainnet.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000000bebc20000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "200 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 5000 WETH into the Aave USDC market.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x617ba037000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000010f0cf064dd59200000000000000000000000000000756beb738607e60e5347150e1be326060b5fb8160000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "aave_supply",
+      "human_readable_amount": "5000 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Withdraw 500 USDT from Aave to my wallet please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000001dcd6500000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "500 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you pull 300 DAI out of Aave for an investment?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001043561a882930000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "300 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw all my WETH from Aave.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "max WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please pull out 750 USDC from Aave for a payment.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000002cb41780000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "750 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Withdraw my full stETH balance from Aave.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec000000000000000000000000ae7ab96520de3a18e5e111b5eaab095312d7fe84ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "max STETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you withdraw 1000 DAI from Aave to my account?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x69328dec0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_withdraw",
+      "human_readable_amount": "1000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Borrow 5000 USDC from Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48000000000000000000000000000000000000000000000000000000012a05f2000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "5000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to borrow 1000 DAI from Aave for expenses",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "1000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please borrow 500 WETH from Aave at a variable rate",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000001b1ae4d6e2ef5000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "500 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you help me borrow 2000 USDT from Aave with a stable rate?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000007735940000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "2000 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Borrow 10000 ETH from Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000021e19e0c9bab24000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "10000 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I need to borrow 500 DAI from Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0xa415bcad0000000000000000000000006b175474e89094c44da98b954eedeac495271d0f00000000000000000000000000000000000000000000001b1ae4d6e2ef5000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_borrow",
+      "human_readable_amount": "500 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay my full USDC debt on Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "max USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please repay 750 DAI on Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0f000000000000000000000000000000000000000000000028a857425466f80000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "750 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you repay 500 USDT on Aave for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000dac17f958d2ee523a2206206994597c13d831ec7000000000000000000000000000000000000000000000000000000001dcd65000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "500 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay 1200 USDC on Aave to improve my health factor",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb480000000000000000000000000000000000000000000000000000000047868c000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "1200 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to repay max DAI on Aave",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade810000000000000000000000006b175474e89094c44da98b954eedeac495271d0fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff000000000000000000000000000000000000000000000000000000000000000200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "max DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay 1500 WETH on my Aave loan",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "value": "0",
+      "data": "0x573ade81000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc200000000000000000000000000000000000000000000005150ae84a8cdf000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000756beb738607e60e5347150e1be326060b5fb816"
+    },
+    "metadata": {
+      "action": "aave_repay",
+      "human_readable_amount": "1500 WETH"
+    },
+    "_annotation_failed": false
+  }
+]

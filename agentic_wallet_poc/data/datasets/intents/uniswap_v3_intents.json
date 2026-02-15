@@ -1,0 +1,26 @@
+[
+  {
+    "intent": "Please swap 0.5 WETH for USDC on Uniswap.",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "I'd like to exchange 1000 USDC to DAI via Uniswap.",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "Trade 2 WETH for USDT on Uniswap V3, ensuring at least 4000 USDT.",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "Can you swap 500 USDC to DAI with 0.3% slippage?",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "Swap 1 WETH to DAI on Uniswap, and accept a minimum of 1500 DAI.",
+    "transaction_type": "uniswap_swap"
+  },
+  {
+    "intent": "I want to exchange 5000 USDT for WETH on Uniswap.",
+    "transaction_type": "uniswap_swap"
+  }
+]

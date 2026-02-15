@@ -1,0 +1,98 @@
+[
+  {
+    "intent": "Please supply 1000 USDC to Aave to earn yield.",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "Can you deposit 250 DAI into Aave for lending APY?",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "I want to put 500 USDT in the Aave pool.",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "Could you stake 2500 USDC in Aave?",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "Supply 200 USDT to Aave v3 mainnet.",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "Deposit 5000 WETH into the Aave USDC market.",
+    "transaction_type": "aave_supply"
+  },
+  {
+    "intent": "Withdraw 500 USDT from Aave to my wallet please.",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Can you pull 300 DAI out of Aave for an investment?",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "I want to withdraw all my WETH from Aave.",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Please pull out 750 USDC from Aave for a payment.",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Withdraw my full stETH balance from Aave.",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Can you withdraw 1000 DAI from Aave to my account?",
+    "transaction_type": "aave_withdraw"
+  },
+  {
+    "intent": "Borrow 5000 USDC from Aave",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "I want to borrow 1000 DAI from Aave for expenses",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "Please borrow 500 WETH from Aave at a variable rate",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "Can you help me borrow 2000 USDT from Aave with a stable rate?",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "Borrow 10000 ETH from Aave",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "I need to borrow 500 DAI from Aave",
+    "transaction_type": "aave_borrow"
+  },
+  {
+    "intent": "Repay my full USDC debt on Aave",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "Please repay 750 DAI on Aave",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "Can you repay 500 USDT on Aave for me?",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "Repay 1200 USDC on Aave to improve my health factor",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "I want to repay max DAI on Aave",
+    "transaction_type": "aave_repay"
+  },
+  {
+    "intent": "Repay 1500 WETH on my Aave loan",
+    "transaction_type": "aave_repay"
+  }
+]

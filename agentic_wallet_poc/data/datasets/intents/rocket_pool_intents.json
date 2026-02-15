@@ -1,0 +1,50 @@
+[
+  {
+    "intent": "Please stake 2 ETH on Rocket Pool.",
+    "transaction_type": "rocketpool_stake"
+  },
+  {
+    "intent": "I want to deposit 0.5 ETH to Rocket Pool for rETH.",
+    "transaction_type": "rocketpool_stake"
+  },
+  {
+    "intent": "Can you stake 5 ETH on Rocket Pool for me?",
+    "transaction_type": "rocketpool_stake"
+  },
+  {
+    "intent": "Deposit 10 ETH in Rocket Pool to get rETH yield.",
+    "transaction_type": "rocketpool_stake"
+  },
+  {
+    "intent": "I'd like to liquid stake 1 ETH with RPL.",
+    "transaction_type": "rocketpool_stake"
+  },
+  {
+    "intent": "Get rETH by staking 20 ETH on Rocket Pool.",
+    "transaction_type": "rocketpool_stake"
+  },
+  {
+    "intent": "Please unstake 2 rETH from Rocket Pool.",
+    "transaction_type": "rocketpool_unstake"
+  },
+  {
+    "intent": "Can you burn 0.5 rETH for ETH?",
+    "transaction_type": "rocketpool_unstake"
+  },
+  {
+    "intent": "I want to withdraw 5 rETH from Rocket Pool.",
+    "transaction_type": "rocketpool_unstake"
+  },
+  {
+    "intent": "Redeem 1 rETH to get ETH back from Rocket Pool.",
+    "transaction_type": "rocketpool_unstake"
+  },
+  {
+    "intent": "Unstake my 10 rETH.",
+    "transaction_type": "rocketpool_unstake"
+  },
+  {
+    "intent": "Burn 5 rETH to get ETH back from Rocket Pool.",
+    "transaction_type": "rocketpool_unstake"
+  }
+]

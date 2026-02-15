@@ -1,0 +1,50 @@
+[
+  {
+    "intent": "Can you stake 2 ETH on Lido for me?",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Please put 10 ETH into Lido for stETH yield.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "I want to deposit 3 ETH to Lido.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Stake 5 ETH on Lido to earn staking rewards.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Wrap my 0.5 ETH with Lido.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Stake 20 ETH in Lido pool.",
+    "transaction_type": "lido_stake"
+  },
+  {
+    "intent": "Please unstake 5 stETH from Lido.",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "Can you withdraw 15 stETH from Lido for me?",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "I want to redeem 10 stETH for ETH via Lido.",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "Request withdrawal of 25 stETH from Lido.",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "Withdraw 50 stETH from Lido to my wallet.",
+    "transaction_type": "lido_unstake"
+  },
+  {
+    "intent": "Unstake 1 stETH from Lido, please.",
+    "transaction_type": "lido_unstake"
+  }
+]

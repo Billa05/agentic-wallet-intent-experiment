@@ -1,0 +1,98 @@
+[
+  {
+    "intent": "Supply 5000 USDC to Compound to earn interest",
+    "transaction_type": "compound_supply"
+  },
+  {
+    "intent": "Can you deposit 1000 USDC into Compound V3?",
+    "transaction_type": "compound_supply"
+  },
+  {
+    "intent": "I want to lend 2500 USDC on Compound V3 for yield",
+    "transaction_type": "compound_supply"
+  },
+  {
+    "intent": "Please supply 500 USDC to the Compound USDC market",
+    "transaction_type": "compound_supply"
+  },
+  {
+    "intent": "Deposit 10000 USDC in Compound V3 Comet",
+    "transaction_type": "compound_supply"
+  },
+  {
+    "intent": "Supply 2000 USDC to Compound",
+    "transaction_type": "compound_supply"
+  },
+  {
+    "intent": "Withdraw 1000 DAI from Compound V3, please.",
+    "transaction_type": "compound_withdraw"
+  },
+  {
+    "intent": "Can you pull out 5000 USDT from Compound?",
+    "transaction_type": "compound_withdraw"
+  },
+  {
+    "intent": "I want to withdraw all my ETH from Compound V3.",
+    "transaction_type": "compound_withdraw"
+  },
+  {
+    "intent": "Withdraw 2000 USDC from Compound for expenses.",
+    "transaction_type": "compound_withdraw"
+  },
+  {
+    "intent": "Pull out everything from Compound V3.",
+    "transaction_type": "compound_withdraw"
+  },
+  {
+    "intent": "Please withdraw 500 WETH from Compound.",
+    "transaction_type": "compound_withdraw"
+  },
+  {
+    "intent": "I want to borrow 500 USDC from Compound V3.",
+    "transaction_type": "compound_borrow"
+  },
+  {
+    "intent": "Can you help me borrow 2000 DAI on Compound Comet?",
+    "transaction_type": "compound_borrow"
+  },
+  {
+    "intent": "Please borrow 5000 USDT from Compound against my collateral.",
+    "transaction_type": "compound_borrow"
+  },
+  {
+    "intent": "Borrow 1000 WETH from Compound V3 for liquidity purposes.",
+    "transaction_type": "compound_borrow"
+  },
+  {
+    "intent": "I'd like to borrow 3000 ETH through Compound.",
+    "transaction_type": "compound_borrow"
+  },
+  {
+    "intent": "Help me borrow 10000 stETH from Compound Comet.",
+    "transaction_type": "compound_borrow"
+  },
+  {
+    "intent": "Repay 1500 USDT on Compound",
+    "transaction_type": "compound_repay"
+  },
+  {
+    "intent": "Please repay my full Compound loan",
+    "transaction_type": "compound_repay"
+  },
+  {
+    "intent": "I'd like to pay off all my Compound debt",
+    "transaction_type": "compound_repay"
+  },
+  {
+    "intent": "Can you repay 500 DAI on Compound V3?",
+    "transaction_type": "compound_repay"
+  },
+  {
+    "intent": "Repay my entire loan in WETH on Compound",
+    "transaction_type": "compound_repay"
+  },
+  {
+    "intent": "I want to repay 1000 stETH on Compound",
+    "transaction_type": "compound_repay"
+  }
+]

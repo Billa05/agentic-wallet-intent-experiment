@@ -1,0 +1,50 @@
+[
+  {
+    "intent": "Please wrap 2 ETH for me.",
+    "transaction_type": "weth_wrap"
+  },
+  {
+    "intent": "Can you convert 0.5 ETH to WETH?",
+    "transaction_type": "weth_wrap"
+  },
+  {
+    "intent": "I'd like to wrap 10 ETH so I can use it in DeFi.",
+    "transaction_type": "weth_wrap"
+  },
+  {
+    "intent": "Wrap my 1 ETH into WETH.",
+    "transaction_type": "weth_wrap"
+  },
+  {
+    "intent": "Deposit 5 ETH for WETH, please.",
+    "transaction_type": "weth_wrap"
+  },
+  {
+    "intent": "Convert my ETH to WETH for a swap, specifically 20 ETH.",
+    "transaction_type": "weth_wrap"
+  },
+  {
+    "intent": "Please unwrap 2 WETH back to ETH.",
+    "transaction_type": "weth_unwrap"
+  },
+  {
+    "intent": "Can you convert 0.5 WETH to ETH for me?",
+    "transaction_type": "weth_unwrap"
+  },
+  {
+    "intent": "I want to withdraw 5 WETH for ETH.",
+    "transaction_type": "weth_unwrap"
+  },
+  {
+    "intent": "Unwrap my 1 WETH back to native ETH.",
+    "transaction_type": "weth_unwrap"
+  },
+  {
+    "intent": "Convert 3 WETH back to ETH for gas.",
+    "transaction_type": "weth_unwrap"
+  },
+  {
+    "intent": "Redeem 10 WETH and get ETH.",
+    "transaction_type": "weth_unwrap"
+  }
+]

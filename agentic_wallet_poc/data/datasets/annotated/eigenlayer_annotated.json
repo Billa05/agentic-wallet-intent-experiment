@@ -1,0 +1,110 @@
+[
+  {
+    "user_intent": "Can you please restake 5 stETH on EigenLayer for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "value": "0",
+      "data": "0xe7a050aa00000000000000000000000093c4b944d05dfe6df7645a86cd2206016c51564d00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "eigenlayer_deposit",
+      "human_readable_amount": "5 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to deposit 10 rETH into the EigenLayer strategy.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "value": "0",
+      "data": "0xe7a050aa0000000000000000000000001bee69b7dfffa4e2d53c2a2df135c388ad25dcd200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000008ac7230489e80000"
+    },
+    "metadata": {
+      "action": "eigenlayer_deposit",
+      "human_readable_amount": "10 rETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please restake 20 cbETH on EigenLayer to maximize my yield.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "value": "0",
+      "data": "0xe7a050aa00000000000000000000000054945180db7943c0ed0fee7edab2bd24620256bc00000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000001158e460913d00000"
+    },
+    "metadata": {
+      "action": "eigenlayer_deposit",
+      "human_readable_amount": "20 cbETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Restake 50 osETH on EigenLayer for some extra yield.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "value": "0",
+      "data": "0xe7a050aa00000000000000000000000057ba429517c3473b6d34ca9acd56c0e735b94c0200000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000002b5e3af16b1880000"
+    },
+    "metadata": {
+      "action": "eigenlayer_deposit",
+      "human_readable_amount": "50 OSETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to deposit 1 swETH into the EigenLayer strategy.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "value": "0",
+      "data": "0xe7a050aa0000000000000000000000000fe4f44bee93503346a3ac9ee5a26b130a5796d600000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000de0b6b3a7640000"
+    },
+    "metadata": {
+      "action": "eigenlayer_deposit",
+      "human_readable_amount": "1 SWETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could you deposit 5 sfrxETH into EigenLayer?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x858646372CC42E1A627fcE94aa7A7033e7CF075A",
+      "value": "0",
+      "data": "0xe7a050aa0000000000000000000000008ca7a5d6f3acd3a7a8bc468a8cd0fb14b6bd28b600000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "eigenlayer_deposit",
+      "human_readable_amount": "5 SFRXETH"
+    },
+    "_annotation_failed": false
+  }
+]

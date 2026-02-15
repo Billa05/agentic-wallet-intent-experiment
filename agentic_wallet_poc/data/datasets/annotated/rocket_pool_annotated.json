@@ -1,0 +1,218 @@
+[
+  {
+    "user_intent": "Please stake 2 ETH on Rocket Pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+      "value": "2000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "rocketpool_stake",
+      "human_readable_amount": "2 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to deposit 0.5 ETH to Rocket Pool for rETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+      "value": "500000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "rocketpool_stake",
+      "human_readable_amount": "0.5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you stake 5 ETH on Rocket Pool for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+      "value": "5000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "rocketpool_stake",
+      "human_readable_amount": "5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 10 ETH in Rocket Pool to get rETH yield.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+      "value": "10000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "rocketpool_stake",
+      "human_readable_amount": "10 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to liquid stake 1 ETH with RPL.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+      "value": "1000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "rocketpool_stake",
+      "human_readable_amount": "1 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Get rETH by staking 20 ETH on Rocket Pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xDD9683b1bF4bB6d8fDF0A2B4A05aaadCA2A8a921",
+      "value": "20000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "rocketpool_stake",
+      "human_readable_amount": "20 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please unstake 2 rETH from Rocket Pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": "0x42966c680000000000000000000000000000000000000000000000001bc16d674ec80000"
+    },
+    "metadata": {
+      "action": "rocketpool_unstake",
+      "human_readable_amount": "2 rETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you burn 0.5 rETH for ETH?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": "0x42966c6800000000000000000000000000000000000000000000000006f05b59d3b20000"
+    },
+    "metadata": {
+      "action": "rocketpool_unstake",
+      "human_readable_amount": "0.5 rETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw 5 rETH from Rocket Pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": "0x42966c680000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "rocketpool_unstake",
+      "human_readable_amount": "5 rETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Redeem 1 rETH to get ETH back from Rocket Pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": "0x42966c680000000000000000000000000000000000000000000000000de0b6b3a7640000"
+    },
+    "metadata": {
+      "action": "rocketpool_unstake",
+      "human_readable_amount": "1 rETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Unstake my 10 rETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": "0x42966c680000000000000000000000000000000000000000000000008ac7230489e80000"
+    },
+    "metadata": {
+      "action": "rocketpool_unstake",
+      "human_readable_amount": "10 rETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Burn 5 rETH to get ETH back from Rocket Pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+      "value": "0",
+      "data": "0x42966c680000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "rocketpool_unstake",
+      "human_readable_amount": "5 rETH"
+    },
+    "_annotation_failed": false
+  }
+]

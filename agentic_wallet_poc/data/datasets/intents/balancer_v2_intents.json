@@ -1,0 +1,26 @@
+[
+  {
+    "intent": "I'd like to swap 1 WETH for USDC on Balancer.",
+    "transaction_type": "balancer_swap"
+  },
+  {
+    "intent": "Please exchange 500 DAI to USDC via Balancer V2.",
+    "transaction_type": "balancer_swap"
+  },
+  {
+    "intent": "Can you trade 2 WETH for DAI on Balancer?",
+    "transaction_type": "balancer_swap"
+  },
+  {
+    "intent": "Swap 1000 USDC for WETH on Balancer, please.",
+    "transaction_type": "balancer_swap"
+  },
+  {
+    "intent": "I want to exchange 0.5 BAL for WETH via Balancer V2.",
+    "transaction_type": "balancer_swap"
+  },
+  {
+    "intent": "Trade 5000 USDC for DAI on Balancer.",
+    "transaction_type": "balancer_swap"
+  }
+]

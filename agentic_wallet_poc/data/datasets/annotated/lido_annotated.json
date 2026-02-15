@@ -1,0 +1,215 @@
+[
+  {
+    "user_intent": "Can you stake 2 ETH on Lido for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "2000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "2 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please put 10 ETH into Lido for stETH yield.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "10000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "10 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to deposit 3 ETH to Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "3000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "3 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Stake 5 ETH on Lido to earn staking rewards.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "5000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Wrap my 0.5 ETH with Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Stake 20 ETH in Lido pool.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "value": "20000000000000000000",
+      "data": "0xa1903eab0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "metadata": {
+      "action": "lido_stake",
+      "human_readable_amount": "20 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please unstake 5 stETH from Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "5 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you withdraw 15 stETH from Lido for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000d02ab486cedc0000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "15 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to redeem 10 stETH for ETH via Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000008ac7230489e80000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "10 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Request withdrawal of 25 stETH from Lido.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000015af1d78b58c40000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "25 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Withdraw 50 stETH from Lido to my wallet.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000002b5e3af16b1880000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "50 stETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Unstake 1 stETH from Lido, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "value": "0",
+      "data": "0xd6681042000000000000000000000000000000000000000000000000000000000000004000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000de0b6b3a7640000"
+    },
+    "metadata": {
+      "action": "lido_unstake",
+      "human_readable_amount": "1 stETH"
+    },
+    "_annotation_failed": false
+  }
+]

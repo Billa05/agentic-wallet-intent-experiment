@@ -1,0 +1,218 @@
+[
+  {
+    "user_intent": "Please wrap 2 ETH for me.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "2000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "weth_wrap",
+      "human_readable_amount": "2 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you convert 0.5 ETH to WETH?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "500000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "weth_wrap",
+      "human_readable_amount": "0.5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to wrap 10 ETH so I can use it in DeFi.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "10000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "weth_wrap",
+      "human_readable_amount": "10 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Wrap my 1 ETH into WETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "1000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "weth_wrap",
+      "human_readable_amount": "1 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 5 ETH for WETH, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "5000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "weth_wrap",
+      "human_readable_amount": "5 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Convert my ETH to WETH for a swap, specifically 20 ETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "20000000000000000000",
+      "data": "0xd0e30db0"
+    },
+    "metadata": {
+      "action": "weth_wrap",
+      "human_readable_amount": "20 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please unwrap 2 WETH back to ETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000001bc16d674ec80000"
+    },
+    "metadata": {
+      "action": "weth_unwrap",
+      "human_readable_amount": "2 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you convert 0.5 WETH to ETH for me?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0x2e1a7d4d00000000000000000000000000000000000000000000000006f05b59d3b20000"
+    },
+    "metadata": {
+      "action": "weth_unwrap",
+      "human_readable_amount": "0.5 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw 5 WETH for ETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000004563918244f40000"
+    },
+    "metadata": {
+      "action": "weth_unwrap",
+      "human_readable_amount": "5 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Unwrap my 1 WETH back to native ETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000000de0b6b3a7640000"
+    },
+    "metadata": {
+      "action": "weth_unwrap",
+      "human_readable_amount": "1 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Convert 3 WETH back to ETH for gas.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0x2e1a7d4d00000000000000000000000000000000000000000000000029a2241af62c0000"
+    },
+    "metadata": {
+      "action": "weth_unwrap",
+      "human_readable_amount": "3 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Redeem 10 WETH and get ETH.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+      "value": "0",
+      "data": "0x2e1a7d4d0000000000000000000000000000000000000000000000008ac7230489e80000"
+    },
+    "metadata": {
+      "action": "weth_unwrap",
+      "human_readable_amount": "10 WETH"
+    },
+    "_annotation_failed": false
+  }
+]

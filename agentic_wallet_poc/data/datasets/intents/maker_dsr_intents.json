@@ -1,0 +1,50 @@
+[
+  {
+    "intent": "Deposit 1000 DAI into Maker savings account",
+    "transaction_type": "maker_deposit"
+  },
+  {
+    "intent": "Can you please put 5000 DAI into DSR for sDAI?",
+    "transaction_type": "maker_deposit"
+  },
+  {
+    "intent": "I want to deposit 10000 DAI in MakerDAO to earn savings rate",
+    "transaction_type": "maker_deposit"
+  },
+  {
+    "intent": "Please convert 50000 DAI to sDAI in Maker",
+    "transaction_type": "maker_deposit"
+  },
+  {
+    "intent": "Deposit DAI in Maker for sDAI yield with 10000 DAI",
+    "transaction_type": "maker_deposit"
+  },
+  {
+    "intent": "Save 5000 DAI with MakerDAO DSR",
+    "transaction_type": "maker_deposit"
+  },
+  {
+    "intent": "Can you redeem 1000 sDAI for DAI, please?",
+    "transaction_type": "maker_redeem"
+  },
+  {
+    "intent": "I want to convert 5000 sDAI to DAI for a payment.",
+    "transaction_type": "maker_redeem"
+  },
+  {
+    "intent": "Please withdraw 10000 sDAI from Maker savings.",
+    "transaction_type": "maker_redeem"
+  },
+  {
+    "intent": "Redeem 5000 sDAI to get my DAI back.",
+    "transaction_type": "maker_redeem"
+  },
+  {
+    "intent": "I'd like to withdraw my 1000 sDAI from the DSR and get DAI.",
+    "transaction_type": "maker_redeem"
+  },
+  {
+    "intent": "Could you help me convert 10000 sDAI to DAI?",
+    "transaction_type": "maker_redeem"
+  }
+]

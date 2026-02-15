@@ -170,14 +170,3 @@ if __name__ == "__main__":
             delay_seconds=args.delay,
             from_address=from_addr,
         )
-    else:
-        # Backward-compatible: use --input/--output
-        inp = args.input or "data/datasets/intents/raw_intents_defi.json"
-        out = args.output or "data/datasets/annotated/annotated_dataset_candidate.json"
-        annotate_with_hybrid(
-            raw_intents_path=inp,
-            output_path=out,
-            chain_id=args.chain_id,
-            delay_seconds=args.delay,
-            from_address=from_addr,
-        )

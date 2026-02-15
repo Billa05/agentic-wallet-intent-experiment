@@ -1,0 +1,419 @@
+[
+  {
+    "user_intent": "Supply 5000 USDC to Compound to earn interest",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000012a05f200"
+    },
+    "metadata": {
+      "action": "compound_supply",
+      "human_readable_amount": "5000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you deposit 1000 USDC into Compound V3?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000003b9aca00"
+    },
+    "metadata": {
+      "action": "compound_supply",
+      "human_readable_amount": "1000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to lend 2500 USDC on Compound V3 for yield",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000009502f900"
+    },
+    "metadata": {
+      "action": "compound_supply",
+      "human_readable_amount": "2500 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please supply 500 USDC to the Compound USDC market",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000001dcd6500"
+    },
+    "metadata": {
+      "action": "compound_supply",
+      "human_readable_amount": "500 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit 10000 USDC in Compound V3 Comet",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000000000000002540be400"
+    },
+    "metadata": {
+      "action": "compound_supply",
+      "human_readable_amount": "10000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Supply 2000 USDC to Compound",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000077359400"
+    },
+    "metadata": {
+      "action": "compound_supply",
+      "human_readable_amount": "2000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Withdraw 1000 DAI from Compound V3, please.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000003635c9adc5dea00000"
+    },
+    "metadata": {
+      "action": "compound_withdraw",
+      "human_readable_amount": "1000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you pull out 5000 USDT from Compound?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000012a05f200"
+    },
+    "metadata": {
+      "action": "compound_withdraw",
+      "human_readable_amount": "5000 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to withdraw all my ETH from Compound V3.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Withdraw 2000 USDC from Compound for expenses.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000077359400"
+    },
+    "metadata": {
+      "action": "compound_withdraw",
+      "human_readable_amount": "2000 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Pull out everything from Compound V3.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Please withdraw 500 WETH from Compound.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000001b1ae4d6e2ef500000"
+    },
+    "metadata": {
+      "action": "compound_withdraw",
+      "human_readable_amount": "500 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to borrow 500 USDC from Compound V3.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000001dcd6500"
+    },
+    "metadata": {
+      "action": "compound_borrow",
+      "human_readable_amount": "500 USDC"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you help me borrow 2000 DAI on Compound Comet?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000006c6b935b8bbd400000"
+    },
+    "metadata": {
+      "action": "compound_borrow",
+      "human_readable_amount": "2000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please borrow 5000 USDT from Compound against my collateral.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8000000000000000000000000000000000000000000000000000000012a05f200"
+    },
+    "metadata": {
+      "action": "compound_borrow",
+      "human_readable_amount": "5000 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Borrow 1000 WETH from Compound V3 for liquidity purposes.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000003635c9adc5dea00000"
+    },
+    "metadata": {
+      "action": "compound_borrow",
+      "human_readable_amount": "1000 WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to borrow 3000 ETH through Compound.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf3fef3a300000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000a2a15d09519be00000"
+    },
+    "metadata": {
+      "action": "compound_borrow",
+      "human_readable_amount": "3000 ETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Help me borrow 10000 stETH from Compound Comet.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "Repay 1500 USDT on Compound",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c80000000000000000000000000000000000000000000000000000000059682f00"
+    },
+    "metadata": {
+      "action": "compound_repay",
+      "human_readable_amount": "1500 USDT"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please repay my full Compound loan",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  },
+  {
+    "user_intent": "I'd like to pay off all my Compound debt",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    "metadata": {
+      "action": "compound_repay",
+      "human_readable_amount": "max max"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you repay 500 DAI on Compound V3?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000000000000000000000000001b1ae4d6e2ef500000"
+    },
+    "metadata": {
+      "action": "compound_repay",
+      "human_readable_amount": "500 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Repay my entire loan in WETH on Compound",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+      "value": "0",
+      "data": "0xf2b9fdb800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    "metadata": {
+      "action": "compound_repay",
+      "human_readable_amount": "max WETH"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to repay 1000 stETH on Compound",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": null,
+    "metadata": {
+      "action": null
+    },
+    "_annotation_failed": true,
+    "_failure_reason": "LLM response was null or empty.",
+    "_failure_stage": "llm_empty_or_null",
+    "raw_llm_response": "null"
+  }
+]

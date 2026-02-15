@@ -1,0 +1,50 @@
+[
+  {
+    "intent": "Add 1000 USDC to Curve 3pool",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Please add 500 DAI into the Curve 3pool",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "I want to add 2000 USDC to Curve 3pool for LP fees",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Can you deposit 500 USDT into Curve 3pool?",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Add liquidity to the Curve tri-pool: 500 DAI",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Add 1500 USDC to Curve 3pool",
+    "transaction_type": "curve_add_liquidity"
+  },
+  {
+    "intent": "Please remove 500 USDC worth of liquidity from Curve 3pool.",
+    "transaction_type": "curve_remove_liquidity"
+  },
+  {
+    "intent": "I'd like to pull my liquidity from Curve 3pool: 1000 USDC.",
+    "transaction_type": "curve_remove_liquidity"
+  },
+  {
+    "intent": "Can you remove 200 DAI from the Curve pool for me?",
+    "transaction_type": "curve_remove_liquidity"
+  },
+  {
+    "intent": "I want to withdraw 300 USDT from Curve 3pool.",
+    "transaction_type": "curve_remove_liquidity"
+  },
+  {
+    "intent": "Remove 2000 USDC liquidity from the Curve pool.",
+    "transaction_type": "curve_remove_liquidity"
+  },
+  {
+    "intent": "Pull out 500 USDT from the Curve pool.",
+    "transaction_type": "curve_remove_liquidity"
+  }
+]

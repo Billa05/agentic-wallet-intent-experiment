@@ -1,0 +1,218 @@
+[
+  {
+    "user_intent": "Deposit 1000 DAI into Maker savings account",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0x6e553f6500000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_deposit",
+      "human_readable_amount": "1000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you please put 5000 DAI into DSR for sDAI?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0x6e553f6500000000000000000000000000000000000000000000010f0cf064dd5920000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_deposit",
+      "human_readable_amount": "5000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to deposit 10000 DAI in MakerDAO to earn savings rate",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0x6e553f6500000000000000000000000000000000000000000000021e19e0c9bab240000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_deposit",
+      "human_readable_amount": "10000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please convert 50000 DAI to sDAI in Maker",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0x6e553f65000000000000000000000000000000000000000000000a968163f0a57b40000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_deposit",
+      "human_readable_amount": "50000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Deposit DAI in Maker for sDAI yield with 10000 DAI",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0x6e553f6500000000000000000000000000000000000000000000021e19e0c9bab240000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_deposit",
+      "human_readable_amount": "10000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Save 5000 DAI with MakerDAO DSR",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0x6e553f6500000000000000000000000000000000000000000000010f0cf064dd5920000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_deposit",
+      "human_readable_amount": "5000 DAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Can you redeem 1000 sDAI for DAI, please?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0xba08765200000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_redeem",
+      "human_readable_amount": "1000 sDAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I want to convert 5000 sDAI to DAI for a payment.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0xba08765200000000000000000000000000000000000000000000010f0cf064dd5920000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_redeem",
+      "human_readable_amount": "5000 sDAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Please withdraw 10000 sDAI from Maker savings.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0xba08765200000000000000000000000000000000000000000000021e19e0c9bab240000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_redeem",
+      "human_readable_amount": "10000 sDAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Redeem 5000 sDAI to get my DAI back.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0xba08765200000000000000000000000000000000000000000000010f0cf064dd5920000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_redeem",
+      "human_readable_amount": "5000 sDAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "I'd like to withdraw my 1000 sDAI from the DSR and get DAI.",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0xba08765200000000000000000000000000000000000000000000003635c9adc5dea0000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_redeem",
+      "human_readable_amount": "1000 sDAI"
+    },
+    "_annotation_failed": false
+  },
+  {
+    "user_intent": "Could you help me convert 10000 sDAI to DAI?",
+    "user_context": {
+      "current_chain_id": 1,
+      "from_address": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "target_payload": {
+      "chain_id": 1,
+      "to": "0x83F20F44975D03b1b09e64809B757c47f942BeeA",
+      "value": "0",
+      "data": "0xba08765200000000000000000000000000000000000000000000021e19e0c9bab240000000000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c800000000000000000000000070997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    "metadata": {
+      "action": "maker_redeem",
+      "human_readable_amount": "10000 sDAI"
+    },
+    "_annotation_failed": false
+  }
+]
