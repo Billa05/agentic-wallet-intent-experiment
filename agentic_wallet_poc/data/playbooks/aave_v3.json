@@ -1,0 +1,187 @@
+{
+  "protocol": "aave_v3",
+  "version": "1.0",
+  "chain_id": 1,
+
+  "contracts": {
+    "pool": {
+      "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+      "abi_source": "etherscan_cache"
+    }
+  },
+
+  "actions": {
+    "aave_supply": {
+      "description": "Supply asset to Aave V3 lending pool",
+      "target_contract": "pool",
+      "function_name": "supply",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+
+      "payload_args": {
+        "asset": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "onBehalfOf": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "onBehalfOf",
+          "context_field": "from_address"
+        },
+        "referralCode": {
+          "source": "constant",
+          "value": 0
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset",        "source": "arg", "arg_key": "asset",        "coerce": "address" },
+        { "name": "amount",       "source": "arg", "arg_key": "amount",       "coerce": "uint256" },
+        { "name": "onBehalfOf",   "source": "arg", "arg_key": "onBehalfOf",   "coerce": "address" },
+        { "name": "referralCode", "source": "arg", "arg_key": "referralCode", "coerce": "uint256" }
+      ]
+    },
+
+    "aave_withdraw": {
+      "description": "Withdraw asset from Aave V3 lending pool",
+      "target_contract": "pool",
+      "function_name": "withdraw",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["asset", "amount", "to", "human_readable_amount"],
+
+      "payload_args": {
+        "asset": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount_or_max",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "onBehalfOf": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "onBehalfOf",
+          "context_field": "from_address"
+        },
+        "to": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "to",
+          "context_field": "from_address"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset",  "source": "arg", "arg_key": "asset",  "coerce": "address" },
+        { "name": "amount", "source": "arg", "arg_key": "amount", "coerce": "uint256" },
+        { "name": "to",     "source": "arg", "arg_key": "to",     "coerce": "address" }
+      ]
+    },
+
+    "aave_borrow": {
+      "description": "Borrow asset from Aave V3 lending pool",
+      "target_contract": "pool",
+      "function_name": "borrow",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["asset", "amount", "interestRateMode", "referralCode", "onBehalfOf", "human_readable_amount"],
+
+      "payload_args": {
+        "asset": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "interestRateMode": {
+          "source": "constant",
+          "value": 2
+        },
+        "referralCode": {
+          "source": "constant",
+          "value": 0
+        },
+        "onBehalfOf": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "onBehalfOf",
+          "context_field": "from_address"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset",            "source": "arg", "arg_key": "asset",            "coerce": "address" },
+        { "name": "amount",           "source": "arg", "arg_key": "amount",           "coerce": "uint256" },
+        { "name": "interestRateMode", "source": "arg", "arg_key": "interestRateMode", "coerce": "uint256" },
+        { "name": "referralCode",     "source": "arg", "arg_key": "referralCode",     "coerce": "uint256" },
+        { "name": "onBehalfOf",       "source": "arg", "arg_key": "onBehalfOf",       "coerce": "address" }
+      ]
+    },
+
+    "aave_repay": {
+      "description": "Repay borrowed asset on Aave V3",
+      "target_contract": "pool",
+      "function_name": "repay",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["asset", "amount", "interestRateMode", "onBehalfOf", "human_readable_amount"],
+
+      "payload_args": {
+        "asset": {
+          "source": "resolve_token_address",
+          "llm_field": "asset"
+        },
+        "amount": {
+          "source": "resolve_amount_or_max",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals_from": "$asset"
+        },
+        "interestRateMode": {
+          "source": "constant",
+          "value": 2
+        },
+        "onBehalfOf": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "onBehalfOf",
+          "context_field": "from_address"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} {asset}"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "asset",            "source": "arg", "arg_key": "asset",            "coerce": "address" },
+        { "name": "amount",           "source": "arg", "arg_key": "amount",           "coerce": "uint256" },
+        { "name": "interestRateMode", "source": "arg", "arg_key": "interestRateMode", "coerce": "uint256" },
+        { "name": "onBehalfOf",       "source": "arg", "arg_key": "onBehalfOf",       "coerce": "address" }
+      ]
+    }
+  }
+}

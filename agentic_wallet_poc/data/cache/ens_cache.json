@@ -1,0 +1,38 @@
+{
+  "forward": {
+    "alice.eth": "0x08Fa227fD019B562e0DB08881c53ee5d3c7F10bf",
+    "bob.eth": "0x8c4a948421b268494b39F5DB87502D8a154B903D",
+    "friend.eth": "0x76Bf35FC282783F81A14c69ae8Ff3F9926321A56",
+    "freind.eth": "0x4D076bcae8bC873735621b5F34B60Fe188b40d1E",
+    "vitalik.eth": "0xEa6DdFF67Cd00Eaf9345e2F6C6b0123AA4c9DB6d",
+    "charlie.eth": "0xad0cb6A7749B2c02DAB6b402F30d55337F913d47",
+    "dave.eth": "0x41c0F12ec4cDd231e6a49C5633dE8B186D8C5015",
+    "eve.eth": "0x3456789012345678901234567890123456789012",
+    "mallory.eth": "0x4567890123456789012345678901234567890123",
+    "trent.eth": "0x5678901234567890123456789012345678901234",
+    "littlebro.eth": "0xf7665f6333cdAE5433612ABccA27523848B3EB57",
+    "homie.eth": "0x4e4F1aB2179da816Dd9E1f5DB3EB20cD85365d4b",
+    "charity.eth": "0x26B51437EBfCD5C4E97722Aac45Bdc6c9b511C8D",
+    "payment.eth": "0x0eFb7993808Cc07a604205643688a63281d18Bf1",
+    "dan.eth": "0x91396DaE03121588D50Af5EBF502c13927A8C3Fa",
+    "sally.eth": "0x74D5316663159Fa708A58fa571D7A7D3738E0672"
+  },
+  "reverse": {
+    "0x08fa227fd019b562e0db08881c53ee5d3c7f10bf": "alice.eth",
+    "0x8c4a948421b268494b39f5db87502d8a154b903d": "bob.eth",
+    "0x76bf35fc282783f81a14c69ae8ff3f9926321a56": "friend.eth",
+    "0x4d076bcae8bc873735621b5f34b60fe188b40d1e": "freind.eth",
+    "0xea6ddff67cd00eaf9345e2f6c6b0123aa4c9db6d": "vitalik.eth",
+    "0xad0cb6a7749b2c02dab6b402f30d55337f913d47": "charlie.eth",
+    "0x41c0f12ec4cdd231e6a49c5633de8b186d8c5015": "dave.eth",
+    "0x3456789012345678901234567890123456789012": "eve.eth",
+    "0x4567890123456789012345678901234567890123": "mallory.eth",
+    "0x5678901234567890123456789012345678901234": "trent.eth",
+    "0xf7665f6333cdae5433612abcca27523848b3eb57": "littlebro.eth",
+    "0x4e4f1ab2179da816dd9e1f5db3eb20cd85365d4b": "homie.eth",
+    "0x26b51437ebfcd5c4e97722aac45bdc6c9b511c8d": "charity.eth",
+    "0x0efb7993808cc07a604205643688a63281d18bf1": "payment.eth",
+    "0x91396dae03121588d50af5ebf502c13927a8c3fa": "dan.eth",
+    "0x74d5316663159fa708a58fa571d7a7d3738e0672": "sally.eth"
+  }
+}

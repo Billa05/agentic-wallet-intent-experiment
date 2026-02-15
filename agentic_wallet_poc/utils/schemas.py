@@ -213,21 +213,34 @@ class ActionType(str, Enum):
 
 
 # Golden schema: required arguments per action type (for dataset and evaluation).
-# All amounts in arguments must be Wei/base units as strings.
-ACTION_REQUIRED_ARGS: Dict[str, list] = {
-    "transfer_native": ["to", "value", "human_readable_amount"],
-    "transfer_erc20": ["to", "value", "human_readable_amount"],
-    "transfer_erc721": ["to", "tokenId", "human_readable_amount"],
-    "aave_supply": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
-    "aave_withdraw": ["asset", "amount", "to", "human_readable_amount"],
-    "aave_borrow": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
-    "aave_repay": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
-    "lido_stake": ["value", "human_readable_amount"],
-    "lido_unstake": ["amount", "human_readable_amount"],
-    "uniswap_swap": ["tokenIn", "tokenOut", "fee", "recipient", "amountIn", "amountOutMinimum", "human_readable_amount"],
-    "curve_add_liquidity": ["pool", "amounts", "min_mint_amount", "human_readable_amount"],
-    "curve_remove_liquidity": ["pool", "amount", "min_amounts", "human_readable_amount"],
-}
+# Auto-generated from playbook JSON files; falls back to hardcoded dict if playbooks unavailable.
+def _load_action_required_args() -> Dict[str, list]:
+    """Load required_payload_args from playbook JSON files."""
+    _fallback = {
+        "transfer_native": ["to", "value", "human_readable_amount"],
+        "transfer_erc20": ["to", "value", "human_readable_amount"],
+        "transfer_erc721": ["to", "tokenId", "human_readable_amount"],
+        "aave_supply": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+        "aave_withdraw": ["asset", "amount", "to", "human_readable_amount"],
+        "aave_borrow": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+        "aave_repay": ["asset", "amount", "onBehalfOf", "human_readable_amount"],
+        "lido_stake": ["value", "human_readable_amount"],
+        "lido_unstake": ["_amounts", "_owner", "human_readable_amount"],
+        "uniswap_swap": ["tokenIn", "tokenOut", "fee", "recipient", "amountIn", "amountOutMinimum", "human_readable_amount"],
+        "curve_add_liquidity": ["pool", "amounts", "min_mint_amount", "human_readable_amount"],
+        "curve_remove_liquidity": ["pool", "amount", "min_amounts", "human_readable_amount"],
+    }
+    try:
+        from engine.playbook_engine import PlaybookEngine
+        engine = PlaybookEngine(
+            token_resolver=None,
+            ens_resolver=None,
+        )
+        return engine.get_required_payload_args()
+    except Exception:
+        return _fallback
+
+ACTION_REQUIRED_ARGS: Dict[str, list] = _load_action_required_args()
 
 
 class UserContext(BaseModel):

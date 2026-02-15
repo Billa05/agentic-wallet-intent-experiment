@@ -123,18 +123,22 @@ def find_function_in_abi(abi: List[Dict], func_name: str) -> Optional[Dict]:
 
 
 def main():
-    reg_path = Path(__file__).parent / "registries" / "protocol_registry.json"
-    registry = json.loads(reg_path.read_text())
+    playbooks_dir = Path(__file__).parent / "playbooks"
 
     print("ABI Bootstrap — Fetching from Etherscan V2")
     print("=" * 60)
 
-    # Collect all unique contract addresses from the registry
+    # Collect all unique contract addresses from playbook JSONs
     contracts: Dict[str, str] = {}  # address -> name
-    for proto_name, proto in registry.get("protocols", {}).items():
-        for key, val in proto.items():
-            if isinstance(val, str) and val.startswith("0x") and len(val) == 42:
-                contracts[val] = f"{proto.get('name', proto_name)}/{key}"
+    playbooks = []
+    for pb_file in sorted(playbooks_dir.glob("*.json")):
+        pb = json.loads(pb_file.read_text())
+        playbooks.append(pb)
+        protocol = pb.get("protocol", pb_file.stem)
+        for key, contract_info in pb.get("contracts", {}).items():
+            addr = contract_info.get("address", "")
+            if addr:
+                contracts[addr] = f"{protocol}/{key}"
 
     print(f"Contracts to fetch: {len(contracts)}")
     print()
@@ -148,19 +152,21 @@ def main():
 
     print()
 
-    # Verify all protocol actions have their functions in the fetched ABIs
+    # Verify all playbook actions have their functions in the fetched ABIs
     print("Verifying action → function mapping:")
     print("-" * 60)
 
     all_ok = True
-    for proto_name, proto in registry.get("protocols", {}).items():
-        for action_name, action_info in proto.get("actions", {}).items():
-            func_name = action_info.get("function")
-            target_key = action_info.get("target")
+    for pb in playbooks:
+        contracts_map = pb.get("contracts", {})
+        for action_name, action_spec in pb.get("actions", {}).items():
+            func_name = action_spec.get("function_name")
+            target_key = action_spec.get("target_contract")
             if not func_name or not target_key:
                 continue
 
-            target_addr = proto.get(target_key, "")
+            contract_info = contracts_map.get(target_key, {})
+            target_addr = contract_info.get("address", "")
             abi = abi_map.get(target_addr.lower())
 
             if not abi:

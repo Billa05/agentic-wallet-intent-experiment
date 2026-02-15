@@ -1,0 +1,96 @@
+{
+  "protocol": "uniswap_v3",
+  "version": "1.0",
+  "chain_id": 1,
+
+  "contracts": {
+    "router": {
+      "address": "0xE592427A0AEce92De3Edee1F18E0157C05861564",
+      "abi_source": "etherscan_cache"
+    }
+  },
+
+  "actions": {
+    "uniswap_swap": {
+      "description": "Swap tokens via Uniswap V3 single-hop (exactInputSingle)",
+      "target_contract": "router",
+      "function_name": "exactInputSingle",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["tokenIn", "tokenOut", "fee", "recipient", "amountIn", "amountOutMinimum", "human_readable_amount"],
+
+      "payload_args": {
+        "tokenIn": {
+          "source": "resolve_token_address",
+          "llm_field": "asset_in",
+          "fallback_llm_fields": ["path[0]"],
+          "eth_alias": "WETH"
+        },
+        "tokenOut": {
+          "source": "resolve_token_address",
+          "llm_field": "asset_out",
+          "fallback_llm_fields": ["path[-1]"],
+          "eth_alias": "WETH"
+        },
+        "fee": {
+          "source": "resolve_fee_tier",
+          "llm_field": "fee",
+          "fee_heuristic": {
+            "stable_tokens": ["USDC", "USDT", "DAI"],
+            "stable_stable_fee": 100,
+            "default_fee": 3000
+          },
+          "input_symbol_field": "asset_in",
+          "output_symbol_field": "asset_out"
+        },
+        "recipient": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "to",
+          "context_field": "from_address"
+        },
+        "deadline": {
+          "source": "resolve_deadline",
+          "buffer_seconds": 1200
+        },
+        "amountIn": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amountIn"],
+          "decimals_from": "$tokenIn"
+        },
+        "amountOutMinimum": {
+          "source": "resolve_smart_amount",
+          "llm_field": "amountOutMinimum",
+          "fallback_llm_fields": ["amountOutMin"],
+          "fallback": "0",
+          "decimals_from": "$tokenOut"
+        },
+        "sqrtPriceLimitX96": {
+          "source": "constant",
+          "value": "0"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "Swap {amount_human} ({asset_in} -> {asset_out})"
+        }
+      },
+
+      "param_mapping": [
+        {
+          "name": "params",
+          "source": "struct",
+          "fields": [
+            { "name": "tokenIn",           "source": "arg", "arg_key": "tokenIn",           "coerce": "address" },
+            { "name": "tokenOut",          "source": "arg", "arg_key": "tokenOut",          "coerce": "address" },
+            { "name": "fee",               "source": "arg", "arg_key": "fee",               "coerce": "uint24" },
+            { "name": "recipient",         "source": "arg", "arg_key": "recipient",         "coerce": "address" },
+            { "name": "deadline",          "source": "arg", "arg_key": "deadline",          "coerce": "uint256" },
+            { "name": "amountIn",          "source": "arg", "arg_key": "amountIn",          "coerce": "uint256" },
+            { "name": "amountOutMinimum",  "source": "arg", "arg_key": "amountOutMinimum",  "coerce": "uint256" },
+            { "name": "sqrtPriceLimitX96", "source": "arg", "arg_key": "sqrtPriceLimitX96", "coerce": "uint160" }
+          ]
+        }
+      ]
+    }
+  }
+}

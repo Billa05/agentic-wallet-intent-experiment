@@ -1,0 +1,80 @@
+{
+  "protocol": "lido",
+  "version": "1.0",
+  "chain_id": 1,
+
+  "contracts": {
+    "steth": {
+      "address": "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84",
+      "abi_source": "etherscan_cache"
+    },
+    "withdrawal": {
+      "address": "0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1",
+      "abi_source": "etherscan_cache"
+    }
+  },
+
+  "actions": {
+    "lido_stake": {
+      "description": "Stake ETH for stETH via Lido",
+      "target_contract": "steth",
+      "function_name": "submit",
+      "abi_source": "etherscan_cache",
+      "value_logic": {
+        "type": "from_arg",
+        "source_arg": "value"
+      },
+      "required_payload_args": ["value", "human_readable_amount"],
+
+      "payload_args": {
+        "value": {
+          "source": "resolve_amount",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["value"],
+          "decimals_from": "$native"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} ETH"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "_referral", "source": "constant", "value": "0x0000000000000000000000000000000000000000", "coerce": "address" }
+      ]
+    },
+
+    "lido_unstake": {
+      "description": "Request stETH withdrawal from Lido",
+      "target_contract": "withdrawal",
+      "function_name": "requestWithdrawals",
+      "abi_source": "etherscan_cache",
+      "value_logic": { "type": "zero" },
+      "required_payload_args": ["_amounts", "_owner", "human_readable_amount"],
+
+      "payload_args": {
+        "_amounts": {
+          "source": "wrap_in_array",
+          "llm_field": "amount_human",
+          "fallback_llm_fields": ["amount"],
+          "decimals": 18
+        },
+        "_owner": {
+          "source": "resolve_ens_or_hex",
+          "llm_field": "onBehalfOf",
+          "fallback_llm_fields": ["_owner"],
+          "context_field": "from_address"
+        },
+        "human_readable_amount": {
+          "source": "compute_human_readable",
+          "template": "{amount_human} stETH"
+        }
+      },
+
+      "param_mapping": [
+        { "name": "_amounts", "source": "arg", "arg_key": "_amounts", "coerce": "uint256_array" },
+        { "name": "_owner",   "source": "arg", "arg_key": "_owner",   "coerce": "address" }
+      ]
+    }
+  }
+}

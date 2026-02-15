@@ -25,7 +25,7 @@ from utils.schemas import (
     UserContext,
 )
 from engine.prompts import create_system_prompt, create_user_prompt
-from engine.payload_builder import convert_human_to_payload
+from engine.playbook_engine import PlaybookEngine
 
 load_dotenv()
 
@@ -34,43 +34,34 @@ class LLMTranslator:
     """
     LLM-based intent translator using litellm (supports multiple providers).
     Converts natural language to ExecutablePayload using structured output.
-    
+
     Supported providers: Groq, OpenAI, Anthropic, Google, Cohere, etc.
     Model format: "provider/model-name" (e.g., "groq/llama-3.1-8b-instant", "gpt-4o", "claude-3-5-sonnet-20241022")
     """
-    
+
     def __init__(
-        self, 
-        token_registry_path: str = "data/registries/token_registry.json", 
-        ens_registry_path: str = "data/registries/ens_registry.json", 
-        protocol_registry_path: str = "data/registries/protocol_registry.json",
+        self,
         model: str = "gpt-4o"
     ):
         """
         Initialize the LLM translator.
-        
+
         Args:
-            token_registry_path: Path to token registry JSON file
-            ens_registry_path: Path to ENS registry JSON file
-            protocol_registry_path: Path to protocol registry (DeFi contracts)
             model: Model identifier (litellm format)
         """
         self.model = model
-        self.token_registry = self._load_token_registry(token_registry_path)
-        self.ens_registry = self._load_ens_registry(ens_registry_path)
-        self.protocol_registry = self._load_protocol_registry(protocol_registry_path)
-        
+
+        from engine.token_resolver import TokenResolver
+        from engine.ens_resolver import ENSResolver
+        self.token_resolver = TokenResolver()
+        self.ens_resolver = ENSResolver(w3=self.token_resolver._w3)
+
+        self.playbook_engine = PlaybookEngine(
+            token_resolver=self.token_resolver,
+            ens_resolver=self.ens_resolver,
+        )
+
         self._validate_api_keys()
-    
-    def _load_token_registry(self, registry_path: str) -> Dict[str, Any]:
-        """Load token registry from JSON file."""
-        if not Path(registry_path).is_absolute():
-            registry_path = project_root / registry_path
-        registry_path = Path(registry_path)
-        if not registry_path.exists():
-            return {"erc20_tokens": {}, "erc721_collections": {}}
-        with open(registry_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
     
     def _validate_api_keys(self) -> None:
         """Validate that at least one LLM provider API key is set."""
@@ -100,27 +91,6 @@ class LLMTranslator:
         else:
             print(f"WARNING: Unknown model '{self.model}'. Make sure appropriate API key is set.", file=sys.stderr)
     
-    def _load_ens_registry(self, registry_path: str) -> Dict[str, str]:
-        """Load ENS registry from JSON file."""
-        if not Path(registry_path).is_absolute():
-            registry_path = project_root / registry_path
-        registry_path = Path(registry_path)
-        if not registry_path.exists():
-            return {}
-        with open(registry_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            return data.get("ens_names", {})
-    
-    def _load_protocol_registry(self, registry_path: str) -> Dict[str, Any]:
-        """Load protocol registry (DeFi contracts) from JSON file."""
-        if not Path(registry_path).is_absolute():
-            registry_path = project_root / registry_path
-        registry_path = Path(registry_path)
-        if not registry_path.exists():
-            return {}
-        with open(registry_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    
     def translate(
         self,
         user_intent: str,
@@ -142,7 +112,8 @@ class LLMTranslator:
 
         try:
             system_prompt = create_system_prompt(
-                self.token_registry, self.ens_registry, self.protocol_registry
+                self.token_resolver, self.ens_resolver,
+                supported_actions=self.playbook_engine.get_supported_actions(),
             )
             user_prompt = create_user_prompt(user_intent, chain_id)
             
@@ -221,17 +192,14 @@ class LLMTranslator:
             
             payload_dict["chain_id"] = chain_id
             
-            # LLM only classifies + extracts human params; we always build the full payload in code
-            built = convert_human_to_payload(
+            # LLM only classifies + extracts human params; playbook engine resolves everything
+            built = self.playbook_engine.build_payload(
                 payload_dict,
-                self.token_registry,
-                self.protocol_registry,
-                self.ens_registry,
                 chain_id=chain_id,
                 from_address=from_address,
             )
             if built is None:
-                set_fail("payload_builder", "convert_human_to_payload returned null (e.g. unknown action/asset or missing args).", raw=response_text)
+                set_fail("payload_builder", "PlaybookEngine.build_payload returned null (e.g. unknown action/asset or missing args).", raw=response_text)
                 return None
             payload_dict = built
             

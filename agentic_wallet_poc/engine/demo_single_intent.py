@@ -36,35 +36,27 @@ def step0_load_registries():
     print("STEP 0: Load registries")
     print("=" * 70)
 
-    token_path = project_root / "data" / "registries" / "token_registry.json"
-    ens_path = project_root / "data" / "registries" / "ens_registry.json"
-    protocol_path = project_root / "data" / "registries" / "protocol_registry.json"
+    from engine.token_resolver import TokenResolver
+    from engine.ens_resolver import ENSResolver
+    token_resolver = TokenResolver()
+    ens_resolver = ENSResolver(w3=token_resolver._w3)
 
-    with open(token_path, "r", encoding="utf-8") as f:
-        token_registry = json.load(f)
-    with open(ens_path, "r", encoding="utf-8") as f:
-        ens_data = json.load(f)
-        ens_registry = ens_data.get("ens_names", {})
-    with open(protocol_path, "r", encoding="utf-8") as f:
-        protocol_registry = json.load(f)
-
-    print(f"  token_registry: {len(token_registry.get('erc20_tokens', {}))} ERC-20 tokens")
-    print(f"  ens_registry: {list(ens_registry.keys())[:5]}...")
-    print(f"  protocol_registry: {list(protocol_registry.get('protocols', {}).keys())}")
-    return token_registry, ens_registry, protocol_registry
+    print(f"  token_resolver: {len(token_resolver.known_erc20_symbols())} ERC-20 tokens")
+    print(f"  ens_resolver: {ens_resolver.known_names()[:5]}...")
+    return token_resolver, ens_resolver
 
 
 # -----------------------------------------------------------------------------
 # Step 1: Build prompts
 # -----------------------------------------------------------------------------
-def step1_build_prompts(intent: str, chain_id: int, token_registry, ens_registry, protocol_registry):
+def step1_build_prompts(intent: str, chain_id: int, token_resolver, ens_resolver, supported_actions):
     print("\n" + "=" * 70)
     print("STEP 1: Build prompts")
     print("=" * 70)
 
     from engine.prompts import create_system_prompt, create_user_prompt
 
-    system_prompt = create_system_prompt(token_registry, ens_registry, protocol_registry)
+    system_prompt = create_system_prompt(token_resolver, ens_resolver, supported_actions=supported_actions)
     user_prompt = create_user_prompt(intent, chain_id)
 
     print("\n  [System prompt] (first 800 chars):")
@@ -161,32 +153,20 @@ def step3_parse_json(response_text: str, chain_id: int):
 # -----------------------------------------------------------------------------
 def step4_convert_human_to_payload(
     payload_dict: dict,
-    token_registry,
-    protocol_registry,
-    ens_registry,
+    engine,
     chain_id: int,
     from_address: str | None = None,
 ):
     print("\n" + "=" * 70)
-    print("STEP 4: convert_human_to_payload (payload builder)")
+    print("STEP 4: PlaybookEngine.build_payload (generic playbook engine)")
     print("=" * 70)
-
-    from engine.payload_builder import convert_human_to_payload
 
     action = payload_dict.get("action")
     print(f"  action: {action}")
-    print("  Always run payload builder (LLM only returns intent + human params; we construct everything in code).")
-    print("  Calling convert_human_to_payload(..., chain_id, from_address) ...")
-    built = convert_human_to_payload(
-        payload_dict,
-        token_registry,
-        protocol_registry,
-        ens_registry,
-        chain_id=chain_id,
-        from_address=from_address,
-    )
+    print("  LLM only returns intent + human params; playbook engine resolves everything.")
+    built = engine.build_payload(payload_dict, chain_id=chain_id, from_address=from_address)
     if built is None:
-        print("  -> convert_human_to_payload returned None (e.g. unknown action/asset or missing args).")
+        print("  -> PlaybookEngine.build_payload returned None (unknown action/asset or missing args).")
         return None
     print("  [Payload builder output]:")
     print("  " + json.dumps(built, indent=2).replace("\n", "\n  "))
@@ -218,19 +198,17 @@ def step5_validate_payload(payload_dict: dict):
 # -----------------------------------------------------------------------------
 # Step 6: Encode to raw transaction (calldata generation)
 # -----------------------------------------------------------------------------
-def step6_encode_to_raw_tx(payload, from_address: str):
+def step6_encode_to_raw_tx(payload, engine, from_address: str):
     print("\n" + "=" * 70)
     print("STEP 6: Encode to raw transaction (calldata generation)")
     print("=" * 70)
 
-    from engine.tx_encoder import payload_to_raw_tx
-
     payload_dict = payload.model_dump(mode="json") if hasattr(payload, "model_dump") else dict(payload)
     print(f"  action: {payload_dict.get('action')}")
     print(f"  from_address: {from_address}")
-    print("  Calling payload_to_raw_tx(...) ...")
+    print("  Calling PlaybookEngine.encode_tx(...) ...")
 
-    raw_tx = payload_to_raw_tx(payload_dict, from_address)
+    raw_tx = engine.encode_tx(payload_dict, from_address)
     if raw_tx is None:
         print("  -> payload_to_raw_tx returned None (unsupported action or missing ABI).")
         return None
@@ -300,9 +278,16 @@ def main():
     print(f"  Chain ID: {chain_id}")
     print(f"  From address (for DeFi/sender): {DEFAULT_FROM_ADDRESS}")
 
-    token_registry, ens_registry, protocol_registry = step0_load_registries()
+    token_resolver, ens_resolver = step0_load_registries()
+
+    from engine.playbook_engine import PlaybookEngine
+    engine = PlaybookEngine(
+        token_resolver=token_resolver,
+        ens_resolver=ens_resolver,
+    )
+
     system_prompt, user_prompt = step1_build_prompts(
-        intent, chain_id, token_registry, ens_registry, protocol_registry
+        intent, chain_id, token_resolver, ens_resolver, engine.get_supported_actions()
     )
     response_text = step2_call_llm(system_prompt, user_prompt)
     if not response_text:
@@ -316,9 +301,7 @@ def main():
 
     payload_dict = step4_convert_human_to_payload(
         payload_dict,
-        token_registry,
-        protocol_registry,
-        ens_registry,
+        engine,
         chain_id,
         from_address=DEFAULT_FROM_ADDRESS,
     )
@@ -331,7 +314,7 @@ def main():
         print("\n  Pipeline stopped: ExecutablePayload validation failed.")
         return 1
 
-    raw_tx = step6_encode_to_raw_tx(payload, from_address=DEFAULT_FROM_ADDRESS)
+    raw_tx = step6_encode_to_raw_tx(payload, engine, from_address=DEFAULT_FROM_ADDRESS)
     if raw_tx is None:
         print("\n  Pipeline stopped: calldata encoding failed.")
         return 1

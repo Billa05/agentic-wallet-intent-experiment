@@ -104,22 +104,10 @@ ALSO GENERATE 3-5 INVALID or UNSUPPORTED intents (mark with "[INVALID]" prefix):
 """
 
 
-def load_ens_registry(registry_path: str = "data/registries/ens_registry.json") -> dict:
-    """Load ENS registry from JSON file."""
-    import json
-    import os
-    
-    if not os.path.isabs(registry_path):
-        registry_path = project_root / registry_path
-    
-    registry_path = Path(registry_path)
-    
-    if not registry_path.exists():
-        return {}
-    
-    with open(registry_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        return data.get("ens_names", {})
+def load_ens_resolver():
+    """Create an ENSResolver instance for dataset generation prompts."""
+    from engine.ens_resolver import ENSResolver
+    return ENSResolver()
 
 
 def create_prompt_for_transaction_type(
@@ -136,9 +124,9 @@ def create_prompt_for_transaction_type(
     Returns:
         Formatted prompt string for Gemini
     """
-    # Load ENS registry
-    ens_registry = load_ens_registry()
-    ens_names_list = list(ens_registry.keys()) if ens_registry else []
+    # Load ENS resolver for known names
+    ens_resolver = load_ens_resolver()
+    ens_names_list = ens_resolver.known_names() if ens_resolver else []
     ens_names_str = ", ".join(ens_names_list) if ens_names_list else "alice.eth, bob.eth, friend.eth"
     
     total_count = config.count

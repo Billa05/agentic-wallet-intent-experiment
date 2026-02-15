@@ -19,6 +19,7 @@ sys.path.insert(0, str(project_root))
 
 from engine.llm_translator import LLMTranslator
 from engine.tx_encoder import payload_to_raw_tx, build_metadata
+from engine.ens_resolver import ENSResolver
 
 
 def load_raw_intents(path: str) -> List[Dict[str, Any]]:
@@ -32,14 +33,10 @@ def load_raw_intents(path: str) -> List[Dict[str, Any]]:
 
 
 def load_registries() -> tuple:
-    token_path = project_root / "data" / "registries" / "token_registry.json"
-    ens_path = project_root / "data" / "registries" / "ens_registry.json"
-    with open(token_path, "r", encoding="utf-8") as f:
-        token_registry = json.load(f)
-    with open(ens_path, "r", encoding="utf-8") as f:
-        ens_data = json.load(f)
-        ens_registry = ens_data.get("ens_names", {})
-    return token_registry, ens_registry
+    from engine.token_resolver import TokenResolver
+    token_resolver = TokenResolver()
+    ens_resolver = ENSResolver(w3=token_resolver._w3)
+    return token_resolver, ens_resolver
 
 
 def annotate_with_hybrid(
@@ -61,7 +58,7 @@ def annotate_with_hybrid(
     if from_address is None:
         from_address = os.getenv("DEFAULT_FROM_ADDRESS", "0xe2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2")
 
-    token_registry, ens_registry = load_registries()
+    token_resolver, ens_resolver = load_registries()
     raw = load_raw_intents(raw_intents_path)
     translator = LLMTranslator()
     annotated = []
@@ -110,7 +107,7 @@ def annotate_with_hybrid(
                     "value": args.get("value", "0"),
                     "data": "0x",
                 } if payload_dict.get("target_contract") or args.get("to") else None
-            metadata = build_metadata(payload_dict, token_registry, ens_registry)
+            metadata = build_metadata(payload_dict, token_resolver, ens_resolver)
             annotated.append({
                 "user_intent": intent,
                 "user_context": user_context,

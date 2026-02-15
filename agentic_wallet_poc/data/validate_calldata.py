@@ -137,10 +137,12 @@ def resolve_selectors(selectors: List[str]) -> Dict[str, Dict]:
 
 
 # ─────────────────────────────────────────────────────────────────────
-# Also support standard ABIs (ERC20/ERC721) from protocol_registry.json
+# Also support standard ABIs (ERC20/ERC721) from playbook JSONs
 # ─────────────────────────────────────────────────────────────────────
 
 _standard_selectors: Dict[str, Dict] = {}
+
+_PLAYBOOKS_DIR = Path(__file__).parent / "playbooks"
 
 
 def _build_standard_selectors():
@@ -149,26 +151,26 @@ def _build_standard_selectors():
     if _standard_selectors:
         return
 
-    reg_path = Path(__file__).parent / "registries" / "protocol_registry.json"
-    if not reg_path.exists():
+    if not _PLAYBOOKS_DIR.exists():
         return
 
-    reg = json.loads(reg_path.read_text())
-    for key, abi_entry in reg.get("standard_abis", {}).items():
-        name = abi_entry.get("name", "")
-        inputs = abi_entry.get("inputs", [])
-        types = [_resolve_abi_type(inp) for inp in inputs]
-        param_names = [inp.get("name", f"arg{i}") for i, inp in enumerate(inputs)]
-        sig = f"{name}({','.join(types)})"
-        sel = "0x" + keccak(sig.encode()).hex()[:8]
-        _standard_selectors[sel] = {
-            "name": name,
-            "types": types,
-            "param_names": param_names,
-            "sig": sig,
-            "source": f"standard:{key}",
-            "raw_inputs": inputs,
-        }
+    for pb_file in _PLAYBOOKS_DIR.glob("*.json"):
+        pb = json.loads(pb_file.read_text())
+        for key, abi_entry in pb.get("standard_abis", {}).items():
+            name = abi_entry.get("name", "")
+            inputs = abi_entry.get("inputs", [])
+            types = [_resolve_abi_type(inp) for inp in inputs]
+            param_names = [inp.get("name", f"arg{i}") for i, inp in enumerate(inputs)]
+            sig = f"{name}({','.join(types)})"
+            sel = "0x" + keccak(sig.encode()).hex()[:8]
+            _standard_selectors[sel] = {
+                "name": name,
+                "types": types,
+                "param_names": param_names,
+                "sig": sig,
+                "source": f"standard:{key}",
+                "raw_inputs": inputs,
+            }
 
 
 # ─────────────────────────────────────────────────────────────────────
@@ -250,13 +252,14 @@ def decode_calldata(data_hex: str) -> Dict:
 
 
 # ─────────────────────────────────────────────────────────────────────
-# Registries
+# Registries (loaded from playbooks + token cache)
 # ─────────────────────────────────────────────────────────────────────
 
-def load_registries(base: Path) -> Tuple[Dict, Dict]:
-    token_reg = json.loads((base / "token_registry.json").read_text())
-    proto_reg = json.loads((base / "protocol_registry.json").read_text())
-    return token_reg, proto_reg
+def _load_token_cache(base: Path) -> Dict:
+    cache_path = Path(__file__).parent / "cache" / "token_cache.json"
+    if cache_path.exists():
+        return json.loads(cache_path.read_text())
+    return {"erc20_tokens": {}, "erc721_collections": {}}
 
 
 def _build_address_lookup(token_reg: Dict) -> Dict[str, Dict]:
@@ -266,19 +269,46 @@ def _build_address_lookup(token_reg: Dict) -> Dict[str, Dict]:
     return lookup
 
 
-def _build_action_to_function(proto_reg: Dict) -> Dict[str, str]:
+def _build_action_to_function_from_playbooks() -> Dict[str, str]:
+    """Build action→function_name mapping from playbook JSONs."""
     mapping = {}
-    for _, proto in proto_reg.get("protocols", {}).items():
-        for action_name, action_info in proto.get("actions", {}).items():
-            mapping[action_name] = action_info.get("function", "")
+    if not _PLAYBOOKS_DIR.exists():
+        return mapping
+    for pb_file in _PLAYBOOKS_DIR.glob("*.json"):
+        pb = json.loads(pb_file.read_text())
+        for action_name, action_spec in pb.get("actions", {}).items():
+            fn = action_spec.get("function_name", "")
+            if fn:
+                mapping[action_name] = fn
     return mapping
 
 
-def _build_protocol_addresses(proto_reg: Dict) -> Dict[str, List[str]]:
-    result = {}
-    for pname, proto in proto_reg.get("protocols", {}).items():
-        addrs = [v.lower() for k, v in proto.items() if isinstance(v, str) and v.startswith("0x")]
-        result[pname] = addrs
+def _build_protocol_addresses_from_playbooks() -> Dict[str, List[str]]:
+    """Build protocol_prefix→contract addresses mapping from playbook JSONs.
+
+    The validator looks up addresses by action prefix (e.g. 'aave' from 'aave_supply').
+    We derive prefixes from action names so the lookup matches.
+    """
+    result: Dict[str, List[str]] = {}
+    if not _PLAYBOOKS_DIR.exists():
+        return result
+    for pb_file in _PLAYBOOKS_DIR.glob("*.json"):
+        pb = json.loads(pb_file.read_text())
+        addrs = []
+        for _, contract_info in pb.get("contracts", {}).items():
+            addr = contract_info.get("address", "")
+            if addr:
+                addrs.append(addr.lower())
+        if not addrs:
+            continue
+        # Derive unique prefixes from action names (e.g. "aave" from "aave_supply")
+        for action_name in pb.get("actions", {}):
+            prefix = action_name.split("_")[0]
+            if prefix not in result:
+                result[prefix] = []
+            for a in addrs:
+                if a not in result[prefix]:
+                    result[prefix].append(a)
     return result
 
 
@@ -314,7 +344,7 @@ def validate_record(
 
     Checks:
       1. DECODE:    calldata decodes against Etherscan ABI + eth_abi
-      2. FUNCTION:  decoded name matches protocol_registry expectation
+      2. FUNCTION:  decoded name matches playbook expectation
       3. TARGET:    'to' address is a known protocol contract
       4. TOKEN:     address params match known tokens consistent with intent
       5. AMOUNT:    uint param matches human_readable_amount x decimals
@@ -355,7 +385,7 @@ def validate_record(
 
     if expected_func and actual_func:
         if actual_func == expected_func:
-            checks.append(f"FUNCTION: '{actual_func}' matches registry")
+            checks.append(f"FUNCTION: '{actual_func}' matches playbook")
         else:
             alt_valid = {
                 "transferFrom": {"safeTransferFrom", "transferPunk"},
@@ -365,7 +395,7 @@ def validate_record(
             if actual_func in alts:
                 checks.append(f"FUNCTION: '{actual_func}' (valid alternate)")
             else:
-                errors.append(f"FUNCTION: got '{actual_func}', registry says '{expected_func}'")
+                errors.append(f"FUNCTION: got '{actual_func}', playbook says '{expected_func}'")
     elif actual_func and action.startswith("transfer_"):
         valid = {"transfer", "transferFrom", "safeTransferFrom", "transferPunk"}
         if actual_func in valid:
@@ -380,7 +410,7 @@ def validate_record(
         if any(_addr_eq(to_addr, k) for k in known):
             checks.append(f"TARGET: {to_addr[:14]}... is known {protocol_prefix} contract")
         else:
-            errors.append(f"TARGET: {to_addr[:14]}... NOT in {protocol_prefix} registry")
+            errors.append(f"TARGET: {to_addr[:14]}... NOT in {protocol_prefix} playbook")
 
     # ── 4–6. GENERIC PARAM CHECKS ───────────────────────────────
     params = decoded.get("params", {})
@@ -488,10 +518,10 @@ def main():
         sys.exit(1)
 
     reg_dir = Path(__file__).parent / "registries"
-    token_reg, proto_reg = load_registries(reg_dir)
+    token_reg = _load_token_cache(reg_dir)
     addr_lookup = _build_address_lookup(token_reg)
-    action_to_func = _build_action_to_function(proto_reg)
-    proto_addrs = _build_protocol_addresses(proto_reg)
+    action_to_func = _build_action_to_function_from_playbooks()
+    proto_addrs = _build_protocol_addresses_from_playbooks()
 
     with open(input_path) as f:
         dataset = json.load(f)

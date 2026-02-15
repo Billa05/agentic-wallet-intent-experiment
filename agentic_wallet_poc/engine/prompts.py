@@ -6,23 +6,27 @@ and human-readable parameters (amounts, symbols, ENS names). All address resolut
 Wei/base-unit conversion, and transaction construction are done in code (payload_builder).
 """
 
-from typing import Dict, Any, Optional
+from typing import Dict, Any, List, Optional
 
 
 def create_system_prompt(
-    token_registry: Dict[str, Any],
-    ens_registry: Dict[str, str],
-    protocol_registry: Optional[Dict[str, Any]] = None,
+    token_resolver,
+    ens_resolver=None,
+    supported_actions: Optional[List[str]] = None,
 ) -> str:
     """
     Create system prompt for intent classification and parameter extraction only.
     Does NOT ask for Wei, contract addresses, or function names—code does that.
+
+    token_resolver: TokenResolver instance (uses known_erc20_symbols() / known_collection_aliases()).
+    ens_resolver: ENSResolver instance (uses known_names() for prompt).
+    supported_actions: list of action names from playbooks (e.g. PlaybookEngine.get_supported_actions()).
+    If provided, appends a summary line of DeFi actions to the prompt.
     """
-    protocol_registry = protocol_registry or {}
     # List supported symbols/names for reference (no addresses—we resolve in code)
-    erc20_symbols = list(token_registry.get("erc20_tokens", {}).keys())
-    erc721_names = list(token_registry.get("erc721_collections", {}).keys())
-    ens_names = list(ens_registry.keys()) if ens_registry else []
+    erc20_symbols = token_resolver.known_erc20_symbols() if token_resolver else []
+    erc721_names = token_resolver.known_collection_aliases() if token_resolver else []
+    ens_names = ens_resolver.known_names() if ens_resolver else []
 
     base = """You are an intent classifier and parameter extractor for blockchain transactions.
 Your job is ONLY to:
@@ -83,18 +87,10 @@ curve_remove_liquidity:
 Return ONLY valid JSON: { "action": "<action>", "arguments": { ... } }. No explanation. If unclear, return null.
 """
 
-    protocols = (protocol_registry or {}).get("protocols", {})
-    if protocols:
-        actions = []
-        if protocols.get("aave"):
-            actions.extend(["aave_supply", "aave_withdraw", "aave_borrow", "aave_repay"])
-        if protocols.get("lido"):
-            actions.extend(["lido_stake", "lido_unstake"])
-        if protocols.get("uniswap"):
-            actions.append("uniswap_swap")
-        if protocols.get("curve"):
-            actions.extend(["curve_add_liquidity", "curve_remove_liquidity"])
-        base += "\nDeFi actions you may classify: " + ", ".join(actions) + "\n"
+    # Filter to DeFi actions (exclude transfers — those are always available)
+    defi_actions = [a for a in (supported_actions or []) if not a.startswith("transfer_")]
+    if defi_actions:
+        base += "\nDeFi actions you may classify: " + ", ".join(defi_actions) + "\n"
     return base
 
 
